@@ -41,10 +41,10 @@ class VerificationView(discord.ui.View):
         
         if role:
             if role in user.roles:
-                await interaction.response.send_message("<a:Strzalka1:1539554457174548480> Jesteś już zweryfikowany!", ephemeral=True)
+                await interaction.response.send_message("<a:Strzalka2:1539571409599070218> Jesteś już zweryfikowany!", ephemeral=True)
             else:
                 await user.add_roles(role)
-                await interaction.response.send_message("<a:Strzalka1:1539554457174548480> Pomyślnie przeszedłeś weryfikację! Witaj na serwerze! 🎉", ephemeral=True)
+                await interaction.response.send_message("<a:Strzalka2:1539571409599070218> Pomyślnie przeszedłeś weryfikację! Witaj na serwerze! 🎉", ephemeral=True)
         else:
             await interaction.response.send_message("Błąd: Nie znaleziono roli Widza na serwerze. Powiadom admina!", ephemeral=True)
 
