@@ -47,10 +47,11 @@ class VerificationView(discord.ui.View):
                 await interaction.response.send_message("<a:Strzalka2:1539571409599070218> Pomyślnie przeszedłeś weryfikację! Witaj na serwerze! 🎉", ephemeral=True)
         else:
             await interaction.response.send_message("Błąd: Nie znaleziono roli Widza na serwerze. Powiadom admina!", ephemeral=True)
-
 # ==========================================
 # 3. LOGIKA TICKETÓW (NIEBIESKA - ROZWIJANA)
 # ==========================================
+
+# --- FORMULARZ ZAKUPU ---
 class PurchaseModal(discord.ui.Modal, title="Formularz Zakupu"):
     co_kupujesz = discord.ui.TextInput(
         label="Co kupujesz?",
@@ -60,7 +61,7 @@ class PurchaseModal(discord.ui.Modal, title="Formularz Zakupu"):
     )
     czym_placisz = discord.ui.TextInput(
         label="Czym Byś Chciał/a zapłacić?",
-        placeholder="Np. Blik,PSC",
+        placeholder="Np. Blik, PSC",
         required=True,
         max_length=10
     )
@@ -90,7 +91,7 @@ class PurchaseModal(discord.ui.Modal, title="Formularz Zakupu"):
         if ticket_role:
             overwrites[ticket_role] = discord.PermissionOverwrite(read_messages=True, send_messages=True)
 
-        channel_name = f"🛒┃zakup-{user.name}"
+        channel_name = f"🎫┃ᴛɪᴄᴋᴇᴛʏ-zakup-{user.name}"
         ticket_channel = await guild.create_text_channel(name=channel_name, category=category, overwrites=overwrites)
 
         await interaction.response.send_message(f"<a:Strzalka:1536867225359613962> Stworzono ticket! Idź do: {ticket_channel.mention}", ephemeral=True)
@@ -103,8 +104,8 @@ class PurchaseModal(discord.ui.Modal, title="Formularz Zakupu"):
         embed = discord.Embed(
             description=f"```ansi\n\u001b[1;34m📩 ┃ ZGŁOSZENIE: ZAKUP\u001b[0m\n```\n"
                         f"> **Produkt:** {self.co_kupujesz.value}\n"
-                        f"> **Ilość:** {self.ile_sztuk.value}\n"
-                        f"> **Cena:** {self.za_ile.value}\n\n"
+                        f"> **Czym płaci:** {self.czym_placisz.value}\n"
+                        f"> **Ile kasy kosztuje:** {self.za_ile.value}\n\n"
                         f"> <a:Strzalka:1536867225359613962>︲ Administracja zaraz się Tobą zajmie.",
             color=discord.Color.from_rgb(52, 152, 219)
         )
@@ -112,6 +113,99 @@ class PurchaseModal(discord.ui.Modal, title="Formularz Zakupu"):
         await ticket_channel.send(embed=embed, view=close_view)
 
 
+# --- FORMULARZ POMOCY ---
+class HelpModal(discord.ui.Modal, title="Formularz Pomocy"):
+    problem = discord.ui.TextInput(
+        label="Opisz krótko swój problem",
+        style=discord.TextStyle.long,
+        placeholder="Napisz tutaj, w czym tkwi problem i jak możemy Ci pomóc...",
+        required=True,
+        max_length=1000
+    )
+
+    def __init__(self, ticket_role_id):
+        super().__init__()
+        self.ticket_role_id = ticket_role_id
+
+    async def on_submit(self, interaction: discord.Interaction):
+        guild = interaction.guild
+        user = interaction.user
+        category = interaction.channel.category
+        ticket_role = guild.get_role(self.ticket_role_id)
+
+        overwrites = {
+            guild.default_role: discord.PermissionOverwrite(read_messages=False),
+            user: discord.PermissionOverwrite(read_messages=True, send_messages=True),
+            guild.me: discord.PermissionOverwrite(read_messages=True, send_messages=True)
+        }
+        if ticket_role:
+            overwrites[ticket_role] = discord.PermissionOverwrite(read_messages=True, send_messages=True)
+
+        channel_name = f"🎫┃ᴛɪᴄᴋᴇᴛʏ-pomoc-{user.name}"
+        ticket_channel = await guild.create_text_channel(name=channel_name, category=category, overwrites=overwrites)
+
+        await interaction.response.send_message(f"<a:Strzalka:1536867225359613962> Stworzono ticket! Idź do: {ticket_channel.mention}", ephemeral=True)
+
+        mention_role = ticket_role.mention if ticket_role else "@tickety"
+        await ticket_channel.send(f"<:list:1539599064155553822> **Nowe Zgłoszenie Pomocy !** {mention_role} {user.mention}")
+
+        embed = discord.Embed(
+            description=f"```ansi\n\u001b[1;34m📩 ┃ ZGŁOSZENIE: POMOC\u001b[0m\n```\n"
+                        f"> **Opis problemu:**\n{self.problem.value}\n\n"
+                        f"> <a:Strzalka:1536867225359613962>︲ Administracja zaraz się Tobą zajmie.",
+            color=discord.Color.from_rgb(52, 152, 219)
+        )
+        embed.set_footer(text="© 2026 LL1N Community × Pomoc")
+        await ticket_channel.send(embed=embed, view=CloseTicketView())
+
+
+# --- FORMULARZ PYTANIA ---
+class QuestionModal(discord.ui.Modal, title="Formularz Pytania"):
+    pytanie = discord.ui.TextInput(
+        label="Jakie masz pytanie do administracji?",
+        style=discord.TextStyle.long,
+        placeholder="Zadaj tutaj swoje pytanie, na które chcesz poznać odpowiedź...",
+        required=True,
+        max_length=1000
+    )
+
+    def __init__(self, ticket_role_id):
+        super().__init__()
+        self.ticket_role_id = ticket_role_id
+
+    async def on_submit(self, interaction: discord.Interaction):
+        guild = interaction.guild
+        user = interaction.user
+        category = interaction.channel.category
+        ticket_role = guild.get_role(self.ticket_role_id)
+
+        overwrites = {
+            guild.default_role: discord.PermissionOverwrite(read_messages=False),
+            user: discord.PermissionOverwrite(read_messages=True, send_messages=True),
+            guild.me: discord.PermissionOverwrite(read_messages=True, send_messages=True)
+        }
+        if ticket_role:
+            overwrites[ticket_role] = discord.PermissionOverwrite(read_messages=True, send_messages=True)
+
+        channel_name = f"🎫┃ᴛɪᴄᴋᴇᴛʏ-pytanie-{user.name}"
+        ticket_channel = await guild.create_text_channel(name=channel_name, category=category, overwrites=overwrites)
+
+        await interaction.response.send_message(f"<a:Strzalka:1536867225359613962> Stworzono ticket! Idź do: {ticket_channel.mention}", ephemeral=True)
+
+        mention_role = ticket_role.mention if ticket_role else "@tickety"
+        await ticket_channel.send(f"<:lupa:1539598440483262474> **Nowe Pytanie !** {mention_role} {user.mention}")
+
+        embed = discord.Embed(
+            description=f"```ansi\n\u001b[1;34m📩 ┃ ZGŁOSZENIE: PYTANIE\u001b[0m\n```\n"
+                        f"> **Treść pytania:**\n{self.pytanie.value}\n\n"
+                        f"> <a:Strzalka:1536867225359613962>︲ Administracja zaraz się Tobą zajmie.",
+            color=discord.Color.from_rgb(52, 152, 219)
+        )
+        embed.set_footer(text="© 2026 LL1N Community × Pytanie")
+        await ticket_channel.send(embed=embed, view=CloseTicketView())
+
+
+# --- MENU ROZWIJANE ---
 class TicketDropdown(discord.ui.Select):
     def __init__(self):
         options = [
@@ -122,45 +216,14 @@ class TicketDropdown(discord.ui.Select):
         super().__init__(placeholder="💎 Wybiɛrz katɛgorię swojego zgłoszenia...", min_values=1, max_values=1, options=options, custom_id="ticket_select_menu")
 
     async def callback(self, interaction: discord.Interaction):
-        wybor = self.values[0]  # Bezpieczne pobranie wybranego tekstu z listy
+        wybor = self.values[0]
 
         if wybor == "Zakup":
             await interaction.response.send_modal(PurchaseModal(ticket_role_id=ID_ROLI_TICKETY))
-            return
-
-        guild = interaction.guild
-        user = interaction.user
-        category = interaction.channel.category
-        ticket_role = guild.get_role(ID_ROLI_TICKETY)
-        
-        overwrites = {
-            guild.default_role: discord.PermissionOverwrite(read_messages=False),
-            user: discord.PermissionOverwrite(read_messages=True, send_messages=True),
-            guild.me: discord.PermissionOverwrite(read_messages=True, send_messages=True)
-        }
-
-        if ticket_role:
-            overwrites[ticket_role] = discord.PermissionOverwrite(read_messages=True, send_messages=True)
-
-        channel_name = f"📩┃{wybor.lower()}-{user.name}"
-        ticket_channel = await guild.create_text_channel(name=channel_name, category=category, overwrites=overwrites)
-
-        await interaction.response.send_message(f"<a:Strzalka:1536867225359613962> Stworzono ticket! Idź do: {ticket_channel.mention}", ephemeral=True)
-
-        close_view = CloseTicketView()
-        
-        nazwa_opcji = "Zgłoszenie"
-        for o in self.options:
-            if o.value == wybor:
-                nazwa_opcji = o.label
-                break
-        
-        embed = discord.Embed(
-            description=f"```ansi\n\u001b[1;34m📩 ┃ ZGŁOSZENIE: {nazwa_opcji.upper()}\u001b[0m\n```\n> <a:Strzalka:1536867225359613962>︲ Witaj {user.mention}!\n> <a:Strzalka:1536867225359613962>︲ Napisz tutaj, w czym możemy Ci pomóc.\n\n> <a:Strzalka:1536867225359613962>︲ Administracja zaraz się Tobą zajmie.",
-            color=discord.Color.from_rgb(52, 152, 219)
-        )
-        embed.set_footer(text=f"© 2026 LL1N Community × {wybor}")
-        await ticket_channel.send(embed=embed, view=close_view)
+        elif wybor == "Pomoc":
+            await interaction.response.send_modal(HelpModal(ticket_role_id=ID_ROLI_TICKETY))
+        elif wybor == "Pytanie":
+            await interaction.response.send_modal(QuestionModal(ticket_role_id=ID_ROLI_TICKETY))
 
 
 class TicketDropdownView(discord.ui.View):
@@ -234,9 +297,9 @@ async def ticket_setup(interaction: discord.Interaction):
     
     tekst_ticket = (
         "```ansi\n\u001b[1;37m🎫 LL1N COMMUNITY × STWÓRZ TICKETA\u001b[0m\n```\n"
-        "> <a:Strzalka3:1539590864228061284>︲ Interesuje Cię zakup texture packa lub moich modyfikacji?\n"
+        "> <a:Strzalka3:1539590864228061284>︲ Interesuje Cię zakup **texture packa** lub moich **modyfikacji**?\n"
         "> <a:Strzalka3:1539590864228061284>︲ A może masz jakieś **pytanie** lub **problem**?\n\n"
-        "> <a:Strzalka3:1539590864228061284>︲ Rozwiń listę poniżej i wybierz powód! Odpowiemy najszybciej jak to możliwe!"
+        "> <a:Strzalka3:1539590864228061284>︲ Rozwiń poniższą **listę** i wybierz odpowiedni powód zgłoszenia!"
     )
     
     embed = discord.Embed(description=tekst_ticket, color=discord.Color.from_rgb(52, 152, 219))
@@ -256,4 +319,3 @@ if __name__ == "__main__":
         bot.run(token)
     else:
         print("❌ BŁĄD: Nie znaleziono zmiennej środowiskowej DISCORD_TOKEN!")
-
