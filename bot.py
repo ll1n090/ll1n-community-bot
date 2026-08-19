@@ -51,6 +51,75 @@ class VerificationView(discord.ui.View):
 # ==========================================
 # 3. LOGIKA TICKETÓW (NIEBIESKA - ROZWIJANA)
 # ==========================================
+
+# Klasa Formularza Zakupu (Modal Okienkowy)
+class PurchaseModal(discord.ui.Modal, title="Formularz Zakupu"):
+    co_kupujesz = discord.ui.TextInput(
+        label="Co kupujesz?",
+        placeholder="Wpisz nazwę produktu...",
+        required=True,
+        max_length=100
+    )
+    ile_sztuk = discord.ui.TextInput(
+        label="Ile sztuk kupujesz?",
+        placeholder="Np. 1, 2, 5...",
+        required=True,
+        max_length=10
+    )
+    za_ile = discord.ui.TextInput(
+        label="Za ile kupujesz?",
+        placeholder="Np. 35",
+        required=True,
+        max_length=20
+    )
+
+    def __init__(self, ticket_role_id):
+        super().__init__()
+        self.ticket_role_id = ticket_role_id
+
+    async def on_submit(self, interaction: discord.Interaction):
+        guild = interaction.guild
+        user = interaction.user
+        category = interaction.channel.category
+        ticket_role = guild.get_role(self.ticket_role_id)
+
+        # Nadawanie uprawnień do nowego kanału
+        overwrites = {
+            guild.default_role: discord.PermissionOverwrite(read_messages=False),
+            user: discord.PermissionOverwrite(read_messages=True, send_messages=True),
+            guild.me: discord.PermissionOverwrite(read_messages=True, send_messages=True)
+        }
+
+        if ticket_role:
+            overwrites[ticket_role] = discord.PermissionOverwrite(read_messages=True, send_messages=True)
+
+        # Tworzenie kanału tekstowego (nazwa ma standardowe emoji, bo Discord nie wspiera customowych w nazwach)
+        channel_name = f"🛒┃zakup-{user.name}"
+        ticket_channel = await guild.create_text_channel(name=channel_name, category=category, overwrites=overwrites)
+
+        # Odpowiedź efemeryczna, informująca o sukcesie
+        await interaction.response.send_message(f"<a:Strzalka:1536867225359613962> Stworzono ticket! Idź do: {ticket_channel.mention}", ephemeral=True)
+
+        close_view = CloseTicketView()
+
+        # Pierwsza wiadomość na kanale (Wzmianka roli administratów oraz gracza)
+        mention_role = ticket_role.mention if ticket_role else "@tickety"
+        await ticket_channel.send(f"<:wozek:1539597036884598828> **Nowe Zamówienie !** {mention_role} {user.mention}")
+
+        # Podsumowanie z wypełnionego przed chwilą formularza
+        embed = discord.Embed(
+            description=f"```ansi\n\u001b[1;34m📩 ┃ ZGŁOSZENIE: ZAKUP\u001b[0m\n```\n"
+                        f"> **Produkt:** {self.co_kupujesz.value}\n"
+                        f"> **Ilość:** {self.ile_sztuk.value}\n"
+                        f"> **Cena:** {self.za_ile.value}\n\n"
+                        f"> <a:Strzalka:1536867225359613962>︲ Administracja zaraz się Tobą zajmie.",
+            color=discord.Color.from_rgb(52, 152, 219)
+        )
+        embed.set_footer(text=f"© 2026 LL1N Community × Zakup")
+        await ticket_channel.send(embed=embed, view=close_view)
+
+
+# Menu rozwijane wyboru kategorii
 class TicketDropdown(discord.ui.Select):
     def __init__(self):
         options = [
@@ -61,12 +130,18 @@ class TicketDropdown(discord.ui.Select):
         super().__init__(placeholder="💎 Wybiɛrz katɛgorię swojego zgłoszenia...", min_values=1, max_values=1, options=options, custom_id="ticket_select_menu")
 
     async def callback(self, interaction: discord.Interaction):
+        wybor = self.values[0]  # Pobieramy pierwszy element z listy
+
+        # Jeśli wybrano Zakup -> otwieramy modal i kończymy działanie tej funkcji
+        if wybor == "Zakup":
+            await interaction.response.send_modal(PurchaseModal(ticket_role_id=ID_ROLI_TICKETY))
+            return
+
+        # Logika dla pozostałych standardowych zgłoszeń (Pomoc, Pytanie)
         guild = interaction.guild
         user = interaction.user
         category = interaction.channel.category
         ticket_role = guild.get_role(ID_ROLI_TICKETY)
-
-        wybor = self.values
         
         overwrites = {
             guild.default_role: discord.PermissionOverwrite(read_messages=False),
@@ -77,15 +152,19 @@ class TicketDropdown(discord.ui.Select):
         if ticket_role:
             overwrites[ticket_role] = discord.PermissionOverwrite(read_messages=True, send_messages=True)
 
-        channel_name = f"📩┃{wybor}-{user.name}"
+        channel_name = f"📩┃{wybor.lower()}-{user.name}"
         ticket_channel = await guild.create_text_channel(name=channel_name, category=category, overwrites=overwrites)
 
         await interaction.response.send_message(f"<a:Strzalka:1536867225359613962> Stworzono ticket! Idź do: {ticket_channel.mention}", ephemeral=True)
 
         close_view = CloseTicketView()
-        nazwa_opcji = [o.label for o in self.options if o.value == wybor][0]
         
-        # Wnętrze otwartego ticketa z niebieskim paskiem
+        nazwa_opcji = "Zgłoszenie"
+        for o in self.options:
+            if o.value == wybor:
+                nazwa_opcji = o.label
+                break
+        
         embed = discord.Embed(
             description=f"```ansi\n\u001b[1;34m📩 ┃ ZGŁOSZENIE: {nazwa_opcji.upper()}\u001b[0m\n```\n> <a:Strzalka:1536867225359613962>︲ Witaj {user.mention}!\n> <a:Strzalka:1536867225359613962>︲ Napisz tutaj, w czym możemy Ci pomóc.\n\n> <a:Strzalka:1536867225359613962>︲ Administracja zaraz się Tobą zajmie.",
             color=discord.Color.from_rgb(52, 152, 219)
@@ -93,10 +172,12 @@ class TicketDropdown(discord.ui.Select):
         embed.set_footer(text=f"© 2026 LL1N Community × {wybor}")
         await ticket_channel.send(embed=embed, view=close_view)
 
+
 class TicketDropdownView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
         self.add_item(TicketDropdown())
+
 
 class CloseTicketView(discord.ui.View):
     def __init__(self):
@@ -106,61 +187,14 @@ class CloseTicketView(discord.ui.View):
     async def close_ticket(self, interaction: discord.Interaction, button: discord.ui.Button):
         await interaction.response.send_message("<a:Strzalka:1536867225359613962> Zamykanie ticketa za 5 sekund...")
         await asyncio.sleep(5)
-        await interaction.channel.delete()
+        try:
+            await interaction.channel.delete()
+        except discord.NotFound:
+            pass
+
 
 # ==========================================
-# 4. GŁÓWNA KONFIGURACJA BOTA
-# ==========================================
-class Bot(commands.Bot):
-    def __init__(self):
-        intents = discord.Intents.default()
-        intents.message_content = True
-        super().__init__(command_prefix="!", intents=intents)
-
-    async def setup_hook(self):
-        self.add_view(VerificationView())
-        self.add_view(TicketDropdownView())
-        self.add_view(CloseTicketView())
-
-bot = Bot()
-
-@bot.event
-async def on_ready():
-    print(f"Zalogowano jako {bot.user.name} - weryfikacja i tickety gotowe.")
-    try:
-        synced = await bot.tree.sync()
-        print(f"Zsynchronizowano {len(synced)} komend slash.")
-    except Exception as e:
-        print(e)
-
-# Komenda /weryfikacja-setup (Zielona)
-@bot.tree.command(name="weryfikacja-setup", description="Wysyła panel do weryfikacji konta")
-@app_commands.checks.has_permissions(administrator=True)
-async def setup_verif(interaction: discord.Interaction):
-    view = VerificationView()
-    embed = discord.Embed(
-        description="```ansi\n\u001b[1;37m✅ LL1N COMMUNITY × WERYFIKACJA\u001b[0m\n```\n> <a:Strzalka2:1539571409599070218>︲ Dostęp do wszystkich kanałów serwera **LL1N COMMUNITY**,\n> <a:Strzalka2:1539571409599070218>︲ uzyskasz po kliknięciu zielonego przycisku poniżej.\n\n> <a:Strzalka2:1539571409599070218>︲Pamiętaj o przestrzeganiu regulaminu. Życzymy miłego pobytu!",
-        color=discord.Color.from_rgb(119, 178, 85)
-    )
-    embed.set_footer(text="© 2026 LL1N Community × weryfikacja")
-    await interaction.response.send_message("Panel weryfikacji wysłany!", ephemeral=True)
-    await interaction.channel.send(embed=embed, view=view)
-
-# Komenda /ticket-setup (NIEBIESKA - NOWY TEKST)
-@bot.tree.command(name="ticket-setup", description="Wysyła panel ticketów z menu wyboru (admin)")
-@app_commands.checks.has_permissions(administrator=True)
-async def ticket_setup(interaction: discord.Interaction):
-    view = TicketDropdownView()
-    embed = discord.Embed(
-        description="```ansi\n\u001b[1;37m🎫 LL1N COMMUNITY × STWÓRZ TICKETA\u001b[0m\n```\n> <a:Strzalka3:1539590864228061284>︲ Interesuje Cię zakup **modyfikacji** lub unikalnego **texture packa**?\n> <a:Strzalka3:1539590864228061284>︲ A może chcesz zgłosić **błąd** lub po prostu skontaktować się ze **staffem**?\n\n> <a:Strzalka3:1539590864228061284>︲ Rozwiń poniższą **listę** i wybierz odpowiedni powód zgłoszenia!",
-        color=discord.Color.from_rgb(52, 152, 219)
-    )
-    embed.set_footer(text="© 2026 LL1N Community × tickety")
-    await interaction.response.send_message("Panel ticketów wysłany!", ephemeral=True)
-    await interaction.channel.send(embed=embed, view=view)
-
-# ==========================================
-# 5. URUCHOMIENIE BOTA
+#  URUCHOMIENIE BOTA
 # ==========================================
 if __name__ == "__main__":
     keep_alive()
