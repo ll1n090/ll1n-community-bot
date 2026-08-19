@@ -51,8 +51,6 @@ class VerificationView(discord.ui.View):
 # ==========================================
 # 3. LOGIKA TICKETÓW (NIEBIESKA - ROZWIJANA)
 # ==========================================
-
-# Klasa Formularza Zakupu (Modal Okienkowy)
 class PurchaseModal(discord.ui.Modal, title="Formularz Zakupu"):
     co_kupujesz = discord.ui.TextInput(
         label="Co kupujesz?",
@@ -83,7 +81,6 @@ class PurchaseModal(discord.ui.Modal, title="Formularz Zakupu"):
         category = interaction.channel.category
         ticket_role = guild.get_role(self.ticket_role_id)
 
-        # Nadawanie uprawnień do nowego kanału
         overwrites = {
             guild.default_role: discord.PermissionOverwrite(read_messages=False),
             user: discord.PermissionOverwrite(read_messages=True, send_messages=True),
@@ -93,20 +90,16 @@ class PurchaseModal(discord.ui.Modal, title="Formularz Zakupu"):
         if ticket_role:
             overwrites[ticket_role] = discord.PermissionOverwrite(read_messages=True, send_messages=True)
 
-        # Tworzenie kanału tekstowego (nazwa ma standardowe emoji, bo Discord nie wspiera customowych w nazwach)
         channel_name = f"🛒┃zakup-{user.name}"
         ticket_channel = await guild.create_text_channel(name=channel_name, category=category, overwrites=overwrites)
 
-        # Odpowiedź efemeryczna, informująca o sukcesie
         await interaction.response.send_message(f"<a:Strzalka:1536867225359613962> Stworzono ticket! Idź do: {ticket_channel.mention}", ephemeral=True)
 
         close_view = CloseTicketView()
 
-        # Pierwsza wiadomość na kanale (Wzmianka roli administratów oraz gracza)
         mention_role = ticket_role.mention if ticket_role else "@tickety"
         await ticket_channel.send(f"<:wozek:1539597036884598828> **Nowe Zamówienie !** {mention_role} {user.mention}")
 
-        # Podsumowanie z wypełnionego przed chwilą formularza
         embed = discord.Embed(
             description=f"```ansi\n\u001b[1;34m📩 ┃ ZGŁOSZENIE: ZAKUP\u001b[0m\n```\n"
                         f"> **Produkt:** {self.co_kupujesz.value}\n"
@@ -119,7 +112,6 @@ class PurchaseModal(discord.ui.Modal, title="Formularz Zakupu"):
         await ticket_channel.send(embed=embed, view=close_view)
 
 
-# Menu rozwijane wyboru kategorii
 class TicketDropdown(discord.ui.Select):
     def __init__(self):
         options = [
@@ -130,14 +122,12 @@ class TicketDropdown(discord.ui.Select):
         super().__init__(placeholder="💎 Wybiɛrz katɛgorię swojego zgłoszenia...", min_values=1, max_values=1, options=options, custom_id="ticket_select_menu")
 
     async def callback(self, interaction: discord.Interaction):
-        wybor = self.values[0]  # Pobieramy pierwszy element z listy
+        wybor = self.values[0]  # Bezpieczne pobranie wybranego tekstu z listy
 
-        # Jeśli wybrano Zakup -> otwieramy modal i kończymy działanie tej funkcji
         if wybor == "Zakup":
             await interaction.response.send_modal(PurchaseModal(ticket_role_id=ID_ROLI_TICKETY))
             return
 
-        # Logika dla pozostałych standardowych zgłoszeń (Pomoc, Pytanie)
         guild = interaction.guild
         user = interaction.user
         category = interaction.channel.category
@@ -192,11 +182,78 @@ class CloseTicketView(discord.ui.View):
         except discord.NotFound:
             pass
 
+# ==========================================
+# 4. GŁÓWNA KONFIGURACJA BOTA
+# ==========================================
+class Bot(commands.Bot):
+    def __init__(self):
+        intents = discord.Intents.default()
+        intents.message_content = True
+        super().__init__(command_prefix="!", intents=intents)
+
+    async def setup_hook(self):
+        self.add_view(VerificationView())
+        self.add_view(TicketDropdownView())
+        self.add_view(CloseTicketView())
+
+bot = Bot()
+
+@bot.event
+async def on_ready():
+    print(f"Zalogowano jako {bot.user.name} - weryfikacja i tickety gotowe.")
+    try:
+        synced = await bot.tree.sync()
+        print(f"Zsynchronizowano {len(synced)} komend slash.")
+    except Exception as e:
+        print(f"Błąd synchronizacji komend: {e}")
+
+# Komenda /weryfikacja-setup (Zielona)
+@bot.tree.command(name="weryfikacja-setup", description="Wysyła panel do weryfikacji konta")
+@app_commands.checks.has_permissions(administrator=True)
+async def setup_verif(interaction: discord.Interaction):
+    view = VerificationView()
+    
+    tekst_verif = (
+        "```ansi\n\u001b[1;37m✅ LL1N COMMUNITY × WERYFIKACJA\u001b[0m\n```\n"
+        "> <a:Strzalka2:1539571409599070218>︲ Dostęp do wszystkich kanałów serwera **LL1N COMMUNITY**,\n"
+        "> <a:Strzalka2:1539571409599070218>︲ uzyskasz po kliknięciu zielonego przycisku poniżej.\n\n"
+        "> <a:Strzalka2:1539571409599070218>︲Pamiętaj o przestrzeganiu regulaminu. Życzymy miłego pobytu!"
+    )
+    
+    embed = discord.Embed(description=tekst_verif, color=discord.Color.from_rgb(119, 178, 85))
+    embed.set_footer(text="© 2026 LL1N Community × weryfikacja")
+    
+    await interaction.response.send_message("Panel weryfikacji wysłany!", ephemeral=True)
+    await interaction.channel.send(embed=embed, view=view)
+
+# Komenda /ticket-setup (NIEBIESKA)
+@bot.tree.command(name="ticket-setup", description="Wysyła panel ticketów z menu wyboru (admin)")
+@app_commands.checks.has_permissions(administrator=True)
+async def ticket_setup(interaction: discord.Interaction):
+    view = TicketDropdownView()
+    
+    tekst_ticket = (
+        "```ansi\n\u001b[1;37m🎫 LL1N COMMUNITY × STWÓRZ TICKETA\u001b[0m\n```\n"
+        "> <a:Strzalka3:1539590864228061284>︲ Chcesz zakupić modyfikacje lub texture packa?\n"
+        "> <a:Strzalka3:1539590864228061284>︲ Masz błąd lub chcesz pogadać ze staffem?\n\n"
+        "> <a:Strzalka3:1539590864228061284>︲ Rozwiń listę poniżej i wybierz powód!"
+    )
+    
+    embed = discord.Embed(description=tekst_ticket, color=discord.Color.from_rgb(52, 152, 219))
+    embed.set_footer(text="© 2026 LL1N Community × tickety")
+    
+    await interaction.response.send_message("Panel ticketów wysłany!", ephemeral=True)
+    await interaction.channel.send(embed=embed, view=view)
 
 # ==========================================
-#  URUCHOMIENIE BOTA
+# 5. URUCHOMIENIE BOTA
 # ==========================================
 if __name__ == "__main__":
     keep_alive()
     token = os.getenv("DISCORD_TOKEN")
-    bot.run(token)
+    
+    if token:
+        bot.run(token)
+    else:
+        print("❌ BŁĄD: Nie znaleziono zmiennej środowiskowej DISCORD_TOKEN!")
+
