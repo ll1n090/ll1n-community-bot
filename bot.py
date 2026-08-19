@@ -1,29 +1,47 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
+from flask import Flask
+from threading import Thread
+import os
 
 # === KONFIGURACJA NAZWY RANGI ===
-# Upewnij się, że nazwa roli poniżej jest IDENTYCZNA jak na Twoim Discordzie!
 NAZWA_ROLI_WIDZ = "🎮 ┃ ᴡɪᴅᴢ"
 
+# ==========================================
+# 1. SERWER WWW DO WYBUDZANIA BOTA (FLASK)
+# ==========================================
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot status: ONLINE"
+
+def run_web_server():
+    # Port 10000 jest wymagany przez Render dla każdego Web Service
+    app.run(host='0.0.0.0', port=10000)
+
+def keep_alive():
+    t = Thread(target=run_web_server)
+    t.start()
+
+# ==========================================
+# 2. LOGIKA WERYFIKACJI DISCORDA
+# ==========================================
 class VerificationView(discord.ui.View):
     def __init__(self):
-        super().__init__(timeout=None) # Przycisk działa zawsze, nawet po restarcie bota
+        super().__init__(timeout=None)
 
     @discord.ui.button(label="Zweryfikuj się", style=discord.ButtonStyle.green, custom_id="verify_user_btn", emoji="🍏")
     async def verify(self, interaction: discord.Interaction, button: discord.ui.Button):
         guild = interaction.guild
         user = interaction.user
-        
-        # Szukanie roli Widza na serwerze
         role = discord.utils.get(guild.roles, name=NAZWA_ROLI_WIDZ)
         
         if role:
             if role in user.roles:
-                # Komunikat ukryty (widoczny tylko dla gracza)
                 await interaction.response.send_message("» Jesteś już zweryfikowany!", ephemeral=True)
             else:
-                # Nadawanie rangi i wysłanie potwierdzenia
                 await user.add_roles(role)
                 await interaction.response.send_message("» Pomyślnie przeszedłeś weryfikację! Witaj na serwerze! 🎉", ephemeral=True)
         else:
@@ -36,7 +54,6 @@ class Bot(commands.Bot):
         super().__init__(command_prefix="!", intents=intents)
 
     async def setup_hook(self):
-        # Rejestracja widoku, żeby przycisk działał non-stop
         self.add_view(VerificationView())
 
 bot = Bot()
@@ -50,8 +67,6 @@ async def on_ready():
     except Exception as e:
         print(e)
 
-# === ZMIENIONA KOMENDA SLASH ===
-# Wpisujesz /weryfikacja-setup na kanale #✅┃ᴡᴇʀʏꜰɪᴋᴀᴄᴊᴀ
 @bot.tree.command(name="weryfikacja-setup", description="Wysyła panel do weryfikacji konta")
 @app_commands.checks.has_permissions(administrator=True)
 async def setup_verif(interaction: discord.Interaction):
@@ -59,12 +74,18 @@ async def setup_verif(interaction: discord.Interaction):
     embed = discord.Embed(
         title="🔒 ┃ Weryfikacja konta",
         description="Aby uzyskać pełny dostęp do wszystkich kanałów serwera **LL1N COMMUNITY**, kliknij poniższy zielony przycisk.\n\nPamiętaj o przestrzeganiu regulaminu. Życzymy miłego pobytu!",
-        color=discord.Color.from_rgb(119, 178, 85) # Zielony kolor pod Twoje logo
+        color=discord.Color.from_rgb(119, 178, 85)
     )
     embed.set_footer(text="© 2026 LL1N Community × weryfikacja")
-    
     await interaction.response.send_message("Panel weryfikacji wysłany!", ephemeral=True)
     await interaction.channel.send(embed=embed, view=view)
 
-
-bot.run("MTUzOTU0MjI2ODU4OTkwMzkyMg.G3rGyG.r6k5SGXEeANsmIBuEF082h7v3zhcugw9xLw5cw")
+# ==========================================
+# 3. URUCHOMIENIE SERWERA I BOTA
+# ==========================================
+if __name__ == "__main__":
+    keep_alive() # Odpala serwer Flask, żeby Render widział otwarty port
+    
+    # Pobiera bezpiecznie token, który wkleiłeś w panelu Rendera
+    token = os.getenv("DISCORD_TOKEN")
+    bot.run(token)
