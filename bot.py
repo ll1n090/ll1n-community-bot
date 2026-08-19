@@ -73,7 +73,7 @@ async def on_ready():
 async def setup_verif(interaction: discord.Interaction):
     view = VerificationView()
     embed = discord.Embed(
-        description="```ansi\n\u001b[1;37m✅ LL1N COMMUNITY × WERYFIKACJA\u001b[0m\n```\n> <a:Strzalka1:1539554457174548480>︲ Aby uzyskać pełny dostęp do wszystkich kanałów serwera **LL1N COMMUNITY**,> <a:Strzalka1:1539554457174548480>︲ kliknij poniższy zielony przycisk.\n\n> <a:Strzalka1:1539554457174548480>︲Pamiętaj o przestrzeganiu regulaminu. Życzymy miłego pobytu!",
+        description="```ansi\n\u001b[1;37m✅ LL1N COMMUNITY × WERYFIKACJA\u001b[0m\n```\n> <a:Strzalka1:1539554457174548480>︲ Aby uzyskać pełny dostęp do wszystkich kanałów serwera **LL1N COMMUNITY**,\n> <a:Strzalka1:1539554457174548480>︲ kliknij poniższy zielony przycisk.\n\n> <a:Strzalka1:1539554457174548480>︲Pamiętaj o przestrzeganiu regulaminu. Życzymy miłego pobytu!",
         color=discord.Color.from_rgb(119, 178, 85)
     )
     embed.set_footer(text="© 2026 LL1N Community × weryfikacja")
