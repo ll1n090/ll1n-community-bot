@@ -33,10 +33,11 @@ class VerificationView(discord.ui.View):
         super().__init__(timeout=None)
 
     @discord.ui.button(label="Zweryfikuj się", style=discord.ButtonStyle.green, custom_id="verify_user_btn", emoji="🍏")
+    @discord.ui.button(label="Zweryfikuj się", style=discord.ButtonStyle.green, custom_id="verify_user_btn", emoji="🍏")
     async def verify(self, interaction: discord.Interaction, button: discord.ui.Button):
         guild = interaction.guild
         user = interaction.user
-role = guild.get_role(ID_ROLI_WIDZ)
+        role = guild.get_role(ID_ROLI_WIDZ) # TUTAJ popraw wcięcie na 8 spacji
         
         if role:
             if role in user.roles:
