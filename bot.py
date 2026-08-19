@@ -58,15 +58,15 @@ class PurchaseModal(discord.ui.Modal, title="Formularz Zakupu"):
         required=True,
         max_length=100
     )
-    ile_sztuk = discord.ui.TextInput(
-        label="Ile sztuk kupujesz?",
-        placeholder="Np. 1, 2, 5...",
+    czym_placisz = discord.ui.TextInput(
+        label="Czym Byś Chciał/a zapłacić?",
+        placeholder="Np. Blik,PSC",
         required=True,
         max_length=10
     )
     za_ile = discord.ui.TextInput(
-        label="Za ile kupujesz?",
-        placeholder="Np. 35",
+        label="Za ile pieniędzy kupujesz?",
+        placeholder="Np. 20zł",
         required=True,
         max_length=20
     )
