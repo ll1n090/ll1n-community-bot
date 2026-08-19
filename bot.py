@@ -54,11 +54,11 @@ class VerificationView(discord.ui.View):
 class TicketDropdown(discord.ui.Select):
     def __init__(self):
         options = [
-            discord.SelectOption(label="Kupno Texture Packa", description="Chcesz kupić unikalny txt", emoji="🛒", value="txt"),
-            discord.SelectOption(label="Modyfikacje", description="Sprawy związane z modami", emoji="🛠️", value="mody"),
-            discord.SelectOption(label="Inna Pomoc", description="Pytania do administracji / błędy", emoji="❓", value="pomoc")
+            discord.SelectOption(label="Zakup", description="Otwórz ticket w celu zakupu naszego asortymentu.", emoji="🛒", value="txt"),
+            discord.SelectOption(label="Pomoc", description="Masz problem? Stwórz ticket byśmy mogli Ci pomóc.", emoji="🛠️", value="mody"),
+            discord.SelectOption(label="Mam Pytanie", description="Pytania do administracji", emoji="❓", value="pomoc")
         ]
-        super().__init__(placeholder="❗ Wybierz kategorię ticketu...", min_values=1, max_values=1, options=options, custom_id="ticket_select_menu")
+        super().__init__(placeholder="💎 Wybiɛrz katɛgorię swojego zgłoszenia...", min_values=1, max_values=1, options=options, custom_id="ticket_select_menu")
 
     async def callback(self, interaction: discord.Interaction):
         guild = interaction.guild
