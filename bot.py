@@ -98,19 +98,30 @@ class PurchaseModal(discord.ui.Modal, title="Formularz Zakupu"):
 
         close_view = CloseTicketView()
 
+        # Przygotowanie wzmianki dla roli administracji
         mention_role = ticket_role.mention if ticket_role else "@tickety"
-        await ticket_channel.send(f"<:wozek:1539597036884598828> **Nowe Zamówienie !** {mention_role} {user.mention}")
 
+        # Nowy wygląd ramki z tytułem i emotką koszyka
         embed = discord.Embed(
-            description=f"```ansi\n\u001b[1;34m📩 ┃ ZGŁOSZENIE: ZAKUP\u001b[0m\n```\n"
-                        f"> **Produkt:** {self.co_kupujesz.value}\n"
-                        f"> **Czym płaci:** {self.czym_placisz.value}\n"
-                        f"> **Ile kasy kosztuje:** {self.za_ile.value}\n\n"
-                        f"> <a:Strzalka:1536867225359613962>︲ Administracja zaraz się Tobą zajmie.",
-            color=discord.Color.from_rgb(52, 152, 219)
+            title="🛒 Nowe Zamówienie",
+            description=(
+                f"> Wzywanie pomocy: {mention_role} {user.mention}\n"
+                "> <a:Strzalka:1536867225359613962>︲ Administracja zaraz się Tobą zajmie."
+            ),
+            color=discord.Color.from_rgb(43, 45, 49) 
         )
-        embed.set_footer(text=f"© 2026 LL1N Community × Zakup")
+        
+        # Sekcje z danymi z formularza
+        embed.add_field(name="🛒 Wybrany produkt:", value=f"```\n{self.co_kupujesz.value}\n```", inline=False)
+        embed.add_field(name="💳 Metoda płatności:", value=f"```\n{self.czym_placisz.value}\n```", inline=True)
+        embed.add_field(name="💰 Kwota zamówienia:", value=f"```\n{self.za_ile.value}\n```", inline=True)
+        
+        embed.set_thumbnail(url=user.display_avatar.url)
+        embed.set_footer(text=f"© 2026 LL1N Community • Kupujący: {user.name}")
+        
+        # Bot wysyła teraz tylko jedną, czystą ramkę (pomiędzy nią a przyciskiem nie ma dodatkowego tekstu)
         await ticket_channel.send(embed=embed, view=close_view)
+
 
 
 # --- FORMULARZ POMOCY ---
