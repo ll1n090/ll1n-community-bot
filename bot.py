@@ -73,9 +73,8 @@ async def on_ready():
 async def setup_verif(interaction: discord.Interaction):
     view = VerificationView()
     embed = discord.Embed(
-        title="🔒 ┃ Weryfikacja konta",
-        description="Aby uzyskać pełny dostęp do wszystkich kanałów serwera **LL1N COMMUNITY**, kliknij poniższy zielony przycisk.\n\nPamiętaj o przestrzeganiu regulaminu. Życzymy miłego pobytu!",
-        color=discord.Color.from_rgb(119, 178, 85)
+        description="```ansi\n\u001b[1;37m✅ LL1N COMMUNITY × WERYFIKACJA\u001b[0m\n```\n> <a:Strzalka:1536867225359613962>︲ Aby uzyskać pełny dostęp do wszystkich kanałów serwera **LL1N COMMUNITY**,\n> <a:Strzalka:1536867225359613962>︲ kliknij poniższy zielony przycisk.\n\nPamiętaj o przestrzeganiu regulaminu. Życzymy miłego pobytu!",
+        color=discord.Color.from_rgb(114, 55, 178)
     )
     embed.set_footer(text="© 2026 LL1N Community × weryfikacja")
     await interaction.response.send_message("Panel weryfikacji wysłany!", ephemeral=True)
