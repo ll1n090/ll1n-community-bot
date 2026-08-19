@@ -6,7 +6,7 @@ from threading import Thread
 import os
 
 # === KONFIGURACJA NAZWY RANGI ===
-NAZWA_ROLI_WIDZ = "🎮 ┃ ᴡɪᴅᴢ"
+ID_ROLI_WIDZ = 1539527929359241316
 
 # ==========================================
 # 1. SERWER WWW DO WYBUDZANIA BOTA (FLASK)
@@ -36,7 +36,7 @@ class VerificationView(discord.ui.View):
     async def verify(self, interaction: discord.Interaction, button: discord.ui.Button):
         guild = interaction.guild
         user = interaction.user
-        role = discord.utils.get(guild.roles, name=NAZWA_ROLI_WIDZ)
+role = guild.get_role(ID_ROLI_WIDZ)
         
         if role:
             if role in user.roles:
