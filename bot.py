@@ -152,7 +152,7 @@ async def setup_verif(interaction: discord.Interaction):
 async def ticket_setup(interaction: discord.Interaction):
     view = TicketDropdownView()
     embed = discord.Embed(
-        description="```ansi\n\u001b[1;34m🎫 LL1N COMMUNITY × STWÓRZ TICKETA\u001b[0m\n```\n> <a:Strzalka:1536867225359613962>︲ Interesuje Cię zakup **modyfikacji** lub unikalnego **texture packa**?\n> <a:Strzalka:1536867225359613962>︲ A może chcesz zgłosić **błąd** lub po prostu skontaktować się ze **staffem**?\n\n> <a:Strzalka:1536867225359613962>︲ Rozwiń poniższą **listę** i wybierz odpowiedni powód zgłoszenia!",
+        description="```ansi\n\u001b[1;37m🎫 LL1N COMMUNITY × STWÓRZ TICKETA\u001b[0m\n```\n> <a:Strzalka3:1539590864228061284>︲ Interesuje Cię zakup **modyfikacji** lub unikalnego **texture packa**?\n> <a:Strzalka3:1539590864228061284>︲ A może chcesz zgłosić **błąd** lub po prostu skontaktować się ze **staffem**?\n\n> <a:Strzalka3:1539590864228061284>︲ Rozwiń poniższą **listę** i wybierz odpowiedni powód zgłoszenia!",
         color=discord.Color.from_rgb(52, 152, 219)
     )
     embed.set_footer(text="© 2026 LL1N Community × tickety")
