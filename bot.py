@@ -234,9 +234,9 @@ async def ticket_setup(interaction: discord.Interaction):
     
     tekst_ticket = (
         "```ansi\n\u001b[1;37m🎫 LL1N COMMUNITY × STWÓRZ TICKETA\u001b[0m\n```\n"
-        "> <a:Strzalka3:1539590864228061284>︲ Chcesz zakupić modyfikacje lub texture packa?\n"
-        "> <a:Strzalka3:1539590864228061284>︲ Masz błąd lub chcesz pogadać ze staffem?\n\n"
-        "> <a:Strzalka3:1539590864228061284>︲ Rozwiń listę poniżej i wybierz powód!"
+        "> <a:Strzalka3:1539590864228061284>︲ Interesuje Cię zakup texture packa lub moich modyfikacji?\n"
+        "> <a:Strzalka3:1539590864228061284>︲ A może masz jakieś **pytanie** lub **problem**?\n\n"
+        "> <a:Strzalka3:1539590864228061284>︲ Rozwiń listę poniżej i wybierz powód! Odpowiemy najszybciej jak to możliwe!"
     )
     
     embed = discord.Embed(description=tekst_ticket, color=discord.Color.from_rgb(52, 152, 219))
