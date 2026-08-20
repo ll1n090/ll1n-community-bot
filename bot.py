@@ -202,7 +202,7 @@ class QuestionModal(discord.ui.Modal, title="Formularz Pytania"):
         await interaction.response.send_message(f"<a:Strzalka3:1539590864228061284> Stworzono ticket! Idź do: {ticket_channel.mention}", ephemeral=True)
 
         mention_role = ticket_role.mention if ticket_role else "@tickety"
-        await ticket_channel.send(f"<:lupa:1539598440483262474> **Nowe Pytanie !** {mention_role} {user.mention}")
+        await ticket_channel.send(f"{mention_role} {user.mention}")
 
         embed = discord.Embed(
             description=f"```ansi\n\u001b[1;37m❓ ┃ PYTANIE\u001b[0m\n```\n"
