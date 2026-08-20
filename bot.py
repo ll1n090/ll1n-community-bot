@@ -152,13 +152,13 @@ class HelpModal(discord.ui.Modal, title="Formularz Pomocy"):
         channel_name = f"🎫┃ᴛɪᴄᴋᴇᴛʏ-pomoc-{user.name}"
         ticket_channel = await guild.create_text_channel(name=channel_name, category=category, overwrites=overwrites)
 
-        await interaction.response.send_message(f"<a:Strzalka:1536867225359613962> Stworzono ticket! Idź do: {ticket_channel.mention}", ephemeral=True)
+        await interaction.response.send_message(f"<a:Strzalka3:1539590864228061284> Stworzono ticket! Idź do: {ticket_channel.mention}", ephemeral=True)
 
         mention_role = ticket_role.mention if ticket_role else "@tickety"
 
         embed = discord.Embed(
             description=f"```ansi\n\u001b[1;37m📞 ┃ Nowe Zgłoszenie Pomocy !\u001b[0m\n```\n"
-                        f"> **Opis problemu:**\n{self.problem.value}\n\n"
+                        f"> **<a:Strzalka3:1539590864228061284>︲Opis problemu:**\n{self.problem.value}\n\n"
                         f"> <a:Strzalka3:1539590864228061284>︲ Administracja zaraz się Tobą zajmie.",
             color=discord.Color.from_rgb(52, 152, 219)
         )
