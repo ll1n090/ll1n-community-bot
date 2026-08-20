@@ -158,13 +158,14 @@ class HelpModal(discord.ui.Modal, title="Formularz Pomocy"):
 
         embed = discord.Embed(
             description=f"```ansi\n\u001b[1;37m📞 ┃ Nowe Zgłoszenie Pomocy !\u001b[0m\n```\n"
-                        f"> {mention_role} {user.mention}\n"
                         f"> **Opis problemu:**\n{self.problem.value}\n\n"
                         f"> <a:Strzalka3:1539590864228061284>︲ Administracja zaraz się Tobą zajmie.",
             color=discord.Color.from_rgb(52, 152, 219)
         )
+
         embed.set_footer(text="© 2026 LL1N Community × Pomoc")
-        await ticket_channel.send(embed=embed, view=CloseTicketView())
+        await ticket_channel.send(content=f"{mention_role} {user.mention}", embed=embed, view=CloseTicketView())
+
 
 
 # --- FORMULARZ PYTANIA ---
