@@ -102,7 +102,7 @@ class PurchaseModal(discord.ui.Modal, title="Formularz Zakupu"):
 
         embed = discord.Embed(
             description=(
-                f"```ansi\n\u001b[1;37m🛒 | Nowe Zamówienie\u001b[0m\n```\n"
+                f"```ansi\n\u001b[1;37m<:wozek:1539597036884598828> | Nowe Zamówienie\u001b[0m\n```\n"
                 f"> <a:Strzalka3:1539590864228061284>︲ Wzywanie zamówienia: {mention_role} {user.mention}\n"
                 "> <a:Strzalka3:1539590864228061284>︲ Administracja zaraz się Tobą zajmie."
             ),
