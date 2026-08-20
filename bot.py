@@ -101,9 +101,9 @@ class PurchaseModal(discord.ui.Modal, title="Formularz Zakupu"):
         mention_role = ticket_role.mention if ticket_role else "@tickety"
 
         embed = discord.Embed(
-            title="<:wozek:1539597036884598828> Nowe Zamówienie",
             description=(
-                f"> Wzywanie zamówienia: {mention_role} {user.mention}\n"
+                f"```ansi\n\u001b[1;37m🛒 | Nowe Zamówienie\u001b[0m\n```\n"
+                f"> <a:Strzalka3:1539590864228061284>︲ Wzywanie zamówienia: {mention_role} {user.mention}\n"
                 "> <a:Strzalka3:1539590864228061284>︲ Administracja zaraz się Tobą zajmie."
             ),
             color=discord.Color.from_rgb(43, 45, 49) 
