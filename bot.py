@@ -159,7 +159,7 @@ class HelpModal(discord.ui.Modal, title="Formularz Pomocy"):
 
         embed = discord.Embed(
             description=f"```ansi\n\u001b[1;37m📞 ┃ Nowe Zgłoszenie Pomocy !\u001b[0m\n```\n"
-                        f"> ({mention_role} {user.mention})
+                        f"> ({mention_role} {user.mention})"
                         f"> **Opis problemu:**\n{self.problem.value}\n\n"
                         f"> <a:Strzalka3:1539590864228061284>︲ Administracja zaraz się Tobą zajmie.",
             color=discord.Color.from_rgb(52, 152, 219)
