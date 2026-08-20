@@ -155,7 +155,6 @@ class HelpModal(discord.ui.Modal, title="Formularz Pomocy"):
         await interaction.response.send_message(f"<a:Strzalka:1536867225359613962> Stworzono ticket! Idź do: {ticket_channel.mention}", ephemeral=True)
 
         mention_role = ticket_role.mention if ticket_role else "@tickety"
-        await ticket_channel.send(f"<:list:1539599064155553822> **Nowe Zgłoszenie Pomocy !** {mention_role} {user.mention}")
 
         embed = discord.Embed(
             description=f"```ansi\n\u001b[1;37m📞 ┃ Nowe Zgłoszenie Pomocy !\u001b[0m\n```\n"
