@@ -225,6 +225,18 @@ class TicketDropdown(discord.ui.Select):
         super().__init__(placeholder="💎 Wybiɛrz katɛgorię swojego zgłoszenia...", min_values=1, max_values=1, options=options, custom_id="ticket_select_menu")
 
     async def callback(self, interaction: discord.Interaction):
+        # Sprawdzanie limitu 1 ticketa (Kategoria ticketów)
+        KATEGORIA_ID = 1539536958835925033 
+        kategoria = interaction.guild.get_channel(KATEGORIA_ID)
+        
+        if kategoria:
+            for kanal in kategoria.channels:
+                uprawnienia = kanal.overwrites_for(interaction.user)
+                if uprawnienia.read_messages is True:
+                    return await interaction.response.send_message(
+                        "❌ **Posiadasz już otwarty ticket!** Zamknij poprzedni, aby móc otworzyć nowy.", 
+                        ephemeral=True
+                    )
         wybor = self.values[0]
 
         if wybor == "Zakup":
