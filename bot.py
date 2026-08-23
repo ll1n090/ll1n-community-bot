@@ -476,6 +476,32 @@ async def cennik_komenda(interaction: discord.Interaction):
     await interaction.response.send_message("Cennik został pomyślnie wysłany!", ephemeral=True)
     await interaction.channel.send(embed=embed)
 
+# ================= KOMENDA: /cennik-txt =================
+@bot.tree.command(name="cennik-txt", description="Wysyła estetyczny cennik samych texture packów")
+@commands.has_permissions(administrator=True)
+async def cennik_txt_komenda(interaction: discord.Interaction):
+    embed = discord.Embed(
+        color=discord.Color.from_rgb(230, 126, 34) # Pomarańczowy
+    )
+    
+    embed.description = (
+        "```ansi\n\u001b[1;37m🛒  LL1N COMMUNITY × CENNIK TXT\u001b[0m\n```\n"
+        "> <a:Strzalka5:1541001587655311391> ︲interesuje Cię opcja uzyskania dostępu do moich modów?\n\n"
+        
+        "🎨 ︲**ᴄᴇɴɴɪᴋ ᴛᴇxᴛᴜʀᴇ ᴘᴀᴄᴋᴏᴡ:**\n"
+        "> <a:Strzalka5:1541001587655311391> ︲**1 Texture Pack:** 5 PLN\n"
+        "> <a:Strzalka5:1541001587655311391> ︲**Opcja darmowa: (JEDNORAZOWA)** Za subskrypcję na YT oraz obserwację na TT!\n"
+        "> *(Wybierz kategorię Odbiór w ticketach i przygotuj screena z widoczną godziną.)*\n\n"
+        
+        "📌 ︲**ᴊᴀᴋ ᴢᴀᴋᴜᴘɪᴄ / odebrac? ?**\n"
+        "> <#1539537044848644227> poniżej i wybierz odpowiednią kategorię w naszym menu wyboru."
+    )
+    
+    embed.set_footer(text="© 2026 LL1N Community × Cennik TXT")
+    
+    await interaction.response.send_message("Cennik TXT został pomyślnie wysłany!", ephemeral=True)
+    await interaction.channel.send(embed=embed)
+
 # ==========================================
 # 5. URUCHOMIENIE BOTA
 # ==========================================
