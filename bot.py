@@ -491,8 +491,8 @@ async def cennik_txt_komenda(interaction: discord.Interaction):
         "🎨 ︲**ᴄᴇɴɴɪᴋ ᴛᴇxᴛᴜʀᴇ ᴘᴀᴄᴋᴏᴡ:**\n"
         "> <a:Strzalka5:1541001587655311391> ︲**1 Texture Pack:** 5 PLN\n"
         "> <a:Strzalka5:1541001587655311391> ︲**Opcja darmowa (JEDNORAZOWA): ** Za subskrypcję na YT oraz obserwację na TT!\n"
-        "<:YouTube:1539538164656504842> - https://www.youtube.com/@ll1n_08 \n
-        "<:TikTok:1539538248756502598> - https://www.tiktok.com/@ll1n_08 \n
+        "<:YouTube:1539538164656504842> - https://www.youtube.com/@ll1n_08 \n"
+        "<:TikTok:1539538248756502598> - https://www.tiktok.com/@ll1n_08 \n"
         "> *(Wybierz kategorię Odbiór w ticketach i przygotuj screena z widoczną godziną.)*\n\n"
         
         "📌 ︲**ᴊᴀᴋ ᴢᴀᴋᴜᴘɪᴄ / odebrac? ?**\n"
