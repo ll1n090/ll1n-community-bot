@@ -259,11 +259,11 @@ class OdbiorModal(discord.ui.Modal, title="Formularz Odbioru"):
 
         embed = discord.Embed(
             description=f"""```ansi\n\u001b[1;37m🎁  ODBIÓR NAGRÓD × LL1N COMMUNITY\u001b[0m\n```\n"""
-                        f"> <a:Strzalka3:1539509864228061284> **ᴄᴇʟ ᴢɢᴌᴏsᴢᴇɴɪᴀ:** {self.cel.value}\n"
-                        f"> <a:Strzalka3:1539509864228061284> **ɪɴꜰᴏʀᴍᴀᴄᴊᴇ:** {self.szczegoly.value if self.szczegoly.value else 'Brak'}\n\n"
+                        f"> <a:Strzalka3:1539590864228061284> **ᴄᴇʟ ᴢɢᴌᴏsᴢᴇɴɪᴀ:** {self.cel.value}\n"
+                        f"> <a:Strzalka3:1539590864228061284> **ɪɴꜰᴏʀᴍᴀᴄᴊᴇ:** {self.szczegoly.value if self.szczegoly.value else 'Brak'}\n\n"
                         f"> 📸 ┃ **Jeśli odbierasz TXT za suba/follow:**\n"
-                        f"> Wyślij teraz na tym czacie screena z widoczną datą i godziną na ekranie.\n\n"
-                        f"> <a:Strzalka3:1539509864228061284> Administracja zaraz się Tobą zajmie.",
+                        f"> Wyślij teraz na tym czacie screena z **widoczną** **datą** i **godziną** na ekranie.\n\n"
+                        f"> <a:Strzalka3:1539590864228061284> Administracja zaraz się Tobą zajmie.",
             color=discord.Color.from_rgb(52, 152, 219)
         )
         embed.set_footer(text="© 2026 LL1N Community × Odbiory")
