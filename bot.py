@@ -359,6 +359,36 @@ async def ticket_setup(interaction: discord.Interaction):
     await interaction.response.send_message("Panel ticketów wysłany!", ephemeral=True)
     await interaction.channel.send(embed=embed, view=view)
 
+# ================= POWITALNIA =================
+KANAL_POWITAN_ID = 1540972397258346606
+
+@bot.event
+async def on_member_join(member):
+    channel = member.guild.get_channel(KANAL_POWITAN_ID)
+    if channel is None:
+        return
+
+    liczba_czlonkow = member.guild.member_count
+
+    tekst_powitania = (
+        f"> <a:Strzalka3:1539509864228061284> **ᴡɪᴛᴀᴍʏ ɴᴀ sᴇʀᴡᴇʀᴢᴇ, {member.mention}!**\n"
+        f"Cieszymy się, że do nas dołączyłeś. Jesteś naszym **{liczba_czlonkow}** użytkownikiem!\n\n"
+        f"> <a:Strzalka3:1539509864228061284> **ᴋʀᴏᴋ ᴅᴏ ʀᴏᴢɢʀʏᴡᴋɪ:**\n"
+        f"Aby uzyskać pełen dostęp do serwera, koniecznie przejdź na strefę weryfikacji!\n\n"
+        f"🍏 ❜ Zapoznaj się również z naszym regulaminem! Miłej zabawy!"
+    )
+
+    embed = discord.Embed(
+        title="🛬 ❜ ᴘʀᴢʏʟᴏᴛʏ × ʟʟ1ɴ ᴄᴏᴍᴍᴜɴɪᴛʏ",
+        description=tekst_powitania,
+        color=discord.Color.from_rgb(46, 204, 113)  # Zielony kolor weryfikacji
+    )
+    embed.set_footer(text="© 2026 LL1N Community × przyloty")
+    
+    if member.avatar:
+        embed.set_thumbnail(url=member.avatar.url)
+
+    await channel.send(embed=embed)
 
 # ==========================================
 # 5. URUCHOMIENIE BOTA
