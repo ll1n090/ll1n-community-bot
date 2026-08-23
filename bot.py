@@ -214,6 +214,61 @@ class QuestionModal(discord.ui.Modal, title="Formularz Pytania"):
         embed.set_footer(text="© 2026 LL1N Community × Pytanie")
         await ticket_channel.send(embed=embed, view=CloseTicketView())
 
+# --- FORMULARZ ODBIORU ---
+class OdbiorModal(discord.ui.Modal, title="Formularz Odbioru"):
+    cel = discord.ui.TextInput(
+        label="Co chcesz odebrać? (np. TXT za suba, konkurs)",
+        style=discord.TextStyle.short,
+        placeholder="Wpisz tutaj cel otwarcia zgłoszenia...",
+        required=True,
+        max_length=100
+    )
+    szczegoly = discord.ui.TextInput(
+        label="Dodatkowe informacje (np. nick z konkursu)",
+        style=discord.TextStyle.long,
+        placeholder="Jeśli odbierasz TXT za suba, napisz 'Sociale' i przygotuj screena na czat...",
+        required=False,
+        max_length=500
+    )
+
+    def __init__(self, ticket_role_id):
+        super().__init__()
+        self.ticket_role_id = ticket_role_id
+
+    async def on_submit(self, interaction: discord.Interaction):
+        guild = interaction.guild
+        user = interaction.user
+        category = interaction.channel.category
+        ticket_role = guild.get_role(self.ticket_role_id)
+
+        overwrites = {
+            guild.default_role: discord.PermissionOverwrite(read_messages=False),
+            user: discord.PermissionOverwrite(read_messages=True, send_messages=True),
+            guild.me: discord.PermissionOverwrite(read_messages=True, send_messages=True)
+        }
+        if ticket_role:
+            overwrites[ticket_role] = discord.PermissionOverwrite(read_messages=True, send_messages=True)
+
+        channel_name = f"🎁┃ticket-odbior-{user.name}"
+        ticket_channel = await guild.create_text_channel(name=channel_name, category=category, overwrites=overwrites)
+
+        await interaction.response.send_message(f"<a:Strzalka3:1539509864228061284> Stworzono ticket! Idź do: {ticket_channel.mention}", ephemeral=True)
+
+        mention_role = ticket_role.mention if ticket_role else "@tickety"
+        await ticket_channel.send(f"{mention_role} {user.mention}")
+
+        embed = discord.Embed(
+            description=f"""```ansi\n\u001b[1;37m🎁  ODBIÓR NAGRÓD × LL1N COMMUNITY\u001b[0m\n```\n"""
+                        f"> <a:Strzalka3:1539509864228061284> **ᴄᴇʟ ᴢɢᴌᴏsᴢᴇɴɪᴀ:** {self.cel.value}\n"
+                        f"> <a:Strzalka3:1539509864228061284> **ɪɴꜰᴏʀᴍᴀᴄᴊᴇ:** {self.szczegoly.value if self.szczegoly.value else 'Brak'}\n\n"
+                        f"> 📸 ┃ **Jeśli odbierasz TXT za suba/follow:**\n"
+                        f"> Wyślij teraz na tym czacie screena z widoczną datą i godziną na ekranie.\n\n"
+                        f"> <a:Strzalka3:1539509864228061284> Administracja zaraz się Tobą zajmie.",
+            color=discord.Color.from_rgb(52, 152, 219)
+        )
+        embed.set_footer(text="© 2026 LL1N Community × Odbiory")
+        await ticket_channel.send(embed=embed, view=CloseTicketView())
+
 
 # --- MENU ROZWIJANE ---
 class TicketDropdown(discord.ui.Select):
@@ -222,6 +277,7 @@ class TicketDropdown(discord.ui.Select):
             discord.SelectOption(label="Zakup", description="Otwórz ticket w celu zakupu naszego asortymentu.", emoji="<:wozek:1539597036884598828>", value="Zakup"),
             discord.SelectOption(label="Pomoc", description="Masz problem? Stwórz ticket byśmy mogli Ci pomóc.", emoji="<:list:1539599064155553822>", value="Pomoc"),
             discord.SelectOption(label="Mam Pytanie", description="Pytania do administracji", emoji="<:lupa:1539598440483262474>", value="Pytanie")
+            discord.SelectOption(label="Odbiór", description="ᴄʜᴄᴇsᴢ ᴏᴅᴇʙʀᴀᴄ ᴛxᴛ ᴢᴀ sᴜʙᴀ ʟᴜʙ ᴡʏɢʀᴀᴌᴇś ᴋᴏɴᴋᴜʀs? ᴛᴀ ᴋᴀᴛᴇɢᴏʀɪᴀ ᴊᴇsᴛ ᴅʟᴀ ᴄɪᴇʙɪᴇ!", emoji="<:box:1539624615591026688>", value="Odbiór")
         ]
         super().__init__(placeholder="💎 Wybiɛrz kategorię swojego zgłoszenia...", min_values=1, max_values=1, options=options, custom_id="ticket_select_menu")
 
