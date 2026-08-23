@@ -308,7 +308,7 @@ async def setup_verif(interaction: discord.Interaction):
     )
     
     embed = discord.Embed(description=tekst_verif, color=discord.Color.from_rgb(119, 178, 85))
-    embed.set_footer(text="© 2026 LL1N Community × weryfikacja")
+    embed.set_footer(text="© 2026 LL1N Community × Weryfikacja")
     
     await interaction.response.send_message("Panel weryfikacji wysłany!", ephemeral=True)
     await interaction.channel.send(embed=embed, view=view)
@@ -335,7 +335,7 @@ async def regulamin(interaction: discord.Interaction):
     
     # Kolor zmieniony na czerwony (RGB: 231, 76, 60)
     embed = discord.Embed(description=tekst_regulamin, color=discord.Color.from_rgb(231, 76, 60))
-    embed.set_footer(text="© 2026 LL1N Community × regulamin")
+    embed.set_footer(text="© 2026 LL1N Community × Regulamin")
     
     await interaction.response.send_message("Regulamin został wysłany na czerwono!", ephemeral=True)
     await interaction.channel.send(embed=embed)
@@ -354,7 +354,7 @@ async def ticket_setup(interaction: discord.Interaction):
     )
     
     embed = discord.Embed(description=tekst_ticket, color=discord.Color.from_rgb(52, 152, 219))
-    embed.set_footer(text="© 2026 LL1N Community × tickety")
+    embed.set_footer(text="© 2026 LL1N Community × Tickety")
     
     await interaction.response.send_message("Panel ticketów wysłany!", ephemeral=True)
     await interaction.channel.send(embed=embed, view=view)
@@ -371,19 +371,19 @@ async def on_member_join(member):
     liczba_czlonkow = member.guild.member_count
 
     tekst_powitania = (
+        "```ansi\n\u001b[1;37m🛬 LL1N COMMUNITY × PRZYLOTY\u001b[0m\n```\n"
         f"> <a:Strzalka3:1539509864228061284> **ᴡɪᴛᴀᴍʏ ɴᴀ sᴇʀᴡᴇʀᴢᴇ, {member.mention}!**\n"
         f"Cieszymy się, że do nas dołączyłeś. Jesteś naszym **{liczba_czlonkow}** użytkownikiem!\n\n"
         f"> <a:Strzalka3:1539509864228061284> **ᴋʀᴏᴋ ᴅᴏ ʀᴏᴢɢʀʏᴡᴋɪ:**\n"
         f"Aby uzyskać pełen dostęp do serwera, koniecznie przejdź na strefę weryfikacji!\n\n"
-        f"🍏 ❜ Zapoznaj się również z naszym regulaminem! Miłej zabawy!"
+        f"📌︲ Zapoznaj się również z naszym regulaminem! Miłej zabawy!"
     )
 
     embed = discord.Embed(
-        title="🛬 ❜ ᴘʀᴢʏʟᴏᴛʏ × ʟʟ1ɴ ᴄᴏᴍᴍᴜɴɪᴛʏ",
         description=tekst_powitania,
-        color=discord.Color.from_rgb(46, 204, 113)  # Zielony kolor weryfikacji
+        color=discord.Color.from_rgb(52, 152, 219)
     )
-    embed.set_footer(text="© 2026 LL1N Community × przyloty")
+    embed.set_footer(text="© 2026 LL1N Community × Przyloty")
     
     if member.avatar:
         embed.set_thumbnail(url=member.avatar.url)
