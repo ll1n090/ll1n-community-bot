@@ -459,12 +459,12 @@ async def cennik_komenda(interaction: discord.Interaction):
     # Cały cennik w jednym bloku - czysty styl regulaminu
     embed.description = (
         "```ansi\n\u001b[1;37m🛒  LL1N COMMUNITY × CENNIK MODOW\u001b[0m\n```\n"
-        "> interesuję Cię opcja uzyskania dostępu do moich ᴍᴏᴅʏꜰɪᴋᴀᴄᴊɪ?\n\n"
+        "> <a:Strzalka5:1541001587655311391>︲interesuję Cię opcja uzyskania dostępu do __moich__ modów?\n\n"
         
-        "⚙️ ︲ **ᴄᴇɴɴɪᴋ ᴍᴏᴅʏꜰɪᴋᴀᴄᴊɪ:**\n"
-        "> <a:Strzalka5:1541001587655311391> **Same modyfikacje:** 10 PLN\n"
-        "> <a:Strzalka5:1541001587655311391> **Mody + wszystkie ustawienia:** 15 PLN\n"
-        "> <a:Strzalka5:1541001587655311391> **Mody + ustawienia + pełna pomoc techniczna:** 20 PLN\n"
+        "🛠 ︲ **ᴄᴇɴɴɪᴋ ᴍᴏᴅʏꜰɪᴋᴀᴄᴊɪ:**\n"
+        "> <a:Strzalka5:1541001587655311391>︲**Same Mody:** __10 PLN__\n"
+        "> <a:Strzalka5:1541001587655311391>︲**Mody + wszystkie ustawienia:** __15 PLN__\n"
+        "> <a:Strzalka5:1541001587655311391>︲**Mody + ustawienia + pełna pomoc techniczna:** __20 PLN__\n"
         "> *(Kompletna pomoc w pobieraniu, konfiguracji, optymalizacji itp.)*\n\n"
         
         "📌 ︲ **ᴊᴀᴋ ᴢᴀᴋᴜᴘɪᴄ ?**\n"
