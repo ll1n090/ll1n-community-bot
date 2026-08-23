@@ -448,7 +448,7 @@ async def on_member_join(member):
 
     await channel.send(embed=embed)
 
-@bot.tree.command(name="cennik", description="Wysyła estetyczny cennik modyfikacji i texture packów")
+@bot.tree.command(name="cennik-mody", description="Wysyła estetyczny cennik modyfikacji i texture packów")
 @commands.has_permissions(administrator=True)
 async def cennik_komenda(interaction: discord.Interaction):
     # Soczysty pomarańczowy kolor (RGB: 230, 126, 34)
@@ -458,25 +458,20 @@ async def cennik_komenda(interaction: discord.Interaction):
     
     # Cały cennik w jednym bloku - czysty styl regulaminu
     embed.description = (
-        "```ansi\n\u001b[1;33m🛒  CENNIK MODYFIKACJI & TXT × LL1N\u001b[0m\n```\n"
-        "> Wybierz interesującą Cię opcję uzyskania dostępu do naszych pakietów!\n\n"
+        "```ansi\n\u001b[1;37m🛒  LL1N COMMUNITY × CENNIK MODOW\u001b[0m\n```\n"
+        "> interesuję Cię opcja uzyskania dostępu do moich ᴍᴏᴅʏꜰɪᴋᴀᴄᴊɪ?\n\n"
         
-        "💳 ❜ **ᴄᴇɴɴɪᴋ ᴛᴇxᴛᴜʀᴇ ᴘᴀᴄᴋᴏᴡ:**\n"
-        "> <a:Strzalka3:1539509864228061284> **1 TXT:** 5 PLN (BLIK / PSC)\n"
-        "> <a:Strzalka3:1539509864228061284> **Opcja darmowa:** Za subskrypcję na YT oraz obserwację na TT!\n"
-        "> *Wybierz kategorię **Odbiór** w ticketach i przygotuj screena z widoczną godziną.*\n\n"
+        "⚙️ ︲ **ᴄᴇɴɴɪᴋ ᴍᴏᴅʏꜰɪᴋᴀᴄᴊɪ:**\n"
+        "> <a:Strzalka5:1541001587655311391> **Same modyfikacje:** 10 PLN\n"
+        "> <a:Strzalka5:1541001587655311391> **Mody + wszystkie ustawienia:** 15 PLN\n"
+        "> <a:Strzalka5:1541001587655311391> **Mody + ustawienia + pełna pomoc techniczna:** 20 PLN\n"
+        "> *(Kompletna pomoc w pobieraniu, konfiguracji, optymalizacji itp.)*\n\n"
         
-        "⚙️ ❜ **ᴄᴇɴɴɪᴋ ᴍᴏᴅʏꜰɪᴋᴀᴄᴊɪ:**\n"
-        "> <a:Strzalka3:1539509864228061284> **Same modyfikacje:** 10 PLN\n"
-        "> <a:Strzalka3:1539509864228061284> **Mody + wszystkie ustawienia:** 15 PLN\n"
-        "> <a:Strzalka3:1539509864228061284> **Mody + ustawienia + pełna pomoc techniczna:** 20 PLN\n"
-        "> *(Kompleksowa pomoc w pobieraniu, konfiguracji, optymalizacji itp.)*\n\n"
-        
-        "📌 ❜ **ᴊᴀᴋ ᴢᴀᴋᴜᴘɪᴄ / ᴏᴅᴇʙʀᴀᴄ?**\n"
-        "> Otwórz ticket poniżej i wybierz odpowiednią kategorię w naszym menu wyboru."
+        "📌 ︲ **ᴊᴀᴋ ᴢᴀᴋᴜᴘɪᴄ ?**\n"
+        "> <#1539537044848644227> poniżej i wybierz odpowiednią kategorię w naszym menu wyboru."
     )
     
-    embed.set_footer(text="© 2026 LL1N Community × Handlowe")
+    embed.set_footer(text="© 2026 LL1N Community × Cennik Mody")
     
     await interaction.response.send_message("Cennik został pomyślnie wysłany!", ephemeral=True)
     await interaction.channel.send(embed=embed)
