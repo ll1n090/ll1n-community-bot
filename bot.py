@@ -448,6 +448,46 @@ async def on_member_join(member):
 
     await channel.send(embed=embed)
 
+@bot.tree.command(name="cennik", description="Wysyła estetyczny cennik modyfikacji i texture packów")
+@commands.has_permissions(administrator=True)
+async def cennik_komenda(interaction: discord.Interaction):
+    # Soczysty pomarańczowy kolor (RGB: 230, 126, 34)
+    embed = discord.Embed(
+        color=discord.Color.from_rgb(230, 126, 34)
+    )
+    
+    # Nagłówek ANSI w kolorze pomarańczowym/złotym
+    embed.add_field(
+        name="```ansi\n\u001b[1;33m🛒  CENNIK MODYFIKACJI & TXT × LL1N\u001b[0m\n```",
+        value="> Wybierz interesującą Cię opcję uzyskania dostępu do naszych pakietów!",
+        inline=False
+    )
+    
+    embed.add_field(
+        name="💳 ❜ ᴏᴘᴄᴊᴀ ᴘᴌᴀᴛɴᴀ",
+        value=(
+            "> <a:Strzalka3:1539509864228061284> **Cena:** 5 PLN / sztuka\n"
+            "> **Metody płatności:** BLIK ❜ PSC\n"
+            "> **Jak kupić?** Otwórz ticket poniżej i wybierz kategorię **Zakup**."
+        ),
+        inline=False
+    )
+    
+    embed.add_field(
+        name="🎁 ❜ ᴏᴘᴄᴊᴀ ᴅᴀʀᴍᴏᴡᴀ (ᴢᴀ sᴜʙᴀ)",
+        value=(
+            "> <a:Strzalka3:1539509864228061284> **Cena:** Całkowicie ZA DARMO!\n"
+            "> **Wymagania:** Subskrypcja na naszym YT oraz obserwacja na TT.\n"
+            "> **Jak odebrać?** Otwórz ticket poniżej, wybierz kategorię **Odbiór** i przygotuj screena z widoczną godziną!"
+        ),
+        inline=False
+    )
+    
+    embed.set_footer(text="© 2026 LL1N Community × Handlowe")
+    
+    await interaction.response.send_message("Cennik został pomyślnie wysłany!", ephemeral=True)
+    await interaction.channel.send(embed=embed)
+
 # ==========================================
 # 5. URUCHOMIENIE BOTA
 # ==========================================
