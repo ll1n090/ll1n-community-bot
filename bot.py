@@ -252,13 +252,13 @@ class OdbiorModal(discord.ui.Modal, title="Formularz Odbioru"):
         channel_name = f"🎁┃ticket-odbior-{user.name}"
         ticket_channel = await guild.create_text_channel(name=channel_name, category=category, overwrites=overwrites)
 
-        await interaction.response.send_message(f"<a:Strzalka3:1539509864228061284> Stworzono ticket! Idź do: {ticket_channel.mention}", ephemeral=True)
+        await interaction.response.send_message(f"<a:Strzalka3:1539590864228061284> Stworzono ticket! Idź do: {ticket_channel.mention}", ephemeral=True)
 
         mention_role = ticket_role.mention if ticket_role else "@tickety"
         await ticket_channel.send(f"{mention_role} {user.mention}")
 
         embed = discord.Embed(
-            description=f"""```ansi\n\u001b[1;37m🎁  ODBIÓR NAGRÓD × LL1N COMMUNITY\u001b[0m\n```\n"""
+            description=f"""```ansi\n\u001b[1;37m🎁  LL1N COMMUNITY × ODBIÓR NAGRÓD\u001b[0m\n```\n"""
                         f"> <a:Strzalka3:1539590864228061284> **ᴄᴇʟ ᴢɢᴌᴏsᴢᴇɴɪᴀ:** {self.cel.value}\n"
                         f"> <a:Strzalka3:1539590864228061284> **ɪɴꜰᴏʀᴍᴀᴄᴊᴇ:** {self.szczegoly.value if self.szczegoly.value else 'Brak'}\n\n"
                         f"> 📸 ┃ **Jeśli odbierasz TXT za suba/follow:**\n"
