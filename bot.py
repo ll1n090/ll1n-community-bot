@@ -370,7 +370,7 @@ async def odswiez_licznik_osob(guild):
     
     kanal = guild.get_channel(KANAL_STATYSTYK_ID)
     if kanal:
-                nowa_nazwa = f"👤┃ᴜżʏᴛᴋᴏᴡɴɪᴄʏ: {liczba_czlonkow}"
+        nowa_nazwa = f"👤┃ᴜżʏᴛᴋᴏᴡɴɪᴄʏ: {liczba_czlonkow}"
         
         # Zmień nazwę tylko jeśli się różni, żeby nie spamować API Discorda
         if kanal.name != nowa_nazwa:
