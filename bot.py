@@ -276,7 +276,7 @@ class TicketDropdown(discord.ui.Select):
         options = [
             discord.SelectOption(label="Zakup", description="Otwórz ticket w celu zakupu naszego asortymentu.", emoji="<:wozek:1539597036884598828>", value="Zakup"),
             discord.SelectOption(label="Pomoc", description="Masz problem? Stwórz ticket byśmy mogli Ci pomóc.", emoji="<:list:1539599064155553822>", value="Pomoc"),
-            discord.SelectOption(label="Mam Pytanie", description="Pytania do administracji", emoji="<:lupa:1539598440483262474>", value="Pytanie")
+            discord.SelectOption(label="Mam Pytanie", description="Pytania do administracji", emoji="<:lupa:1539598440483262474>", value="Pytanie"),
             discord.SelectOption(label="Odbiór", description="ᴄʜᴄᴇsᴢ ᴏᴅᴇʙʀᴀᴄ ᴛxᴛ ᴢᴀ sᴜʙᴀ ʟᴜʙ ᴡʏɢʀᴀᴌᴇś ᴋᴏɴᴋᴜʀs? ᴛᴀ ᴋᴀᴛᴇɢᴏʀɪᴀ ᴊᴇsᴛ ᴅʟᴀ ᴄɪᴇʙɪᴇ!", emoji="<:box:1539624615591026688>", value="Odbiór")
         ]
         super().__init__(placeholder="💎 Wybiɛrz kategorię swojego zgłoszenia...", min_values=1, max_values=1, options=options, custom_id="ticket_select_menu")
