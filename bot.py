@@ -298,6 +298,38 @@ async def setup_verif(interaction: discord.Interaction):
     await interaction.response.send_message("Panel weryfikacji wysłany!", ephemeral=True)
     await interaction.channel.send(embed=embed, view=view)
 
+# Komenda /regulamin (CZERWONA)
+@bot.tree.command(name="regulamin", description="Wysyła regulamin serwera (admin)")
+@app_commands.checks.has_permissions(administrator=True)
+async def regulamin(interaction: discord.Interaction):
+    
+    tekst_regulamin = (
+        "```ansi\n\u001b[1;31m📌 LL1N COMMUNITY × REGULAMIN SERWERA\u001b[0m\n```\n"
+        # :informacje:  ┃ ʀᴇɢᴜʟᴀᴍɪɴ ʟʟ1ɴ ᴄᴏᴍᴍᴜɴɪᴛʏ
+
+**ᴅᴏᴌᴀᴄᴢᴀᴊᴀᴄ ᴅᴏ ɴᴀsᴢᴇɢᴏ sᴇʀᴡᴇʀᴀ, ᴀᴋᴄᴇᴘᴛᴜᴊᴇsᴢ ᴘᴏɴɪᴢsᴢᴇ ᴢᴀsᴀᴅʏ. sᴢᴀɴᴜᴊᴍʏ sɪᴇ ɴᴀᴡᴢᴀᴊᴇᴍ!**
+
+    tekst_regulamin = (
+        "```ansi\n\u001b[1;31m📌  LL1N COMMUNITY × REGULAMIN SERWERA\u001b[0m\n```\n"
+        "**ᴅᴏᴌᴀᴄᴢᴀᴊᴀᴄ ᴅᴏ ɴᴀsᴢᴇɢᴏ sᴇʀᴡᴇʀᴀ, ᴀᴋᴄᴇᴘᴛᴜᴊᴇsᴢ ᴘᴏɴɪᴢsᴢᴇ ᴢᴀsᴀᴅʏ. sᴢᴀɴᴜᴊᴍʏ sɪᴇ ɴᴀᴡᴢᴀᴊᴇᴍ!**\n\n"
+        "🍏 ┃ 1. sᴢᴀɴᴜᴊ ɪɴɴʏᴄʜ ᴄᴢᴌᴏɴᴋᴏᴡ sᴇʀᴡᴇʀᴀ. ᴡsᴢᴇʟᴋɪᴇ ᴡʏᴢᴡɪsᴋᴀ, ᴛᴏᴋsʏᴄᴢɴᴏsᴄ ɪ ᴘʀᴏᴡᴏᴋᴀᴄᴊᴇ ʙᴇᴅᴀ ᴋᴀʀᴀɴᴇ.\n"
+        "🍏 ┃ 2. ᴢᴀᴄʜᴏᴡᴜᴊ ᴘᴏʀᴢᴀᴅᴇᴋ ɴᴀ ᴄᴢᴀᴛᴀᴄʜ. ɴɪᴇ sᴘᴀᴍᴜᴊ, ɴɪᴇ ᴡʏsʏᴌᴀᴊ ᴛʏᴄʜ sᴀᴍʏᴄʜ ᴡɪᴀᴅᴏᴍᴏsᴄɪ ɪ ɴɪᴇ ɴᴀᴅᴜᴢʏᴡᴀᴊ ᴄᴀᴘs ʟᴏᴄᴋᴀ.\n"
+        "🍏 ┃ 3. ᴄᴀᴌᴋᴏᴡɪᴛʏ ᴢᴀκᴀᴢ ʀᴇᴋʟᴀᴍᴏᴡᴀɴɪᴀ ɪɴɴʏᴄʜ sᴇʀᴡᴇʀᴏᴡ ᴅɪsᴄᴏʀᴅ, ᴋᴀɴᴀᴌᴏᴡ YT/ᴛᴛ ᴄᴢʏ sᴛʀᴏɴ ʙᴇᴢ ᴢɢᴏᴅʏ ᴡᴌᴀsᴄɪᴄɪᴇʟᴀ (ɴᴀ ᴘᴡ ʀᴏᴡɴɪᴇᴢ).\n"
+        "🍏 ┃ 4. ᴛxᴛ, ᴍᴏᴅʏ ɪ ɪᴛᴇᴍʏ ᴋᴜᴘᴜᴊᴇsᴢ ᴛʏʟᴋᴏ ᴘʀᴢᴇᴢ ᴏꜰɪᴄᴊᴀʟɴʏ sʏsᴛᴇᴍ ᴛɪᴄᴋᴇᴛᴏᴡ. ʜᴀɴᴅᴇʟ ᴍɪᴇᴅᴢʏ ɢʀᴀᴄᴢᴀᴍɪ ᴊᴇsᴛ ᴢᴀʙʀᴏɴɪᴏɴʏ.\n"
+        "🍏 ┃ 5. sᴢᴀɴᴜᴊ sᴛᴀʀᴀɴɪᴀ ᴀᴅᴍɪɴɪsᴛʀᴀᴄᴊɪ. ɴɪᴇ ᴏᴢɴᴀᴄᴢᴀᴊ ᴡᴌᴀsᴄɪᴄɪᴇʟᴀ ᴀɴɪ ᴘᴏᴍᴏᴄɴɪᴋᴏᴡ ʙᴇᴢ ᴡᴀᴢɴᴇɢᴏ ᴘᴏᴡᴏᴅᴜ.\n"
+        "🍏 ┃ 6. ᴡsᴢᴇʟᴋɪᴇ ᴛʀᴇsᴄɪ +18, ɴsꜰᴡ, ɢᴏʀᴇ ʟᴜʙ ɴɪᴇʟᴇɢᴀʟɴᴇ ʟɪɴᴋɪ ʙᴇᴅᴀ sᴋᴜᴛᴋᴏᴡᴀᴄ ɴᴀᴛʏᴄʜᴍɪᴀsᴛᴏᴡʏᴍ ʙᴀɴᴇᴍ.\n\n"
+        
+        "<a:syrena:1539540522086178826>  ɴɪᴇᴢɴᴀᴊᴏᴍᴏsᴄ ʀᴇɢᴜʟᴀᴍɪɴᴜ ɴɪᴇ ᴢᴡᴀʟɴɪᴀ ᴢ ᴊᴇɢᴏ ᴘʀᴢᴇsᴛʀᴢᴇɢᴀɴɪᴀ. ʙᴀᴡ sɪᴇ ᴅᴏʙʀᴢᴇ!"
+    )
+
+    
+    # Kolor zmieniony na czerwony (RGB: 231, 76, 60)
+    embed = discord.Embed(description=tekst_regulamin, color=discord.Color.from_rgb(231, 76, 60))
+    embed.set_footer(text="© 2026 LL1N Community × regulamin")
+    
+    await interaction.response.send_message("Regulamin został wysłany na czerwono!", ephemeral=True)
+    await interaction.channel.send(embed=embed)
+
 # Komenda /ticket-setup (NIEBIESKA)
 @bot.tree.command(name="ticket-setup", description="Wysyła panel ticketów z menu wyboru (admin)")
 @app_commands.checks.has_permissions(administrator=True)
