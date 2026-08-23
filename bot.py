@@ -356,6 +356,36 @@ async def ticket_setup(interaction: discord.Interaction):
     await interaction.response.send_message("Panel ticketów wysłany!", ephemeral=True)
     await interaction.channel.send(embed=embed, view=view)
 
+# Konfiguracja ID (Wpisz swoje wartości)
+KANAL_STATYSTYK_ID = 1540958559196414073  # <--- WPISZ TUTAJ ID SWOJEGO KANAŁU GŁOSOWEGO
+SERWER_ID = 1539536958835925033          # <--- ID Twojego serwera Discord
+
+async def odswiez_licznik_osob(guild):
+    """Funkcja pomocnicza, która przelicza osoby i zmienia nazwę kanału"""
+    if guild.id != SERWER_ID:
+        return
+        
+    # Pobieranie aktualnej liczby osób na serwerze
+    liczba_czlonkow = guild.member_count
+    
+    kanal = guild.get_channel(KANAL_STATYSTYK_ID)
+    if kanal:
+                nowa_nazwa = f"👤┃ᴜżʏᴛᴋᴏᴡɴɪᴄʏ: {liczba_czlonkow}"
+        
+        # Zmień nazwę tylko jeśli się różni, żeby nie spamować API Discorda
+        if kanal.name != nowa_nazwa:
+            await kanal.edit(name=nowa_nazwa)
+
+# 1. Wywołaj, gdy ktoś DOŁĄCZA do serwera
+@bot.event
+async def on_member_join(member):
+    await odswiez_licznik_osob(member.guild)
+
+# 2. Wywołaj, gdy ktoś OPUSZCZA serwer
+@bot.event
+async def on_member_remove(member):
+    await odswiez_licznik_osob(member.guild)
+
 # ==========================================
 # 5. URUCHOMIENIE BOTA
 # ==========================================
