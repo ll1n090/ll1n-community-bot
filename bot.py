@@ -373,7 +373,7 @@ async def on_member_join(member):
     tekst_powitania = (
         "```ansi\n\u001b[1;37m🛬 LL1N COMMUNITY × PRZYLOTY\u001b[0m\n```\n"
         f"> <a:Strzalka3:1539590864228061284>︲**ᴡɪᴛᴀᴍʏ ɴᴀ sᴇʀᴡᴇʀᴢᴇ, {member.mention}!**\n"
-        f"Cieszymy się, że do nas dołączyłeś. Jesteś naszym **{liczba_czlonkow}** użytkownikiem!\n\n"
+        f"Cieszymy się, że do nas dołączyłeś. Jesteś naszym **{liczba_czlonkow}** użytkownikiem!\n"
         f"> <a:Strzalka3:1539590864228061284>︲**ᴋʀᴏᴋ ᴅᴏ ʀᴏᴢɢʀʏᴡᴋɪ:**\n"
         f"Aby uzyskać pełen dostęp do serwera, koniecznie przejdź na strefę weryfikacji!\n\n"
         f"> <a:Strzalka4:1540979104625594453>︲Zapoznaj się również z naszym regulaminem! Miłej zabawy!"
