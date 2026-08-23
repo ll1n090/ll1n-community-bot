@@ -294,7 +294,7 @@ class TicketDropdown(discord.ui.Select):
                         "❌ **Posiadasz już otwarty ticket!** Zamknij poprzedni, aby móc otworzyć nowy.", 
                         ephemeral=True
                     )
-        wybor = self.values[0]
+                wybor = self.values[0]
 
         if wybor == "Zakup":
             await interaction.response.send_modal(PurchaseModal(ticket_role_id=ID_ROLI_TICKETY))
