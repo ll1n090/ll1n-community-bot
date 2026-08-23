@@ -303,11 +303,6 @@ async def setup_verif(interaction: discord.Interaction):
 @app_commands.checks.has_permissions(administrator=True)
 async def regulamin(interaction: discord.Interaction):
     
-    tekst_regulamin = (
-        "```ansi\n\u001b[1;31m📌 LL1N COMMUNITY × REGULAMIN SERWERA\u001b[0m\n```\n"
-        # :informacje:  ┃ ʀᴇɢᴜʟᴀᴍɪɴ ʟʟ1ɴ ᴄᴏᴍᴍᴜɴɪᴛʏ
-
-**ᴅᴏᴌᴀᴄᴢᴀᴊᴀᴄ ᴅᴏ ɴᴀsᴢᴇɢᴏ sᴇʀᴡᴇʀᴀ, ᴀᴋᴄᴇᴘᴛᴜᴊᴇsᴢ ᴘᴏɴɪᴢsᴢᴇ ᴢᴀsᴀᴅʏ. sᴢᴀɴᴜᴊᴍʏ sɪᴇ ɴᴀᴡᴢᴀᴊᴇᴍ!**
 
     tekst_regulamin = (
         "```ansi\n\u001b[1;31m📌  LL1N COMMUNITY × REGULAMIN SERWERA\u001b[0m\n```\n"
