@@ -6,6 +6,18 @@ from threading import Thread
 import os
 import asyncio
 
+@bot.event
+async def on_ready():
+    print(f"Zalogowano jako {bot.user.name}!")
+    
+    # Dajemy botowi 5 sekund na pełne połączenie i załadowanie osób
+    await asyncio.sleep(5)
+    
+    # Wymuszamy odświeżenie licznika osób od razu po starcie bota
+    guild = bot.get_guild(1539536958835925033)
+    if guild:
+        await odswiez_licznik_osob(guild)
+
 # === KONFIGURACJA ID RANG ===
 ID_ROLI_WIDZ = 1539527929359241316
 ID_ROLI_TICKETY = 1539525896501862481  # Twoja rola administracji z dostępem do ticketów
