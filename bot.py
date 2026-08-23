@@ -456,31 +456,24 @@ async def cennik_komenda(interaction: discord.Interaction):
         color=discord.Color.from_rgb(230, 126, 34)
     )
     
-    # Nagłówek ANSI w kolorze pomarańczowym/złotym
-    embed.add_field(
-        name="```ansi\n\u001b[1;33m🛒  CENNIK MODYFIKACJI & TXT × LL1N\u001b[0m\n```",
-        value="> Wybierz interesującą Cię opcję uzyskania dostępu do naszych pakietów!",
-        inline=False
-    )
-    
-    embed.add_field(
-        name="💳 ❜ ᴏᴘᴄᴊᴀ ᴘᴌᴀᴛɴᴀ",
-        value=(
-            "> <a:Strzalka3:1539509864228061284> **Cena:** 5 PLN / sztuka\n"
-            "> **Metody płatności:** BLIK ❜ PSC\n"
-            "> **Jak kupić?** Otwórz ticket poniżej i wybierz kategorię **Zakup**."
-        ),
-        inline=False
-    )
-    
-    embed.add_field(
-        name="🎁 ❜ ᴏᴘᴄᴊᴀ ᴅᴀʀᴍᴏᴡᴀ (ᴢᴀ sᴜʙᴀ)",
-        value=(
-            "> <a:Strzalka3:1539509864228061284> **Cena:** Całkowicie ZA DARMO!\n"
-            "> **Wymagania:** Subskrypcja na naszym YT oraz obserwacja na TT.\n"
-            "> **Jak odebrać?** Otwórz ticket poniżej, wybierz kategorię **Odbiór** i przygotuj screena z widoczną godziną!"
-        ),
-        inline=False
+    # Cały cennik w jednym bloku - czysty styl regulaminu
+    embed.description = (
+        "```ansi\n\u001b[1;33m🛒  CENNIK MODYFIKACJI & TXT × LL1N\u001b[0m\n```\n"
+        "> Wybierz interesującą Cię opcję uzyskania dostępu do naszych pakietów!\n\n"
+        
+        "💳 ❜ **ᴄᴇɴɴɪᴋ ᴛᴇxᴛᴜʀᴇ ᴘᴀᴄᴋᴏᴡ:**\n"
+        "> <a:Strzalka3:1539509864228061284> **1 TXT:** 5 PLN (BLIK / PSC)\n"
+        "> <a:Strzalka3:1539509864228061284> **Opcja darmowa:** Za subskrypcję na YT oraz obserwację na TT!\n"
+        "> *Wybierz kategorię **Odbiór** w ticketach i przygotuj screena z widoczną godziną.*\n\n"
+        
+        "⚙️ ❜ **ᴄᴇɴɴɪᴋ ᴍᴏᴅʏꜰɪᴋᴀᴄᴊɪ:**\n"
+        "> <a:Strzalka3:1539509864228061284> **Same modyfikacje:** 10 PLN\n"
+        "> <a:Strzalka3:1539509864228061284> **Mody + wszystkie ustawienia:** 15 PLN\n"
+        "> <a:Strzalka3:1539509864228061284> **Mody + ustawienia + pełna pomoc techniczna:** 20 PLN\n"
+        "> *(Kompleksowa pomoc w pobieraniu, konfiguracji, optymalizacji itp.)*\n\n"
+        
+        "📌 ❜ **ᴊᴀᴋ ᴢᴀᴋᴜᴘɪᴄ / ᴏᴅᴇʙʀᴀᴄ?**\n"
+        "> Otwórz ticket poniżej i wybierz odpowiednią kategorię w naszym menu wyboru."
     )
     
     embed.set_footer(text="© 2026 LL1N Community × Handlowe")
