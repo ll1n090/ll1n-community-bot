@@ -448,7 +448,7 @@ async def on_member_join(member):
 
     await channel.send(embed=embed)
 
-@bot.tree.command(name="cennik-mody", description="Wysyła estetyczny cennik modyfikacji i texture packów")
+@bot.tree.command(name="cennik-mody", description="Wysyła estetyczny cennik modow")
 @commands.has_permissions(administrator=True)
 async def cennik_komenda(interaction: discord.Interaction):
     # Soczysty pomarańczowy kolor (RGB: 230, 126, 34)
@@ -490,7 +490,7 @@ async def cennik_txt_komenda(interaction: discord.Interaction):
         
         "🎨 ︲**ᴄᴇɴɴɪᴋ ᴛᴇxᴛᴜʀᴇ ᴘᴀᴄᴋᴏᴡ:**\n"
         "> <a:Strzalka5:1541001587655311391> ︲**1 Texture Pack:** 5 PLN\n"
-        "> <a:Strzalka5:1541001587655311391> ︲**Opcja darmowa: (JEDNORAZOWA)** Za subskrypcję na YT oraz obserwację na TT!\n"
+        "> <a:Strzalka5:1541001587655311391> ︲**Opcja darmowa (JEDNORAZOWA): ** Za subskrypcję na YT oraz obserwację na TT!\n"
         "> *(Wybierz kategorię Odbiór w ticketach i przygotuj screena z widoczną godziną.)*\n\n"
         
         "📌 ︲**ᴊᴀᴋ ᴢᴀᴋᴜᴘɪᴄ / odebrac? ?**\n"
