@@ -223,7 +223,7 @@ class TicketDropdown(discord.ui.Select):
             discord.SelectOption(label="Pomoc", description="Masz problem? Stwórz ticket byśmy mogli Ci pomóc.", emoji="<:list:1539599064155553822>", value="Pomoc"),
             discord.SelectOption(label="Mam Pytanie", description="Pytania do administracji", emoji="<:lupa:1539598440483262474>", value="Pytanie")
         ]
-        super().__init__(placeholder="💎 Wybiɛrz katɛgorię swojego zgłoszenia...", min_values=1, max_values=1, options=options, custom_id="ticket_select_menu")
+        super().__init__(placeholder="💎 Wybiɛrz kategorię swojego zgłoszenia...", min_values=1, max_values=1, options=options, custom_id="ticket_select_menu")
 
     async def callback(self, interaction: discord.Interaction):
         # Sprawdzanie limitu 1 ticketa (Kategoria ticketów)
@@ -359,47 +359,6 @@ async def ticket_setup(interaction: discord.Interaction):
     await interaction.response.send_message("Panel ticketów wysłany!", ephemeral=True)
     await interaction.channel.send(embed=embed, view=view)
 
-# Konfiguracja ID (Wpisz swoje wartości)
-KANAL_STATYSTYK_ID = 1540958559196414073  # <--- WPISZ TUTAJ ID SWOJEGO KANAŁU GŁOSOWEGO
-SERWER_ID = 1539536958835925033          # <--- ID Twojego serwera Discord
-
-async def odswiez_licznik_osob(guild):
-    """Funkcja pomocnicza, która przelicza osoby i zmienia nazwę kanału"""
-    if guild.id != SERWER_ID:
-        return
-        
-    # Pobieranie aktualnej liczby osób na serwerze
-    liczba_czlonkow = guild.member_count
-    
-    kanal = guild.get_channel(KANAL_STATYSTYK_ID)
-    if kanal:
-        nowa_nazwa = f"👤┃ᴜżʏᴛᴋᴏᴡɴɪᴄʏ: {liczba_czlonkow}"
-        
-        # Zmień nazwę tylko jeśli się różni, żeby nie spamować API Discorda
-        if kanal.name != nowa_nazwa:
-            await kanal.edit(name=nowa_nazwa)
-
-# 1. Wywołaj, gdy ktoś DOŁĄCZA do serwera
-@bot.event
-async def on_member_join(member):
-    await odswiez_licznik_osob(member.guild)
-
-# 2. Wywołaj, gdy ktoś OPUSZCZA serwer
-@bot.event
-async def on_member_remove(member):
-    await odswiez_licznik_osob(member.guild)
-
-@bot.event
-async def on_ready():
-    print(f"Zalogowano jako {bot.user.name}!")
-    
-    # Dajemy botowi 5 sekund na pełne połączenie i załadowanie osób
-    await asyncio.sleep(5)
-    
-    # Wymuszamy odświeżenie licznika osób od razu po starcie bota
-    guild = bot.get_guild(1539536958835925033)
-    if guild:
-        await odswiez_licznik_osob(guild)
 
 # ==========================================
 # 5. URUCHOMIENIE BOTA
