@@ -302,7 +302,9 @@ class TicketDropdown(discord.ui.Select):
             await interaction.response.send_modal(HelpModal(ticket_role_id=ID_ROLI_TICKETY))
         elif wybor == "Pytanie":
             await interaction.response.send_modal(QuestionModal(ticket_role_id=ID_ROLI_TICKETY))
-
+        elif wybor == "Odbior":
+            await interaction.response.send_modal(OdbiorModal(ticket_role_id=ID_ROLI_TICKETY))
+    
 
 class TicketDropdownView(discord.ui.View):
     def __init__(self):
