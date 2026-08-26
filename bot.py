@@ -14,7 +14,7 @@ ID_ROLI_TICKETY = 1539525896501862481  # Twoja rola administracji z dostępem do
 # ==========================================
 # 1. SERWER WWW DO WYBUDZANIA BOTA (FLASK)
 # ==========================================
-app = Flask('')
+app = Flask('') 
 
 @app.route('/')
 def home():
