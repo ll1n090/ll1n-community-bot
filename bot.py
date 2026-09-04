@@ -495,7 +495,7 @@ async def cennik_txt_komenda(interaction: discord.Interaction):
         "<:TikTok:1539538248756502598> - https://www.tiktok.com/@ll1n_08 \n"
         "> *(Wybierz kategorię Odbiór w ticketach i przygotuj screena z widoczną godziną.)*\n\n"
         
-        "📌 ︲**ᴊᴀᴋ ᴢᴀᴋᴜᴘɪᴄ / odebrac? ?**\n"
+        "📌 ︲**ᴊᴀᴋ ᴢᴀᴋᴜᴘɪᴄ / odebrac ?**\n"
         "> <#1539537044848644227> poniżej i wybierz odpowiednią kategorię w naszym menu wyboru."
     )
     
@@ -563,10 +563,10 @@ async def mute(interaction: discord.Interaction, uzytkownik: discord.Member, cza
         embed = discord.Embed(
             description=(
                 f"```ansi\n\u001b[1;31m🛡️ | Użytkownik został wyciszony\u001b[0m\n```\n"
-                f"> <a:Strzalka4:1540979104625594453> **Ukarany:** {uzytkownik.mention}\n"
-                f"> <a:Strzalka4:1540979104625594453>**Moderator:** {interaction.user.mention}\n"
-                f"> <a:Strzalka4:1540979104625594453>**Czas trwania:** {czas.name}\n"
-                f"> <a:Strzalka4:1540979104625594453>**Powód:** {powod}"
+                f"> <a:Strzalka4:1540979104625594453>︲**Ukarany:** {uzytkownik.mention}\n"
+                f"> <a:Strzalka4:1540979104625594453>︲**Moderator:** {interaction.user.mention}\n"
+                f"> <a:Strzalka4:1540979104625594453>︲**Czas trwania:** {czas.name}\n"
+                f"> <a:Strzalka4:1540979104625594453>︲**Powód:** {powod}"
             ),
             color=discord.Color.from_rgb(231, 76, 60)
         )
@@ -618,9 +618,9 @@ async def unmute(interaction: discord.Interaction, uzytkownik: discord.Member, p
         embed = discord.Embed(
             description=(
                 f"```ansi\n\u001b[1;32m🔊 | Wyciszenie zostało zdjęte\u001b[0m\n```\n"
-                f"> <a:Strzalka2:1539571409599070218>**Użytkownik:** {uzytkownik.mention}\n"
-                f"> <a:Strzalka2:1539571409599070218>**Moderator:** {interaction.user.mention}\n"
-                f"> <a:Strzalka2:1539571409599070218>**Powód:** {powod}"
+                f"> <a:Strzalka2:1539571409599070218>︲**Użytkownik:** {uzytkownik.mention}\n"
+                f"> <a:Strzalka2:1539571409599070218>︲**Moderator:** {interaction.user.mention}\n"
+                f"> <a:Strzalka2:1539571409599070218>︲**Powód:** {powod}"
             ),
             color=discord.Color.from_rgb(46, 204, 113) # Zielony kolor sukcesu
         )
