@@ -563,10 +563,10 @@ async def mute(interaction: discord.Interaction, uzytkownik: discord.Member, cza
         embed = discord.Embed(
             description=(
                 f"```ansi\n\u001b[1;31m🛡️ | Użytkownik został wyciszony\u001b[0m\n```\n"
-                f"> <a:Strzalka4:1540979104625594453 **Ukarany:** {uzytkownik.mention}\n"
-                f"> <a:Strzalka4:1540979104625594453**Moderator:** {interaction.user.mention}\n"
-                f"> <a:Strzalka4:1540979104625594453**Czas trwania:** {czas.name}\n"
-                f"> <a:Strzalka4:1540979104625594453**Powód:** {powod}"
+                f"> <a:Strzalka4:1540979104625594453> **Ukarany:** {uzytkownik.mention}\n"
+                f"> <a:Strzalka4:1540979104625594453>**Moderator:** {interaction.user.mention}\n"
+                f"> <a:Strzalka4:1540979104625594453>**Czas trwania:** {czas.name}\n"
+                f"> <a:Strzalka4:1540979104625594453>**Powód:** {powod}"
             ),
             color=discord.Color.from_rgb(231, 76, 60)
         )
