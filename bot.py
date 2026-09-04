@@ -261,7 +261,7 @@ class OdbiorModal(discord.ui.Modal, title="Formularz Odbioru"):
             description=f"""```ansi\n\u001b[1;37m🎁  LL1N COMMUNITY × ODBIÓR NAGRÓD\u001b[0m\n```\n"""
                         f"> <a:Strzalka3:1539590864228061284> **ᴄᴇʟ ᴢɢᴌᴏsᴢᴇɴɪᴀ:** {self.cel.value}\n"
                         f"> <a:Strzalka3:1539590864228061284> **ɪɴꜰᴏʀᴍᴀᴄᴊᴇ:** {self.szczegoly.value if self.szczegoly.value else 'Brak'}\n\n"
-                        f"> 📸 ┃ **Jeśli odbierasz TXT za suba/follow:**\n"
+                        f"> <:Aparat:1545478059958739035> ┃ **Jeśli odbierasz TXT za suba/follow:**\n"
                         f"> Wyślij teraz na tym czacie screena z **widoczną** **datą** i **godziną** na ekranie.\n\n"
                         f"> <a:Strzalka3:1539590864228061284> Administracja zaraz się Tobą zajmie.",
             color=discord.Color.from_rgb(52, 152, 219)
