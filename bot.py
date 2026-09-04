@@ -578,6 +578,59 @@ async def mute(interaction: discord.Interaction, uzytkownik: discord.Member, cza
     except Exception as e:
         await interaction.response.send_message(f"❌ Wystąpił błąd podczas próby wyciszenia: {e}", ephemeral=True)
 
+# ==========================================
+# 5. KOMENDA ZDJĘCIA WYCISZENIA (UNMUTE)
+# ==========================================
+
+@bot.tree.command(name="unmute", description="Zdejmuje wyciszenie (Timeout) z użytkownika")
+@app_commands.describe(
+    uzytkownik="Wybierz użytkownika, któremu chcesz zdjąć wyciszenie",
+    powod="Podaj powód zdjęcia wyciszenia (opcjonalnie)"
+)
+async def unmute(interaction: discord.Interaction, uzytkownik: discord.Member, powod: str = "Brak podanego powodu"):
+    # 1. Pobieramy rangę Moderatora z serwera
+    target_role = interaction.guild.get_role(ID_ROLI_MODERATOR)
+    
+    if not target_role:
+        return await interaction.response.send_message("❌ Błąd konfiguracji: Nie znaleziono roli Moderatora na serwerze!", ephemeral=True)
+
+    # 2. Sprawdzenie uprawnień moderatora w hierarchii ról
+    if interaction.user != interaction.guild.owner and interaction.user.top_role < target_role:
+        return await interaction.response.send_message("❌ Nie masz uprawnień do używania tej komendy! Wymagana ranga: 📗┃ᴍᴏᴅᴇʀᴀᴛᴏʀ lub wyższa.", ephemeral=True)
+
+    # 3. Sprawdzenie uprawnień bota
+    if not interaction.guild.me.guild_permissions.moderate_members:
+        return await interaction.response.send_message("❌ Nie mam uprawnień do zarządzania członkami (`Moderate Members`)!", ephemeral=True)
+
+    # 4. Sprawdzenie, czy użytkownik w ogóle ma nałożonego timeouta
+    if not uzytkownik.timed_out_until:
+        return await interaction.response.send_message("❌ Ten użytkownik nie jest obecnie wyciszony!", ephemeral=True)
+
+    # 5. Sprawdzenie hierarchii ról (czy moderator może edytować tego użytkownika)
+    if uzytkownik.top_role >= interaction.user.top_role and interaction.user != interaction.guild.owner:
+        return await interaction.response.send_message("❌ Nie możesz zarządzać karami użytkownika z równą lub wyższą rolą niż Twoja!", ephemeral=True)
+
+    try:
+        # Zdjęcie wyciszenia poprzez ustawienie parametru timeout na None
+        await uzytkownik.timeout(None, reason=powod)
+        
+        # Estetyczna wiadomość Embed w stylu zielonym (sukces)
+        embed = discord.Embed(
+            description=(
+                f"```ansi\n\u001b[1;32m🔊 | Wyciszenie zostało zdjęte\u001b[0m\n```\n"
+                f"> **Użytkownik:** {uzytkownik.mention}\n"
+                f"> **Moderator:** {interaction.user.mention}\n"
+                f"> **Powód:** {powod}"
+            ),
+            color=discord.Color.from_rgb(46, 204, 113) # Zielony kolor sukcesu
+        )
+        embed.set_thumbnail(url=uzytkownik.display_avatar.url)
+        embed.set_footer(text=f"© 2026 LL1N Community • System Kar")
+        
+        await interaction.response.send_message(embed=embed)
+        
+    except Exception as e:
+        await interaction.response.send_message(f"❌ Wystąpił błąd podczas próby zdjęcia wyciszenia: {e}", ephemeral=True)
 
 
 # ==========================================
