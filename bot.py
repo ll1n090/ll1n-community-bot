@@ -632,6 +632,36 @@ async def unmute(interaction: discord.Interaction, uzytkownik: discord.Member, p
     except Exception as e:
         await interaction.response.send_message(f"❌ Wystąpił błąd podczas próby zdjęcia wyciszenia: {e}", ephemeral=True)
 
+# ==========================================
+# 6. KOMENDA SLASH DO LINKÓW (SOCIALE)
+# ==========================================
+
+@bot.tree.command(name="sociale", description="Wysyła panel z linkami do mediów społecznościowych")
+async def sociale(interaction: discord.Interaction):
+    # 1. Pobieramy rangę Moderatora z serwera do sprawdzenia uprawnień
+    target_role = interaction.guild.get_role(1545486206715044000)
+    
+    # 2. Sprawdzenie, czy osoba używająca komendy ma rangę Mod lub wyższą w hierarchii serwera
+    if interaction.user != interaction.guild.owner and (not target_role or interaction.user.top_role < target_role):
+        return await interaction.response.send_message("❌ Nie masz uprawnień do używania tej komendy!", ephemeral=True)
+
+    # 3. Tworzenie zielonego Embedu pasującego do jabłka i reszty serwera
+    embed = discord.Embed(
+        description=(
+            f"```ansi\n\u001b[1;37m🍏 LL1N COMMUNITY × SOCIAL MEDIA\u001b[0m\n```\n"
+            f"> <:megafon:1545576854755221626> ︲ Bądź na bieżąco z nowymi texture packami, modyfikacjami oraz aktualizacjami serwera! Obserwuj moje oficjalne profile:\n\n"
+            f"<:YouTube:1539538164656504842>︲**YOUTUBE:**\nhttps://www.youtube.com/@ll1n_08\n\n"
+            f"<:TikTok:1539538248756502598>︲**TIKTOK:**\nhttps://www.tiktok.com/@ll1n_08\n\n"
+            f"*(Przypominamy, że za subskrypcję i obserwację możesz odebrać darmowy TXT w zakładce ticketów!)*"
+        ),
+        color=discord.Color.from_rgb(46, 204, 113) # Zielony kolor pasujący do jabłka
+    )
+    
+    embed.set_footer(text="© 2026 LL1N Community • Social Media")
+    
+    # 4. Wysyłamy gotowy Embed na kanał
+    await interaction.response.send_message(embed=embed)
+
 
 # ==========================================
 # 5. URUCHOMIENIE BOTA
