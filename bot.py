@@ -562,7 +562,7 @@ async def mute(interaction: discord.Interaction, uzytkownik: discord.Member, cza
         # Estetyczna wiadomość Embed pasująca do reszty Twojego bota
         embed = discord.Embed(
             description=(
-                f"```ansi\n\u001b[1;31m🛡️ | Użytkownik został wyciszony\u001b[0m\n```\n"
+                f"```ansi\n\u001b[1;37m🛡️ | Użytkownik został wyciszony\u001b[0m\n```\n"
                 f"> <a:Strzalka4:1540979104625594453>︲**Ukarany:** {uzytkownik.mention}\n"
                 f"> <a:Strzalka4:1540979104625594453>︲**Moderator:** {interaction.user.mention}\n"
                 f"> <a:Strzalka4:1540979104625594453>︲**Czas trwania:** {czas.name}\n"
@@ -617,7 +617,7 @@ async def unmute(interaction: discord.Interaction, uzytkownik: discord.Member, p
         # Estetyczna wiadomość Embed w stylu zielonym (sukces)
         embed = discord.Embed(
             description=(
-                f"```ansi\n\u001b[1;32m🔊 | Wyciszenie zostało zdjęte\u001b[0m\n```\n"
+                f"```ansi\n\u001b[1;37m🔊 | Wyciszenie zostało zdjęte\u001b[0m\n```\n"
                 f"> <a:Strzalka2:1539571409599070218>︲**Użytkownik:** {uzytkownik.mention}\n"
                 f"> <a:Strzalka2:1539571409599070218>︲**Moderator:** {interaction.user.mention}\n"
                 f"> <a:Strzalka2:1539571409599070218>︲**Powód:** {powod}"
