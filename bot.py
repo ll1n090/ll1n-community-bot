@@ -486,11 +486,11 @@ async def cennik_txt_komenda(interaction: discord.Interaction):
     
     embed.description = (
         "```ansi\n\u001b[1;37m🛒  LL1N COMMUNITY × CENNIK TXT\u001b[0m\n```\n"
-        "> <a:Strzalka5:1541001587655311391> ︲interesuje Cię opcja uzyskania dostępu do moich modów?\n\n"
+        "> <a:Strzalka5:1541001587655311391> ︲interesuje Cię opcja uzyskania dostępu do __moich__ txt?\n\n"
         
         "🎨 ︲**ᴄᴇɴɴɪᴋ ᴛᴇxᴛᴜʀᴇ ᴘᴀᴄᴋᴏᴡ:**\n"
-        "> <a:Strzalka5:1541001587655311391> ︲**1 Texture Pack:** 3 PLN\n"
-        "> <a:Strzalka5:1541001587655311391> ︲**Opcja darmowa (JEDNORAZOWA): ** Za subskrypcję na YT oraz obserwację na TT!\n"
+        "> <a:Strzalka5:1541001587655311391> ︲**1 Texture Pack:** __3 PLN__\n"
+        "> <a:Strzalka5:1541001587655311391> ︲**Opcja __darmowa__ (JEDNORAZOWA): ** Za subskrypcję na YT oraz obserwację na TT!\n"
         "<:YouTube:1539538164656504842> - https://www.youtube.com/@ll1n_08 \n"
         "<:TikTok:1539538248756502598> - https://www.tiktok.com/@ll1n_08 \n"
         "> *(Wybierz kategorię Odbiór w ticketach i przygotuj screena z widoczną godziną.)*\n\n"
