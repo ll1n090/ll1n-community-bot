@@ -650,9 +650,9 @@ async def sociale(interaction: discord.Interaction):
         description=(
             f"```ansi\n\u001b[1;37m🍏 LL1N COMMUNITY × SOCIAL MEDIA\u001b[0m\n```\n"
             f"> <:megafon:1545576854755221626> ︲ Bądź na bieżąco z nowymi texture packami, modyfikacjami oraz aktualizacjami serwera! Obserwuj moje oficjalne profile:\n\n"
-            f"<:YouTube:1539538164656504842>︲**YOUTUBE:**\nhttps://www.youtube.com/@ll1n_08\n\n"
-            f"<:TikTok:1539538248756502598>︲**TIKTOK:**\nhttps://www.tiktok.com/@ll1n_08\n\n"
-            f"*(Przypominamy, że za subskrypcję i obserwację możesz odebrać darmowy TXT w zakładce ticketów!)*"
+            f"> <:YouTube:1539538164656504842>︲**YOUTUBE:**https://www.youtube.com/@ll1n_08\n\n"
+            f"> <:TikTok:1539538248756502598>︲**TIKTOK:**https://www.tiktok.com/@ll1n_08\n\n"
+            f"> <:strzalka2:1539571409599070218> ︲Przypominamy, że za subskrypcję i obserwację możesz odebrać darmowy TXT w zakładce ticketów!*"
         ),
         color=discord.Color.from_rgb(46, 204, 113) # Zielony kolor pasujący do jabłka
     )
