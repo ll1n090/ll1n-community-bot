@@ -662,6 +662,72 @@ async def sociale(interaction: discord.Interaction):
     # 4. Wysyłamy gotowy Embed na kanał
     await interaction.response.send_message(embed=embed)
 
+# ==========================================
+# 7. ZINTEGROWANE CENTRUM POBIERANIA TXT
+# ==========================================
+
+# --- KONFIGURACJA ID RANG DLA TEKSTUR ---
+ID_ROLI_TXT_ALL = 1545582957207486504  # Ranga dostep.txt.all
+ID_ROLI_TXT_1   = 1540077303202054224  # Ranga dostep.txt1
+ID_ROLI_TXT_2   = 1545582820309860503  # Ranga dostep.txt2
+ID_ROLI_TXT_3   = 1545582904233431080  # Ranga dostep.txt3 (Darmowy za suba)
+
+
+@bot.tree.command(name="pobierz", description="Wyświetla linki do zakupionych przez Ciebie Texture Packów")
+async def pobierz(interaction: discord.Interaction):
+    # Pobieramy ID wszystkich ról, które posiada użytkownik wpisujący komendę
+    user_roles = [role.id for role in interaction.user.roles]
+    
+    # Tworzymy estetyczny, niebieski Embed w stylu Twojego bota
+    embed = discord.Embed(
+        description=(
+            f"```ansi\n\u001b[1;34m📥 | TWOJE CENTRUM POBIERANIA\u001b[0m\n```\n"
+            f"> Poniżej znajdziesz bezpośrednie odnośniki do paczek zasobów, do których Twój profil posiada aktywny dostęp na naszym serwerze.\n"
+        ),
+        color=discord.Color.from_rgb(52, 152, 219) # Jasnoniebieski kolor panelu
+    )
+    embed.set_footer(text="© 2026 LL1N Community • Bezpieczne Pobieranie")
+    
+    ma_jakikolwiek_dostep = False
+
+    # 1. Sprawdzanie dostępu do Texture Packa nr 1
+    if ID_ROLI_TXT_1 in user_roles or ID_ROLI_TXT_ALL in user_roles:
+        embed.add_field(
+            name="🎨 ┃ Texture Pack #1", 
+            value="> [Kliknij, aby pobrać paczkę](https://link-do-twojego-txt-1.pl)", 
+            inline=False
+        )
+        ma_jakikolwiek_dostep = True
+
+    # 2. Sprawdzanie dostępu do Texture Packa nr 2
+    if ID_ROLI_TXT_2 in user_roles or ID_ROLI_TXT_ALL in user_roles:
+        embed.add_field(
+            name="🎨 ┃ Texture Pack #2", 
+            value="> [Kliknij, aby pobrać paczkę](https://link-do-twojego-txt-2.pl)", 
+            inline=False
+        )
+        ma_jakikolwiek_dostep = True
+
+    # 3. Sprawdzanie dostępu do Texture Packa nr 3 (Darmowy za subskrypcję)
+    if ID_ROLI_TXT_3 in user_roles or ID_ROLI_TXT_ALL in user_roles:
+        embed.add_field(
+            name="🎨 ┃ Texture Pack #3 (Darmowy)", 
+            value="> [Kliknij, aby pobrać paczkę](https://link-do-twojego-txt-3.pl)", 
+            inline=False
+        )
+        ma_jakikolwiek_dostep = True
+
+    # 4. Obsługa sytuacji, gdy komendę wpisze ktoś bez zakupionej rangi (np. zwykły Widz)
+    if not ma_jakikolwiek_dostep:
+        return await interaction.response.send_message(
+            "❌ **Nie posiadasz aktywnego dostępu do żadnego płatnego Texture Packa!**\n"
+            "Jeżeli chcesz zakupić dostęp lub odebrać darmową paczkę za subskrypcję, otwórz zgłoszenie w zakładce ticketów.", 
+            ephemeral=True
+        )
+
+    # Wysyłamy gotowy Embed jako wiadomość EPHEMERAL (ukrytą przed innymi na kanale)
+    await interaction.response.send_message(embed=embed, ephemeral=True)
+
 
 # ==========================================
 # 5. URUCHOMIENIE BOTA
