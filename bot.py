@@ -505,6 +505,82 @@ async def cennik_txt_komenda(interaction: discord.Interaction):
     await interaction.channel.send(embed=embed)
 
 # ==========================================
+# 4. KOMENDA WYCISZANIA (MUTE)
+# ==========================================
+
+ID_ROLI_MODERATOR = 1545486206715044000
+
+@bot.tree.command(name="mute", description="Wycisza użytkownika na określony czas (Timeout)")
+@app_commands.describe(
+    uzytkownik="Wybierz użytkownika, którego chcesz wyciszyć",
+    czas="Wybierz długość trwania wyciszenia",
+    powod="Podaj powód wyciszenia (opcjonalnie)"
+)
+@app_commands.choices(czas=[
+    app_commands.Choice(name="60 sekund", value=60),
+    app_commands.Choice(name="5 minut", value=300),
+    app_commands.Choice(name="10 minut", value=600),
+    app_commands.Choice(name="1 godzina", value=3600),
+    app_commands.Choice(name="1 dzień", value=86400),
+    app_commands.Choice(name="1 tydzień", value=604800)
+])
+async def mute(interaction: discord.Interaction, uzytkownik: discord.Member, czas: app_commands.Choice[int], powod: str = "Brak podanego powodu"):
+    # 1. Pobieramy rangę Moderatora z serwera
+    target_role = interaction.guild.get_role(ID_ROLI_MODERATOR)
+    
+    if not target_role:
+        return await interaction.response.send_message("❌ Błąd konfiguracji: Nie znaleziono roli Moderatora na serwerze!", ephemeral=True)
+
+    # 2. Sprawdzenie, czy osoba używająca komendy ma rangę Mod lub wyższą w hierarchii serwera
+    # Właściciel serwera zawsze omija to sprawdzenie
+    if interaction.user != interaction.guild.owner and interaction.user.top_role < target_role:
+        return await interaction.response.send_message("❌ Nie masz uprawnień do używania tej komendy! Wymagana ranga: 📗┃ᴍᴏᴅᴇʀᴀᴛᴏʀ lub wyższa.", ephemeral=True)
+
+    # 3. Sprawdzenie, czy bot ma uprawnienia do wyciszania (Timeout)
+    if not interaction.guild.me.guild_permissions.moderate_members:
+        return await interaction.response.send_message("❌ Nie mam uprawnień do zarządzania członkami (`Moderate Members`)!", ephemeral=True)
+
+    # 4. Blokada wyciszenia samego siebie
+    if uzytkownik == interaction.user:
+        return await interaction.response.send_message("❌ Nie możesz wyciszyć samego siebie!", ephemeral=True)
+
+    # 5. Sprawdzenie hierarchii ról – nie można wyciszyć kogoś z wyższą lub równą rolą od nas/bota
+    if uzytkownik.top_role >= interaction.user.top_role and interaction.user != interaction.guild.owner:
+        return await interaction.response.send_message("❌ Nie możesz wyciszyć użytkownika z równą lub wyższą rolą niż Twoja!", ephemeral=True)
+    
+    if uzytkownik.top_role >= interaction.guild.me.top_role:
+        return await interaction.response.send_message("❌ Rola tego użytkownika jest wyższa od mojej roli! Nie mogę go wyciszyć.", ephemeral=True)
+
+    # Obliczanie czasu trwania wyciszenia
+    import datetime
+    czas_duration = datetime.timedelta(seconds=czas.value)
+    
+    try:
+        # Nałożenie wyciszenia (Timeout)
+        await uzytkownik.timeout(czas_duration, reason=powod)
+        
+        # Estetyczna wiadomość Embed pasująca do reszty Twojego bota
+        embed = discord.Embed(
+            description=(
+                f"```ansi\n\u001b[1;31m🛡️ | Użytkownik został wyciszony\u001b[0m\n```\n"
+                f"> **Ukarany:** {uzytkownik.mention}\n"
+                f"> **Moderator:** {interaction.user.mention}\n"
+                f"> **Czas trwania:** {czas.name}\n"
+                f"> **Powód:** {powod}"
+            ),
+            color=discord.Color.from_rgb(231, 76, 60)
+        )
+        embed.set_thumbnail(url=uzytkownik.display_avatar.url)
+        embed.set_footer(text=f"© 2026 LL1N Community • System Kar")
+        
+        await interaction.response.send_message(embed=embed)
+        
+    except Exception as e:
+        await interaction.response.send_message(f"❌ Wystąpił błąd podczas próby wyciszenia: {e}", ephemeral=True)
+
+
+
+# ==========================================
 # 5. URUCHOMIENIE BOTA
 # ==========================================
 if __name__ == "__main__":
