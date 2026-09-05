@@ -708,10 +708,10 @@ async def pobierz(interaction: discord.Interaction):
         )
         ma_jakikolwiek_dostep = True
 
-    # 3. Sprawdzanie dostępu do Texture Packa nr 3 
+       # 3. Sprawdzanie dostępu do Texture Packa nr 3
     if ID_ROLI_TXT_3 in user_roles or ID_ROLI_TXT_ALL in user_roles:
         embed.add_field(
-            name="🎨 ┃ Texture Pack #3 ", 
+            name="🎨 ┃ Texture Pack #3 (Darmowy)", 
             value="> [Kliknij, aby pobrać paczkę](https://link-do-twojego-txt-3.pl)", 
             inline=False
         )
