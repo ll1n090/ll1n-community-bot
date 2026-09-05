@@ -739,7 +739,7 @@ async def panel_pobierz(interaction: discord.Interaction):
     if interaction.user != interaction.guild.owner and (not target_role or interaction.user.top_role < target_role):
         return await interaction.response.send_message("❌ Nie masz uprawnień do używania tej komendy!", ephemeral=True)
 
-    # Tworzenie niebieskiego Embedu instrukcji (spójnego z /pobierz)
+    # Tworzenie niebieskiego Embedu instrukcji
     embed = discord.Embed(
         description=(
             f"```ansi\n\u001b[1;34m📦 | JAK ODEBRAĆ SWOJE TEKSTURY?\u001b[0m\n```\n"
@@ -754,9 +754,9 @@ async def panel_pobierz(interaction: discord.Interaction):
     )
     embed.set_footer(text="© 2026 LL1N Community • Instrukcja Obsługi")
     
-    # Wysyłamy stałą wiadomość na kanał
-    await interaction.response.send_message("Panel został pomyślnie wysłany!", ephemeral=True)
-    await interaction.channel.send(embed=embed)
+    # Wysyłamy Embed jako bezpośrednią odpowiedź (brak błędu aplikacji)
+    await interaction.response.send_message(embed=embed)
+
 
 
 # ==========================================
