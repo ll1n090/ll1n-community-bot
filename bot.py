@@ -693,10 +693,10 @@ class TexturePackDropdown(discord.ui.Select):
             if ID_ROLI_TXT_1 in user_roles or ID_ROLI_TXT_ALL in user_roles:
                 embed = discord.Embed(
                     description=(
-                        f"```ansi\n\u001b[1;34m📥 | TWÓJ LINK DO TEXTURE PACKA #1\u001b[0m\n```\n"
+                        f"```ansi\n\u001b[1;37m📥 | TWÓJ LINK DO TEXTURE PACKA #1\u001b[0m\n```\n"
                         f"> 🎉 ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
-                        f"🎨 ┃ **Nazwa:** `§l-_LL1N_PACK_1_-`\n"
-                        f"🔗 ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire](https://mediafire.com)"
+                        f"🎨 ┃ **Nazwa:** `----- LL1N PACK 1 -----`\n"
+                        f"🔗 ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire](https://www.mediafire.com/file/3ntfrw1k68wm039/%C2%A7l-_LL1N_PACK_1_-.zip/file)"
                     ),
                     color=discord.Color.from_rgb(52, 152, 219)
                 )
@@ -710,10 +710,10 @@ class TexturePackDropdown(discord.ui.Select):
             if ID_ROLI_TXT_2 in user_roles or ID_ROLI_TXT_ALL in user_roles:
                 embed = discord.Embed(
                     description=(
-                        f"```ansi\n\u001b[1;34m📥 | TWÓJ LINK DO TEXTURE PACKA #2\u001b[0m\n```\n"
+                        f"```ansi\n\u001b[1;37📥 | TWÓJ LINK DO TEXTURE PACKA #2\u001b[0m\n```\n"
                         f"> 🎉 ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
-                        f"🎨 ┃ **Nazwa:** `§8Black+§7n'+§fWhite+LL1N+§8PACK`\n"
-                        f"🔗 ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire](https://mediafire.com§8Black+§7n'+§fWhite+LL1N+§8PACK.zip/file)"
+                        f"🎨 ┃ **Nazwa:** `Black n' White LL1N PACK`\n"
+                        f"🔗 ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire](https://www.mediafire.com/file/sk47vzb11uo8nqc/§8Black+§7n'+§fWhite+LL1N+§8PACK.zip/file)"
                     ),
                     color=discord.Color.from_rgb(52, 152, 219)
                 )
@@ -727,7 +727,7 @@ class TexturePackDropdown(discord.ui.Select):
             if ID_ROLI_TXT_3 in user_roles or ID_ROLI_TXT_ALL in user_roles:
                 embed = discord.Embed(
                     description=(
-                        f"```ansi\n\u001b[1;32m📥 | TWÓJ LINK DO DARMOWEGO TXT #3\u001b[0m\n```\n"
+                        f"```ansi\n\u001b[1;37m📥 | TWÓJ LINK DO DARMOWEGO TXT #3\u001b[0m\n```\n"
                         f"> 🍏 ┃ Dziękujemy za subskrypcję i obserwację naszych profili społecznościowych!\n\n"
                         f"🎨 ┃ **Nazwa:** `Darmowy Pack (Sub)`\n"
                         f"🔗 ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać paczkę](https://link-do-twojego-txt-3.pl)"
@@ -758,9 +758,9 @@ async def panel_pobierz(interaction: discord.Interaction):
     # Zaktualizowana instrukcja (usunięty podpunkt o wpisywaniu komendy, bo teraz klika się w menu)
     embed = discord.Embed(
         description=(
-            f"```ansi\n\u001b[1;34m📦 | JAK ODEBRAĆ SWOJE TEKSTURY?\u001b[0m\n```\n"
-            f"> 🛡️ ┃ Witaj w bezpiecznym centrum dystrybucji plików! Naszer serwer korzysta ze specjalnego bota, aby chronić linki przed osobami nieupoważnionymi.\n\n"
-            f"**<a:Strzalka3:1539590864228061284> Instrukcja krok po kroku:**\n"
+            f"```ansi\n\u001b[1;37m📦 | JAK ODEBRAĆ SWOJE TEKSTURY?\u001b[0m\n```\n"
+            f"> <a:syrena1:1540951017569652746> ┃ Witaj w bezpiecznym centrum dystrybucji plików! Naszer serwer korzysta ze specjalnego bota, aby chronić linki przed osobami nieupoważnionymi.\n\n"
+            f"**<a:Strzalka4:1540979104625594453> Instrukcja krok po kroku:**\n"
             f"1. Upewnij się, że administrator nadał Ci odpowiednią rangę po zakupie lub weryfikacji suba w ticketach.\n"
             f"2. Rozwiń menu znajdujące się bezpośrednio pod tą wiadomością.\n"
             f"3. Wybierz z listy paczkę, którą zakupiłeś lub chcesz odebrać.\n\n"
