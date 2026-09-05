@@ -663,99 +663,116 @@ async def sociale(interaction: discord.Interaction):
     await interaction.response.send_message(embed=embed)
 
 # ==========================================
-# 7. ZINTEGROWANE CENTRUM POBIERANIA TXT
+# 8. PANEL POBIERANIA Z ROZWIJANYM MENU (SELECT MENU)
 # ==========================================
 
-# --- KONFIGURACJA ID RANG DLA TEKSTUR ---
+# --- CONFIG ID RANG (Z TWOJEGO SERWERA) ---
 ID_ROLI_TXT_ALL = 1545582957207486504  # Ranga dostep.txt.all
 ID_ROLI_TXT_1   = 1540077303202054224  # Ranga dostep.txt1
 ID_ROLI_TXT_2   = 1545582820309860503  # Ranga dostep.txt2
 ID_ROLI_TXT_3   = 1545582904233431080  # Ranga dostep.txt3 (Darmowy za suba)
 
 
-@bot.tree.command(name="pobierz", description="Wyświetla linki do zakupionych przez Ciebie Texture Packów")
-async def pobierz(interaction: discord.Interaction):
-    # Pobieramy ID wszystkich ról, które posiada użytkownik wpisujący komendę
-    user_roles = [role.id for role in interaction.user.roles]
-    
-    # Tworzymy estetyczny, niebieski Embed w stylu Twojego bota
-    embed = discord.Embed(
-        description=(
-            f"```ansi\n\u001b[1;34m📥 | TWOJE CENTRUM POBIERANIA\u001b[0m\n```\n"
-            f"> Poniżej znajdziesz bezpośrednie odnośniki do paczek zasobów, do których Twój profil posiada aktywny dostęp na naszym serwerze.\n"
-        ),
-        color=discord.Color.from_rgb(52, 152, 219) # Jasnoniebieski kolor panelu
-    )
-    embed.set_footer(text="© 2026 LL1N Community • Bezpieczne Pobieranie")
-    
-    ma_jakikolwiek_dostep = False
+class TexturePackDropdown(discord.ui.Select):
+    def __init__(self):
+        options = [
+            discord.SelectOption(label="Texture Pack #1 (LL1N PACK 1)", description="Pobierz fioletową paczkę PvP", emoji="🔷", value="txt1"),
+            discord.SelectOption(label="Texture Pack #2 (Black n' White)", description="Pobierz czarno-białą paczkę PvP", emoji="🔘", value="txt2"),
+            discord.SelectOption(label="Texture Pack #3 (Darmowy)", description="Pobierz darmową paczkę za subskrypcję", emoji="🍏", value="txt3")
+        ]
+        super().__init__(placeholder="🔽 Wybierz Texture Pack do pobrania...", min_values=1, max_values=1, options=options, custom_id="txt_download_select")
 
-    # 1. Sprawdzanie dostępu do Texture Packa nr 1
-    if ID_ROLI_TXT_1 in user_roles or ID_ROLI_TXT_ALL in user_roles:
-        embed.add_field(
-            name="🎨 ┃ Texture Pack #1", 
-            value="> [Kliknij, aby pobrać paczkę](https://link-do-twojego-txt-1.pl)", 
-            inline=False
-        )
-        ma_jakikolwiek_dostep = True
+    async def callback(self, interaction: discord.Interaction):
+        # Pobieramy ID ról użytkownika, który kliknął menu
+        user_roles = [role.id for role in interaction.user.roles]
+        
+        wybor = self.values[0]
 
-    # 2. Sprawdzanie dostępu do Texture Packa nr 2
-    if ID_ROLI_TXT_2 in user_roles or ID_ROLI_TXT_ALL in user_roles:
-        embed.add_field(
-            name="🎨 ┃ Texture Pack #2", 
-            value="> [Kliknij, aby pobrać paczkę](https://link-do-twojego-txt-2.pl)", 
-            inline=False
-        )
-        ma_jakikolwiek_dostep = True
+        # 1. OBSŁUGA TEXTURE PACK #1
+        if wybor == "txt1":
+            if ID_ROLI_TXT_1 in user_roles or ID_ROLI_TXT_ALL in user_roles:
+                embed = discord.Embed(
+                    description=(
+                        f"```ansi\n\u001b[1;34m📥 | TWÓJ LINK DO TEXTURE PACKA #1\u001b[0m\n```\n"
+                        f"> 🎉 ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
+                        f"🎨 ┃ **Nazwa:** `§l-_LL1N_PACK_1_-`\n"
+                        f"🔗 ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire](https://mediafire.com)"
+                    ),
+                    color=discord.Color.from_rgb(52, 152, 219)
+                )
+                embed.set_footer(text="© 2026 LL1N Community • Bezpieczne Pobieranie")
+                return await interaction.response.send_message(embed=embed, ephemeral=True)
+            else:
+                return await interaction.response.send_message("❌ **Nie posiadasz zakupionego dostępu do Texture Packa #1!**\nOtwórz ticket w zakładce zakupów, aby odblokować tę paczkę.", ephemeral=True)
 
-    # 3. Sprawdzanie dostępu do Texture Packa nr 3 (Darmowy za subskrypcję)
-    if ID_ROLI_TXT_3 in user_roles or ID_ROLI_TXT_ALL in user_roles:
-        embed.add_field(
-            name="🎨 ┃ Texture Pack #3 (Darmowy)", 
-            value="> [Kliknij, aby pobrać paczkę](https://link-do-twojego-txt-3.pl)", 
-            inline=False
-        )
-        ma_jakikolwiek_dostep = True
+        # 2. OBSŁUGA TEXTURE PACK #2
+        elif wybor == "txt2":
+            if ID_ROLI_TXT_2 in user_roles or ID_ROLI_TXT_ALL in user_roles:
+                embed = discord.Embed(
+                    description=(
+                        f"```ansi\n\u001b[1;34m📥 | TWÓJ LINK DO TEXTURE PACKA #2\u001b[0m\n```\n"
+                        f"> 🎉 ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
+                        f"🎨 ┃ **Nazwa:** `§8Black+§7n'+§fWhite+LL1N+§8PACK`\n"
+                        f"🔗 ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire](https://mediafire.com§8Black+§7n'+§fWhite+LL1N+§8PACK.zip/file)"
+                    ),
+                    color=discord.Color.from_rgb(52, 152, 219)
+                )
+                embed.set_footer(text="© 2026 LL1N Community • Bezpieczne Pobieranie")
+                return await interaction.response.send_message(embed=embed, ephemeral=True)
+            else:
+                return await interaction.response.send_message("❌ **Nie posiadasz zakupionego dostępu do Texture Packa #2!**\nOtwórz ticket w zakładce zakupów, aby odblokować tę paczkę.", ephemeral=True)
 
-    # 4. Obsługa sytuacji, gdy komendę wpisze ktoś bez zakupionej rangi (np. zwykły Widz)
-    if not ma_jakikolwiek_dostep:
-        return await interaction.response.send_message(
-            "❌ **Nie posiadasz aktywnego dostępu do żadnego płatnego Texture Packa!**\n"
-            "Jeżeli chcesz zakupić dostęp lub odebrać darmową paczkę za subskrypcję, otwórz zgłoszenie w zakładce ticketów.", 
-            ephemeral=True
-        )
+        # 3. OBSŁUGA TEXTURE PACK #3 (DARMOWY)
+        elif wybor == "txt3":
+            if ID_ROLI_TXT_3 in user_roles or ID_ROLI_TXT_ALL in user_roles:
+                embed = discord.Embed(
+                    description=(
+                        f"```ansi\n\u001b[1;32m📥 | TWÓJ LINK DO DARMOWEGO TXT #3\u001b[0m\n```\n"
+                        f"> 🍏 ┃ Dziękujemy za subskrypcję i obserwację naszych profili społecznościowych!\n\n"
+                        f"🎨 ┃ **Nazwa:** `Darmowy Pack (Sub)`\n"
+                        f"🔗 ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać paczkę](https://link-do-twojego-txt-3.pl)"
+                    ),
+                    color=discord.Color.from_rgb(46, 204, 113) # Zielony embed dla darmowego packa
+                )
+                embed.set_footer(text="© 2026 LL1N Community • Bezpieczne Pobieranie")
+                return await interaction.response.send_message(embed=embed, ephemeral=True)
+            else:
+                return await interaction.response.send_message("❌ **Nie odblokowałeś jeszcze darmowego Texture Packa #3!**\nZaobserwuj nasze sociale na kanale <#1539525896501862481>, zrób screeny i odbierz rangę w ticketach.", ephemeral=True)
 
-    # Wysyłamy gotowy Embed jako wiadomość EPHEMERAL (ukrytą przed innymi na kanale)
-    await interaction.response.send_message(embed=embed, ephemeral=True)
 
-# ==========================================
-# 8. KOMENDA DO WYSYŁANIA INSTRUKCJI POBIERANIA
-# ==========================================
+class TexturePackDropdownView(discord.ui.View):
+    def __init__(self):
+        super().__init__(timeout=None) # Brak timeoutu, żeby menu działało wiecznie
+        self.add_item(TexturePackDropdown())
 
-@bot.tree.command(name="panel-pobierz", description="Wysyła stałą instrukcję korzystania z komendy /pobierz")
+
+@bot.tree.command(name="panel-pobierz", description="Wysyła stały panel pobierania z rozwijanym menu")
 async def panel_pobierz(interaction: discord.Interaction):
-    # Sprawdzenie uprawnień (tylko ranga Moderator lub wyższa może to wysłać)
     target_role = interaction.guild.get_role(1545486206715044000)
     if interaction.user != interaction.guild.owner and (not target_role or interaction.user.top_role < target_role):
         return await interaction.response.send_message("❌ Nie masz uprawnień do używania tej komendy!", ephemeral=True)
 
-    # Tworzenie niebieskiego Embedu instrukcji
+    # Informacja dla Ciebie (niewidoczna dla innych)
+    await interaction.response.send_message("⚙️ Generuję i wysyłam panel z menu rozwijanym na kanał...", ephemeral=True)
+
+    # Zaktualizowana instrukcja (usunięty podpunkt o wpisywaniu komendy, bo teraz klika się w menu)
     embed = discord.Embed(
         description=(
             f"```ansi\n\u001b[1;34m📦 | JAK ODEBRAĆ SWOJE TEKSTURY?\u001b[0m\n```\n"
-            f"> 🛡️ ┃ Witaj w bezpiecznym centrum dystrybucji plików! Nasz serwer korzysta ze specjalnego bota, aby chronić linki przed osobami nieupoważnionymi.\n\n"
+            f"> 🛡️ ┃ Witaj w bezpiecznym centrum dystrybucji plików! Naszer serwer korzysta ze specjalnego bota, aby chronić linki przed osobami nieupoważnionymi.\n\n"
             f"**<a:Strzalka3:1539590864228061284> Instrukcja krok po kroku:**\n"
             f"1. Upewnij się, że administrator nadał Ci odpowiednią rangę po zakupie lub weryfikacji suba w ticketach.\n"
-            f"2. Kliknij na pole czatu poniżej i wpisz komendę: </pobierz:1545582957207486504>\n"
-            f"3. Zatwierdź klawiszem Enter.\n\n"
-            f"⚡ ┃ *Bot natychmiast wyświetli ukrytą wiadomość (widoczną tylko dla Ciebie), z której pobierzesz wszystkie swoje paczki zasobów!*"
+            f"2. Rozwiń menu znajdujące się bezpośrednio pod tą wiadomością.\n"
+            f"3. Wybierz z listy paczkę, którą zakupiłeś lub chcesz odebrać.\n\n"
+            f"⚡ ┃ *Bot natychmiast wyświetli ukrytą wiadomość (widoczną tylko dla Ciebie) z podpisem oraz Twoim spersonalizowanym odnośnikiem do pobrania!*"
         ),
         color=discord.Color.from_rgb(52, 152, 219)
     )
     embed.set_footer(text="© 2026 LL1N Community • Instrukcja Obsługi")
     
-    # WYŚLIJ BEZPOŚREDNIO NA KANAŁ (To usunie napis z góry!)
-    await interaction.channel.send(embed=embed)
+    # Wysyłamy czysty panel z menu rozwijanym bezpośrednio na kanał (brak napisu na górze)
+    await interaction.channel.send(embed=embed, view=TexturePackDropdownView())
+
 
 
 # ==========================================
