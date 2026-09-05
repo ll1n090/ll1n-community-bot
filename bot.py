@@ -730,7 +730,7 @@ class TexturePackDropdown(discord.ui.Select):
                         f"```ansi\n\u001b[1;37m🔗 | TWÓJ LINK DO TEXTURE PACKA #3\u001b[0m\n```\n"
                         f"> <a:tak:1545674684794802296> ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
                         f"<:informacje:1539540815582462014> ┃ **Nazwa:** `Black n' White LL1N PACK`\n"
-                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać paczkę](https://www.mediafire.com/file/sk47vzb11uo8nqc/§8Black+§7n'+§fWhite+LL1N+§8PACK.zip/file)"
+                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać paczkę](https://www.mediafire.com/file/1xea8ua0jbz7v4z/%25C2%25A78Black_%25C2%25A77n%2527_%25C2%25A7fWhite_LL1N_%25C2%25A78PACK.zip/file)"
                     ),
                     color=discord.Color.from_rgb(231, 76, 60)
                 )
