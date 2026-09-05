@@ -728,6 +728,36 @@ async def pobierz(interaction: discord.Interaction):
     # Wysyłamy gotowy Embed jako wiadomość EPHEMERAL (ukrytą przed innymi na kanale)
     await interaction.response.send_message(embed=embed, ephemeral=True)
 
+# ==========================================
+# 8. KOMENDA DO WYSYŁANIA INSTRUKCJI POBIERANIA
+# ==========================================
+
+@bot.tree.command(name="panel-pobierz", description="Wysyła stałą instrukcję korzystania z komendy /pobierz")
+async def panel_pobierz(interaction: discord.Interaction):
+    # Sprawdzenie uprawnień (tylko ranga Moderator lub wyższa może to wysłać)
+    target_role = interaction.guild.get_role(1545486206715044000)
+    if interaction.user != interaction.guild.owner and (not target_role or interaction.user.top_role < target_role):
+        return await interaction.response.send_message("❌ Nie masz uprawnień do używania tej komendy!", ephemeral=True)
+
+    # Tworzenie niebieskiego Embedu instrukcji (spójnego z /pobierz)
+    embed = discord.Embed(
+        description=(
+            f"```ansi\n\u001b[1;34m📦 | JAK ODEBRAĆ SWOJE TEKSTURY?\u001b[0m\n```\n"
+            f"> 🛡️ ┃ Witaj w bezpiecznym centrum dystrybucji plików! Nasz serwer korzysta ze specjalnego bota, aby chronić linki przed osobami nieupoważnionymi.\n\n"
+            f"**<a:Strzalka3:1539590864228061284> Instrukcja krok po kroku:**\n"
+            f"1. Upewnij się, że administrator nadał Ci odpowiednią rangę po zakupie lub weryfikacji suba w ticketach.\n"
+            f"2. Kliknij na pole czatu poniżej i wpisz komendę: </pobierz:1545582957207486504>\n"
+            f"3. Zatwierdź klawiszem Enter.\n\n"
+            f"⚡ ┃ *Bot natychmiast wyświetli ukrytą wiadomość (widoczną tylko dla Ciebie), z której pobierzesz wszystkie swoje paczki zasobów!*"
+        ),
+        color=discord.Color.from_rgb(52, 152, 219)
+    )
+    embed.set_footer(text="© 2026 LL1N Community • Instrukcja Obsługi")
+    
+    # Wysyłamy stałą wiadomość na kanał
+    await interaction.response.send_message("Panel został pomyślnie wysłany!", ephemeral=True)
+    await interaction.channel.send(embed=embed)
+
 
 # ==========================================
 # 5. URUCHOMIENIE BOTA
