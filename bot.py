@@ -754,8 +754,8 @@ async def panel_pobierz(interaction: discord.Interaction):
     )
     embed.set_footer(text="© 2026 LL1N Community • Instrukcja Obsługi")
     
-    await interaction.response.send_message("Panel weryfikacji wysłany!", ephemeral=True)
-    await interaction.channel.send(embed=embed, view=view)
+    # WYŚLIJ BEZPOŚREDNIO NA KANAŁ (To usunie napis z góry!)
+    await interaction.channel.send(embed=embed)
 
 
 # ==========================================
