@@ -670,15 +670,15 @@ async def sociale(interaction: discord.Interaction):
 ID_ROLI_TXT_ALL = 1545582957207486504  # Ranga dostep.txt.all
 ID_ROLI_TXT_1   = 1540077303202054224  # Ranga dostep.txt1
 ID_ROLI_TXT_2   = 1545582820309860503  # Ranga dostep.txt2
-ID_ROLI_TXT_3   = 1545582904233431080  # Ranga dostep.txt3 (Darmowy za suba)
+ID_ROLI_TXT_3   = 1545582904233431080  # Ranga dostep.txt3 
 
 
 class TexturePackDropdown(discord.ui.Select):
     def __init__(self):
         options = [
             discord.SelectOption(label="Texture Pack #1 (LL1N PACK 1)", description="Pobierz LL1N PACK 1", emoji="<a:Strzalka4:1540979104625594453>", value="txt1"),
-            discord.SelectOption(label="Texture Pack #2 (Black n' White LL1N PACK)", description="Pobierz Black n' White LL1N PACK", emoji="<a:Strzalka4:1540979104625594453>", value="txt2"),
-            discord.SelectOption(label="Texture Pack #3 (Darmowy)", description="Pobierz darmową paczkę za subskrypcję", emoji="<a:Strzalka4:1540979104625594453>", value="txt3")
+            discord.SelectOption(label="Texture Pack #2 (LL1N PACK 2)", description="Pobierz LL1N PACK 2", emoji="<a:Strzalka4:1540979104625594453>", value="txt2"),
+            discord.SelectOption(label="Texture Pack #3 (Black n' White LL1N PACK)", description="Pobierz Black n' White LL1N PACK", emoji="<a:Strzalka4:1540979104625594453>", value="txt3")
         ]
         super().__init__(placeholder="🩸 Wybierz Texture Pack do pobrania...", min_values=1, max_values=1, options=options, custom_id="txt_download_select")
 
@@ -698,7 +698,7 @@ class TexturePackDropdown(discord.ui.Select):
                         f"🎨 ┃ **Nazwa:** `----- LL1N PACK 1 -----`\n"
                         f"🔗 ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire](https://www.mediafire.com/file/3ntfrw1k68wm039/%C2%A7l-_LL1N_PACK_1_-.zip/file)"
                     ),
-                    color=discord.Color.from_rgb(52, 152, 219)
+                    color=discord.Color.from_rgb(231, 76, 60)
                 )
                 embed.set_footer(text="© 2026 LL1N Community • Bezpieczne Pobieranie")
                 return await interaction.response.send_message(embed=embed, ephemeral=True)
@@ -710,12 +710,12 @@ class TexturePackDropdown(discord.ui.Select):
             if ID_ROLI_TXT_2 in user_roles or ID_ROLI_TXT_ALL in user_roles:
                 embed = discord.Embed(
                     description=(
-                        f"```ansi\n\u001b[1;37📥 | TWÓJ LINK DO TEXTURE PACKA #2\u001b[0m\n```\n"
+                        f"```ansi\n\u001b[1;37m📥 | TWÓJ LINK DO TEXTURE PACKA #2\u001b[0m\n```\n"
                         f"> 🎉 ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
-                        f"🎨 ┃ **Nazwa:** `Black n' White LL1N PACK`\n"
-                        f"🔗 ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire](https://www.mediafire.com/file/sk47vzb11uo8nqc/§8Black+§7n'+§fWhite+LL1N+§8PACK.zip/file)"
+                        f"🎨 ┃ **Nazwa:** `----- LL1N PACK 2 -----`\n"
+                        f"🔗 ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire]()"
                     ),
-                    color=discord.Color.from_rgb(52, 152, 219)
+                    color=discord.Color.from_rgb(231, 76, 60)
                 )
                 embed.set_footer(text="© 2026 LL1N Community • Bezpieczne Pobieranie")
                 return await interaction.response.send_message(embed=embed, ephemeral=True)
@@ -728,9 +728,9 @@ class TexturePackDropdown(discord.ui.Select):
                 embed = discord.Embed(
                     description=(
                         f"```ansi\n\u001b[1;37m📥 | TWÓJ LINK DO TEXTURE PACKA #3\u001b[0m\n```\n"
-                        f"> 🍏 ┃ Dziękujemy za subskrypcję i obserwację naszych profili społecznościowych!\n\n"
-                        f"🎨 ┃ **Nazwa:** `Darmowy Pack (Sub)`\n"
-                        f"🔗 ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać paczkę](https://link-do-twojego-txt-3.pl)"
+                        f"> 🎉 ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
+                        f"🎨 ┃ **Nazwa:** `Black n' White LL1N PACK`\n"
+                        f"🔗 ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać paczkę](https://www.mediafire.com/file/sk47vzb11uo8nqc/§8Black+§7n'+§fWhite+LL1N+§8PACK.zip/file)"
                     ),
                     color=discord.Color.from_rgb(231, 76, 60)
                 )
@@ -758,13 +758,13 @@ async def panel_pobierz(interaction: discord.Interaction):
     # Zaktualizowana instrukcja (usunięty podpunkt o wpisywaniu komendy, bo teraz klika się w menu)
     embed = discord.Embed(
         description=(
-            f"```ansi\n\u001b[1;37m📦 | JAK ODEBRAĆ SWOJE TEKSTURY?\u001b[0m\n```\n"
+            f"```ansi\n\u001b[1;37m❓ | JAK ODEBRAĆ SWOJE TEKSTURY?\u001b[0m\n```\n"
             f"<:admin:1545620892212658288 ┃ Witaj w bezpiecznym centrum dystrybucji plików! Naszer serwer korzysta ze specjalnego bota, aby chronić linki przed osobami nieupoważnionymi.\n\n"
             f"**<a:syrena1:1540951017569652746> Instrukcja krok po kroku:**\n"
             f"<a:Strzalka4:1540979104625594453> ︲1. Upewnij się, że administrator nadał Ci odpowiednią rangę po zakupie lub weryfikacji suba w ticketach.\n"
             f"<a:Strzalka4:1540979104625594453> ︲2. Rozwiń menu znajdujące się bezpośrednio pod tą wiadomością.\n"
             f"<a:Strzalka4:1540979104625594453> ︲3. Wybierz z listy paczkę, którą zakupiłeś lub chcesz odebrać.\n\n"
-            f"⚡ ┃ *Bot natychmiast wyświetli ukrytą wiadomość (widoczną tylko dla Ciebie) z podpisem oraz Twoim spersonalizowanym odnośnikiem do pobrania!*"
+            f"📍 ┃ *Bot natychmiast wyświetli ukrytą wiadomość (widoczną tylko dla Ciebie) z podpisem oraz Twoim spersonalizowanym odnośnikiem do pobrania!*"
         ),
         color=discord.Color.from_rgb(231, 76, 60)
     )
