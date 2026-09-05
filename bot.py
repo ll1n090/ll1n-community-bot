@@ -670,7 +670,7 @@ async def sociale(interaction: discord.Interaction):
 ID_ROLI_TXT_ALL = 1545582957207486504  # Ranga dostep.txt.all
 ID_ROLI_TXT_1   = 1540077303202054224  # Ranga dostep.txt1
 ID_ROLI_TXT_2   = 1545582820309860503  # Ranga dostep.txt2
-ID_ROLI_TXT_3   = 1545582904233431080  # Ranga dostep.txt3 (Darmowy za suba)
+ID_ROLI_TXT_3   = 1545582904233431080  # Ranga dostep.txt3
 
 
 @bot.tree.command(name="pobierz", description="Wyświetla linki do zakupionych przez Ciebie Texture Packów")
@@ -694,7 +694,7 @@ async def pobierz(interaction: discord.Interaction):
     if ID_ROLI_TXT_1 in user_roles or ID_ROLI_TXT_ALL in user_roles:
         embed.add_field(
             name="🎨 ┃ Texture Pack #1", 
-            value="> [Kliknij, aby pobrać paczkę](https://link-do-twojego-txt-1.pl)", 
+            value="> [Kliknij, aby pobrać paczkę](https://www.mediafire.com/file/3ntfrw1k68wm039/%C2%A7l-_LL1N_PACK_1_-.zip/file)", 
             inline=False
         )
         ma_jakikolwiek_dostep = True
@@ -703,15 +703,15 @@ async def pobierz(interaction: discord.Interaction):
     if ID_ROLI_TXT_2 in user_roles or ID_ROLI_TXT_ALL in user_roles:
         embed.add_field(
             name="🎨 ┃ Texture Pack #2", 
-            value="> [Kliknij, aby pobrać paczkę](https://link-do-twojego-txt-2.pl)", 
+            value="> [Kliknij, aby pobrać paczkę](https://www.mediafire.com/file/sk47vzb11uo8nqc/§8Black+§7n'+§fWhite+LL1N+§8PACK.zip/file)", 
             inline=False
         )
         ma_jakikolwiek_dostep = True
 
-    # 3. Sprawdzanie dostępu do Texture Packa nr 3 (Darmowy za subskrypcję)
+    # 3. Sprawdzanie dostępu do Texture Packa nr 3 
     if ID_ROLI_TXT_3 in user_roles or ID_ROLI_TXT_ALL in user_roles:
         embed.add_field(
-            name="🎨 ┃ Texture Pack #3 (Darmowy)", 
+            name="🎨 ┃ Texture Pack #3 ", 
             value="> [Kliknij, aby pobrać paczkę](https://link-do-twojego-txt-3.pl)", 
             inline=False
         )
