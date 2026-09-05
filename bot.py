@@ -693,10 +693,10 @@ class TexturePackDropdown(discord.ui.Select):
             if ID_ROLI_TXT_1 in user_roles or ID_ROLI_TXT_ALL in user_roles:
                 embed = discord.Embed(
                     description=(
-                        f"```ansi\n\u001b[1;37m📥 | TWÓJ LINK DO TEXTURE PACKA #1\u001b[0m\n```\n"
-                        f"> 🎉 ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
-                        f"🎨 ┃ **Nazwa:** `----- LL1N PACK 1 -----`\n"
-                        f"🔗 ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire](https://www.mediafire.com/file/3ntfrw1k68wm039/%C2%A7l-_LL1N_PACK_1_-.zip/file)"
+                        f"```ansi\n\u001b[1;37m🔗 | TWÓJ LINK DO TEXTURE PACKA #1\u001b[0m\n```\n"
+                        f"> <a:tak:1545674684794802296> ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
+                        f"<:informacje:1539540815582462014> ┃ **Nazwa:** `----- LL1N PACK 1 -----`\n"
+                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire](https://www.mediafire.com/file/3ntfrw1k68wm039/%C2%A7l-_LL1N_PACK_1_-.zip/file)"
                     ),
                     color=discord.Color.from_rgb(231, 76, 60)
                 )
@@ -710,10 +710,10 @@ class TexturePackDropdown(discord.ui.Select):
             if ID_ROLI_TXT_2 in user_roles or ID_ROLI_TXT_ALL in user_roles:
                 embed = discord.Embed(
                     description=(
-                        f"```ansi\n\u001b[1;37m📥 | TWÓJ LINK DO TEXTURE PACKA #2\u001b[0m\n```\n"
-                        f"> 🎉 ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
-                        f"🎨 ┃ **Nazwa:** `----- LL1N PACK 2 -----`\n"
-                        f"🔗 ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire]()"
+                        f"```ansi\n\u001b[1;37m🔗 | TWÓJ LINK DO TEXTURE PACKA #2\u001b[0m\n```\n"
+                        f"> <a:tak:1545674684794802296> ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
+                        f"<:informacje:1539540815582462014> ┃ **Nazwa:** `----- LL1N PACK 2 -----`\n"
+                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire]()"
                     ),
                     color=discord.Color.from_rgb(231, 76, 60)
                 )
@@ -727,10 +727,10 @@ class TexturePackDropdown(discord.ui.Select):
             if ID_ROLI_TXT_3 in user_roles or ID_ROLI_TXT_ALL in user_roles:
                 embed = discord.Embed(
                     description=(
-                        f"```ansi\n\u001b[1;37m📥 | TWÓJ LINK DO TEXTURE PACKA #3\u001b[0m\n```\n"
-                        f"> 🎉 ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
-                        f"🎨 ┃ **Nazwa:** `Black n' White LL1N PACK`\n"
-                        f"🔗 ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać paczkę](https://www.mediafire.com/file/sk47vzb11uo8nqc/§8Black+§7n'+§fWhite+LL1N+§8PACK.zip/file)"
+                        f"```ansi\n\u001b[1;37m🔗 | TWÓJ LINK DO TEXTURE PACKA #3\u001b[0m\n```\n"
+                        f"> <a:tak:1545674684794802296> ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
+                        f"<:informacje:1539540815582462014> ┃ **Nazwa:** `Black n' White LL1N PACK`\n"
+                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać paczkę](https://www.mediafire.com/file/sk47vzb11uo8nqc/§8Black+§7n'+§fWhite+LL1N+§8PACK.zip/file)"
                     ),
                     color=discord.Color.from_rgb(231, 76, 60)
                 )
@@ -759,7 +759,7 @@ async def panel_pobierz(interaction: discord.Interaction):
     embed = discord.Embed(
         description=(
             f"```ansi\n\u001b[1;37m❓ | JAK ODEBRAĆ SWOJE TEKSTURY?\u001b[0m\n```\n"
-            f"<:admin:1545620892212658288 ┃ Witaj w bezpiecznym centrum dystrybucji plików! Naszer serwer korzysta ze specjalnego bota, aby chronić linki przed osobami nieupoważnionymi.\n\n"
+            f"<:admin:1545620892212658288> ┃ Witaj w bezpiecznym centrum dystrybucji plików! Naszer serwer korzysta ze specjalnego bota, aby chronić linki przed osobami nieupoważnionymi.\n\n"
             f"**<a:syrena1:1540951017569652746> Instrukcja krok po kroku:**\n"
             f"<a:Strzalka4:1540979104625594453> ︲1. Upewnij się, że administrator nadał Ci odpowiednią rangę po zakupie lub weryfikacji suba w ticketach.\n"
             f"<a:Strzalka4:1540979104625594453> ︲2. Rozwiń menu znajdujące się bezpośrednio pod tą wiadomością.\n"
