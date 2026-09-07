@@ -671,6 +671,8 @@ ID_ROLI_TXT_ALL = 1545582957207486504  # Ranga dostep.txt.all
 ID_ROLI_TXT_1   = 1540077303202054224  # Ranga dostep.txt1
 ID_ROLI_TXT_2   = 1545582820309860503  # Ranga dostep.txt2
 ID_ROLI_TXT_3   = 1545582904233431080  # Ranga dostep.txt3 
+ID_ROLI_TXT_4   = 1546542501396086865  # Ranga dostep.txt4 (Pusta pozycja / zapasowa)
+ID_ROLI_TXT_5   = 1546542947456131123  # Ranga dostep.txt5 (Black n' White LL1N PACK)
 
 
 class TexturePackDropdown(discord.ui.Select):
@@ -678,7 +680,9 @@ class TexturePackDropdown(discord.ui.Select):
         options = [
             discord.SelectOption(label="Texture Pack #1 (LL1N PACK 1)", description="Pobierz LL1N PACK 1", emoji="<a:Strzalka4:1540979104625594453>", value="txt1"),
             discord.SelectOption(label="Texture Pack #2 (LL1N PACK 2)", description="Pobierz LL1N PACK 2", emoji="<a:Strzalka4:1540979104625594453>", value="txt2"),
-            discord.SelectOption(label="Texture Pack #3 (Black n' White LL1N PACK)", description="Pobierz Black n' White LL1N PACK", emoji="<a:Strzalka4:1540979104625594453>", value="txt3")
+            discord.SelectOption(label="Texture Pack #3 (LL1N PACK 3)", description="Pobierz LL1N PACK 3", emoji="<a:Strzalka4:1540979104625594453>", value="txt3"),
+            discord.SelectOption(label="Texture Pack #4 (Wkrótce...)", description="Miejsce na nową paczkę", emoji="<a:Strzalka4:1540979104625594453>", value="txt4"),
+            discord.SelectOption(label="Texture Pack #5 (Black n' White LL1N PACK)", description="Pobierz Black n' White LL1N PACK", emoji="<a:Strzalka4:1540979104625594453>", value="txt5")
         ]
         super().__init__(placeholder="🩸 Wybierz Texture Pack do pobrania...", min_values=1, max_values=1, options=options, custom_id="txt_download_select")
 
@@ -696,7 +700,7 @@ class TexturePackDropdown(discord.ui.Select):
                         f"```ansi\n\u001b[1;37m🔗 | TWÓJ LINK DO TEXTURE PACKA #1\u001b[0m\n```\n"
                         f"> <a:tak:1545674684794802296> ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
                         f"<:informacje:1539540815582462014> ┃ **Nazwa:** `----- LL1N PACK 1 -----`\n"
-                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire](https://www.mediafire.com/file/3ntfrw1k68wm039/%C2%A7l-_LL1N_PACK_1_-.zip/file)"
+                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire](https://mediafire.com)"
                     ),
                     color=discord.Color.from_rgb(231, 76, 60)
                 )
@@ -729,8 +733,8 @@ class TexturePackDropdown(discord.ui.Select):
                     description=(
                         f"```ansi\n\u001b[1;37m🔗 | TWÓJ LINK DO TEXTURE PACKA #3\u001b[0m\n```\n"
                         f"> <a:tak:1545674684794802296> ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
-                        f"<:informacje:1539540815582462014> ┃ **Nazwa:** `Black n' White LL1N PACK`\n"
-                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać paczkę](https://www.mediafire.com/file/1xea8ua0jbz7v4z/%25C2%25A78Black_%25C2%25A77n%2527_%25C2%25A7fWhite_LL1N_%25C2%25A78PACK.zip/file)"
+                        f"<:informacje:1539540815582462014> ┃ **Nazwa:** `----- LL1N PACK 3 -----`\n"
+                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire]()"
                     ),
                     color=discord.Color.from_rgb(231, 76, 60)
                 )
@@ -738,6 +742,40 @@ class TexturePackDropdown(discord.ui.Select):
                 return await interaction.response.send_message(embed=embed, ephemeral=True)
             else:
                 return await interaction.response.send_message("❌ **Nie posiadasz zakupionego dostępu do Texture Packa #3!**\nOtwórz ticket w zakładce zakupów, aby odblokować tę paczkę.", ephemeral=True)
+
+        # 4. OBSŁUGA TEXTURE PACK #4 (PUSTE MIEJSCE)
+        elif wybor == "txt4":
+            if ID_ROLI_TXT_4 in user_roles or ID_ROLI_TXT_ALL in user_roles:
+                embed = discord.Embed(
+                    description=(
+                        f"```ansi\n\u001b[1;37m🔗 | TWÓJ LINK DO TEXTURE PACKA #4\u001b[0m\n```\n"
+                        f"> <a:tak:1545674684794802296> ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
+                        f"<:informacje:1539540815582462014> ┃ **Nazwa:** `----- LL1N PACK 4 -----`\n"
+                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire]()"
+                    ),
+                    color=discord.Color.from_rgb(231, 76, 60)
+                )
+                embed.set_footer(text="© 2026 LL1N Community • Bezpieczne Pobieranie")
+                return await interaction.response.send_message(embed=embed, ephemeral=True)
+            else:
+                return await interaction.response.send_message("❌ **Nie posiadasz zakupionego dostępu do Texture Packa #4!**\nOtwórz ticket w zakładce zakupów, aby odblokować tę paczkę.", ephemeral=True)
+
+        # 5. OBSŁUGA TEXTURE PACK #5 (BLACK N' WHITE)
+        elif wybor == "txt5":
+            if ID_ROLI_TXT_5 in user_roles or ID_ROLI_TXT_ALL in user_roles:
+                embed = discord.Embed(
+                    description=(
+                        f"```ansi\n\u001b[1;37m🔗 | TWÓJ LINK DO TEXTURE PACKA #5\u001b[0m\n```\n"
+                        f"> <a:tak:1545674684794802296> ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
+                        f"<:informacje:1539540815582462014> ┃ **Nazwa:** `Black n' White LL1N PACK`\n"
+                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać paczkę](https://mediafire.com)"
+                    ),
+                    color=discord.Color.from_rgb(231, 76, 60)
+                )
+                embed.set_footer(text="© 2026 LL1N Community • Bezpieczne Pobieranie")
+                return await interaction.response.send_message(embed=embed, ephemeral=True)
+            else:
+                return await interaction.response.send_message("❌ **Nie posiadasz zakupionego dostępu do Texture Packa #5!**\nOtwórz ticket w zakładce zakupów, aby odblokować tę paczkę.", ephemeral=True)
 
 
 class TexturePackDropdownView(discord.ui.View):
@@ -752,10 +790,8 @@ async def panel_pobierz(interaction: discord.Interaction):
     if interaction.user != interaction.guild.owner and (not target_role or interaction.user.top_role < target_role):
         return await interaction.response.send_message("❌ Nie masz uprawnień do używania tej komendy!", ephemeral=True)
 
-    # Informacja dla Ciebie (niewidoczna dla innych)
     await interaction.response.send_message("⚙️ Generuję i wysyłam panel z menu rozwijanym na kanał...", ephemeral=True)
 
-    # Zaktualizowana instrukcja (usunięty podpunkt o wpisywaniu komendy, bo teraz klika się w menu)
     embed = discord.Embed(
         description=(
             f"```ansi\n\u001b[1;37m❓ | JAK ODEBRAĆ SWOJE TEKSTURY?\u001b[0m\n```\n"
@@ -769,6 +805,8 @@ async def panel_pobierz(interaction: discord.Interaction):
         color=discord.Color.from_rgb(231, 76, 60)
     )
     embed.set_footer(text="© 2026 LL1N Community • Instrukcja Obsługi")
+    
+
     
     # Wysyłamy czysty panel z menu rozwijanym bezpośrednio na kanał (brak napisu na górze)
     await interaction.channel.send(embed=embed, view=TexturePackDropdownView())
