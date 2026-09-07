@@ -700,7 +700,7 @@ class TexturePackDropdown(discord.ui.Select):
                         f"```ansi\n\u001b[1;37m🔗 | TWÓJ LINK DO TEXTURE PACKA #1\u001b[0m\n```\n"
                         f"> <a:tak:1545674684794802296> ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
                         f"<:informacje:1539540815582462014> ┃ **Nazwa:** `----- LL1N PACK 1 -----`\n"
-                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire](https://mediafire.com)"
+                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire](https://www.mediafire.com/file/3ntfrw1k68wm039/%C2%A7l-_LL1N_PACK_1_-.zip/file)"
                     ),
                     color=discord.Color.from_rgb(231, 76, 60)
                 )
@@ -717,7 +717,7 @@ class TexturePackDropdown(discord.ui.Select):
                         f"```ansi\n\u001b[1;37m🔗 | TWÓJ LINK DO TEXTURE PACKA #2\u001b[0m\n```\n"
                         f"> <a:tak:1545674684794802296> ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
                         f"<:informacje:1539540815582462014> ┃ **Nazwa:** `----- LL1N PACK 2 -----`\n"
-                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire]()"
+                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire](https://www.mediafire.com/file/lff5t8drrelvhf9/%C2%A7l-_LL1N_PACK_2_-.zip/file)"
                     ),
                     color=discord.Color.from_rgb(231, 76, 60)
                 )
@@ -734,7 +734,7 @@ class TexturePackDropdown(discord.ui.Select):
                         f"```ansi\n\u001b[1;37m🔗 | TWÓJ LINK DO TEXTURE PACKA #3\u001b[0m\n```\n"
                         f"> <a:tak:1545674684794802296> ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
                         f"<:informacje:1539540815582462014> ┃ **Nazwa:** `----- LL1N PACK 3 -----`\n"
-                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire]()"
+                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire](https://www.mediafire.com/file/7krpn6zoqjq7xad/%C2%A7l-LL1N_PACK_3_-.zip/file)"
                     ),
                     color=discord.Color.from_rgb(231, 76, 60)
                 )
@@ -768,7 +768,7 @@ class TexturePackDropdown(discord.ui.Select):
                         f"```ansi\n\u001b[1;37m🔗 | TWÓJ LINK DO TEXTURE PACKA #5\u001b[0m\n```\n"
                         f"> <a:tak:1545674684794802296> ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
                         f"<:informacje:1539540815582462014> ┃ **Nazwa:** `Black n' White LL1N PACK`\n"
-                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać paczkę](https://mediafire.com)"
+                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać paczkę](https://www.mediafire.com/file/1xea8ua0jbz7v4z/%C2%A78Black_%C2%A77n%27_%C2%A7fWhite_LL1N_%C2%A78PACK.zip/file)"
                     ),
                     color=discord.Color.from_rgb(231, 76, 60)
                 )
