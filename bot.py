@@ -816,11 +816,22 @@ async def panel_pobierz(interaction: discord.Interaction):
 # ==========================================
 # 5. URUCHOMIENIE BOTA
 # ==========================================
-if __name__ == "__main__":
-    keep_alive()
-    token = os.getenv("DISCORD_TOKEN")
-    
-    if token:
-        bot.run(token)
-    else:
-        print("❌ BŁĄD: Nie znaleziono zmiennej środowiskowej DISCORD_TOKEN!")
+from flask import Flask
+from threading import Thread
+
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot działa!"
+
+def run():
+    # Render automatycznie przypisuje port w zmiennej środowiskowej
+    import os
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host='0.0.0.0', port=port)
+
+def keep_alive():
+    # Ta linijka jest kluczowa – odpala serwer w tle i puszcza kod dalej!
+    t = Thread(target=run)
+    t.start()
