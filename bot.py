@@ -839,6 +839,10 @@ def keep_alive():
 # =========================================================
 # # 5. URUCHOMIENIE BOTA
 # =========================================================
+@bot.event
+async def on_ready():
+    print(f"✅ SUKCES: Zalogowano jako {bot.user.name}!")
+
 if __name__ == "__main__":
     keep_alive()  # Teraz odpali serwer w tle i od razu przejdzie niżej!
     
