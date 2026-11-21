@@ -336,10 +336,11 @@ class Bot(commands.Bot):
 
         super().__init__(command_prefix="!", intents=intents)
 
-    async def setup_hook(self):
-        self.add_view(VerificationView())
-        self.add_view(TicketDropdownView())
-        self.add_view(CloseTicketView())
+async def setup_hook(self):
+    self.add_view(VerificationView())
+    self.add_view(TicketDropdownView())
+    self.add_view(CloseTicketView())
+    self.add_view(TexturePackDropdownView())
 
 bot = Bot()
 
