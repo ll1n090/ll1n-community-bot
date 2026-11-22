@@ -863,10 +863,10 @@ class SpecificModsDropdown(discord.ui.Select):
     async def callback(self, interaction: discord.Interaction):
         wybrane = self.values.pop()
         linki = {
-            "mod_vr": ("Visual Ratio", "https://imgur.com"),
-            "mod_nea": ("Not Enough Animations", "https://imgur.com"),
-            "mod_nmb": ("Natural Motion Blur", "https://imgur.com"),
-            "mod_ck": ("Creamy Keys", "https://imgur.com")
+            "mod_vr": ("Visual Ratio", "https://cdn.discordapp.com/attachments/1573877432820306010/1573894378567639141/image.png?ex=6b03aadd&is=6b02595d&hm=52e167b0303201686fad74cf0fc5e45a1f31c3340d4a601bba1e1f03e015e2b9&"),
+            "mod_nea": ("Not Enough Animations", "https://cdn.discordapp.com/attachments/1573877432820306010/1573894760052297931/image.png?ex=6b03ab38&is=6b0259b8&hm=0bbb5310f060510e3e5dec2a5e8c76a181599c84e4799cba20bb0636f8c5d8e1&"),
+            "mod_nmb": ("Natural Motion Blur", "https://cdn.discordapp.com/attachments/1573877432820306010/1573894596272853023/image.png?ex=6b03ab11&is=6b025991&hm=f365928453f90837ddc2a248ae541228d8f050c204f9b5e63a7e78a58c33e258&"),
+            "mod_ck": ("Creamy Keys", "https://cdn.discordapp.com/attachments/1573877432820306010/1573894283134763068/image.png?ex=6b03aac6&is=6b025946&hm=b0db13b7144f93066f21a8a047147b90ca71a80a2e785ef254f0930279ecb35b&")
         }
         nazwa, url = linki[wybrane]
         emb = discord.Embed(description=f"```ansi\n\u001b[1;37m⚙ | USTAWIENIA MODA: {nazwa.upper()}\u001b[0m\n```\n> <a:tak:1545674684794802296> ┃ Aktualna konfiguracja modyfikacji **{nazwa}**.", color=discord.Color.from_rgb(119, 178, 85))
@@ -881,7 +881,7 @@ class SpecificModsView(discord.ui.View):
 class ModsDropdown(discord.ui.Select):
     def __init__(self):
         options = [
-            discord.SelectOption(label="Paczka Modów (LL1N MODS)", description="Pobierz paczkę modyfikacji", emoji="<a:Strzalka2:1539571409599070218>", value="mody"),
+            discord.SelectOption(label="Paczka Modów", description="Pobierz paczkę modyfikacji", emoji="<a:Strzalka2:1539571409599070218>", value="mody"),
             discord.SelectOption(label="Ustawienia Minecraft", description="Screeny ustawień gry i czatu", emoji="<a:Strzalka2:1539571409599070218>", value="ust_mc"),
             discord.SelectOption(label="Ustawienia Modów", description="Screeny ustawień poszczególnych modów", emoji="<a:Strzalka2:1539571409599070218>", value="ust_mody")
         ]
@@ -892,19 +892,19 @@ class ModsDropdown(discord.ui.Select):
         wybor = self.values.pop()
         if wybor == "mody":
             if ID_ROLI_MODY in user_roles or ID_ROLI_MODY_USTAWIENIA in user_roles:
-                emb = discord.Embed(description="```ansi\n\u001b[1;37m📦 | PACZKA MODÓW \u001b[0m\n```\n> <a:tak:1545674684794802296> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać](https://www.mediafire.com/file/391qmxplj3vmwf8/Mody-ll1n.zip/file)", color=discord.Color.from_rgb(119, 178, 85))
+                emb = discord.Embed(description="```ansi\n\u001b[1;37m📦 | PACZKA MODÓW \u001b[0m\n```<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać](https://www.mediafire.com/file/391qmxplj3vmwf8/Mody-ll1n.zip/file)", color=discord.Color.from_rgb(119, 178, 85))
                 return await interaction.response.send_message(embed=emb, ephemeral=True)
             return await interaction.response.send_message("❌ Nie posiadasz rangi dostępu do modów!", ephemeral=True)
         elif wybor == "ust_mc":
             if ID_ROLI_USTAWIENIA in user_roles or ID_ROLI_MODY_USTAWIENIA in user_roles:
-                emb = discord.Embed(description="```ansi\n\u001b[1;37m🛠 | WYBIERZ KATEGORIĘ USTAWIEŃ MC\u001b[0m\n```\n> <a:Strzalka2:1539571409599070218> ︲Rozwiń poniższą **listę** i wybierz zakładkę...", color=discord.Color.from_rgb(119, 178, 85))
+                emb = discord.Embed(description="```ansi\n\u001b[1;37m🛠 | WYBIERZ KATEGORIĘ USTAWIEŃ MC\u001b[0m\n```<a:Strzalka2:1539571409599070218> ︲Rozwiń poniższą **listę** i wybierz zakładkę...", color=discord.Color.from_rgb(119, 178, 85))
                 emb.set_footer(text="© 2026 LL1N Community • Ustawienia Minecraft")
                 return await interaction.response.send_message(embed=emb, view=SpecificMcView(), ephemeral=True)
             return await interaction.response.send_message("❌ Nie posiadasz rangi dostępu do ustawień!", ephemeral=True)
 
         elif wybor == "ust_mody":
             if ID_ROLI_USTAWIENIA in user_roles or ID_ROLI_MODY_USTAWIENIA in user_roles:
-                emb = discord.Embed(description="```ansi\n\u001b[1;37m📗 | WYBIERZ KONKRETNEGO MODA\u001b[0m\n```> <a:Strzalka2:1539571409599070218> ︲Rozwiń poniższą **listę** i kliknij modyfikację...", color=discord.Color.from_rgb(119, 178, 85))
+                emb = discord.Embed(description="```ansi\n\u001b[1;37m📗 | WYBIERZ KONKRETNEGO MODA\u001b[0m\n```<a:Strzalka2:1539571409599070218> ︲Rozwiń poniższą **listę** i kliknij modyfikację...", color=discord.Color.from_rgb(119, 178, 85))
                 emb.set_footer(text="© 2026 LL1N Community • Ustawienia Modów")
                 return await interaction.response.send_message(embed=emb, view=SpecificModsView(), ephemeral=True)
             return await interaction.response.send_message("❌ Nie posiadasz rangi dostępu do ustawień!", ephemeral=True)
