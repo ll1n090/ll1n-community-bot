@@ -837,7 +837,7 @@ class SpecificMcDropdown(discord.ui.Select):
             return await interaction.response.send_message(embed=emb, ephemeral=True)
 
         linki = {
-            "mc_grafika": ("Ustawienia Graficzne", ["https://cdn.discordapp.com/attachments/1573877432820306010/1573885184581967953/image.png?ex=6b03a24d&is=6b0250cd&hm=7fddb9454aeb38f31994734ab6e59305f42a1c086f0649f51aa88081f15cda13&"
+            "mc_grafika": ("Ustawienia Graficzne", ["https://cdn.discordapp.com/attachments/1573877432820306010/1573885184581967953/image.png?ex=6b03a24d&is=6b0250cd&hm=7fddb9454aeb38f31994734ab6e59305f42a1c086f0649f51aa88081f15cda13&"]),
             "mc_czat": ("Ustawienia Czatu", ["https://cdn.discordapp.com/attachments/1573877432820306010/1573884744918114394/image.png?ex=6b03a1e4&is=6b025064&hm=d6ee959275fad917c49681a7ee7e6a806ff54164e9ad50b120c316ace813d52e&"]),
             "mc_ulatwienia": ("Ułatwienia Dostępu", ["https://cdn.discordapp.com/attachments/1573877432820306010/1573885002805026828/image.png?ex=6b03a222&is=6b0250a2&hm=8891a97b30378b45058a55503e3fc1a619df416c3cacdaa9a68f3bb9812f5d41&"])
         }
