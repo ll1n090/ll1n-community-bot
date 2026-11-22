@@ -673,8 +673,8 @@ ID_ROLI_TXT_ALL = 1545582957207486504  # Ranga dostep.txt.all
 ID_ROLI_TXT_1   = 1540077303202054224  # Ranga dostep.txt1
 ID_ROLI_TXT_2   = 1545582820309860503  # Ranga dostep.txt2
 ID_ROLI_TXT_3   = 1545582904233431080  # Ranga dostep.txt3 
-ID_ROLI_TXT_4   = 1546542501396086865  # Ranga dostep.txt4 (Pusta pozycja / zapasowa)
-ID_ROLI_TXT_5   = 1546542947456131123  # Ranga dostep.txt5 (Black n' White LL1N PACK)
+ID_ROLI_TXT_4   = 1546542501396086865  # Ranga dostep.txt4 
+ID_ROLI_TXT_5   = 1546542947456131123  # Ranga dostep.txt5 
 
 
 class TexturePackDropdown(discord.ui.Select):
@@ -683,7 +683,7 @@ class TexturePackDropdown(discord.ui.Select):
             discord.SelectOption(label="Texture Pack #1 (LL1N PACK 1)", description="Pobierz LL1N PACK 1", emoji="<a:Strzalka4:1540979104625594453>", value="txt1"),
             discord.SelectOption(label="Texture Pack #2 (LL1N PACK 2)", description="Pobierz LL1N PACK 2", emoji="<a:Strzalka4:1540979104625594453>", value="txt2"),
             discord.SelectOption(label="Texture Pack #3 (LL1N PACK 3)", description="Pobierz LL1N PACK 3", emoji="<a:Strzalka4:1540979104625594453>", value="txt3"),
-            discord.SelectOption(label="Texture Pack #4 (Wkrótce...)", description="Miejsce na nową paczkę", emoji="<a:Strzalka4:1540979104625594453>", value="txt4"),
+            discord.SelectOption(label="Texture Pack #4 (LL1N PACK 4)", description="Pobierz LL1N PACK 4", emoji="<a:Strzalka4:1540979104625594453>", value="txt4"),
             discord.SelectOption(label="Texture Pack #5 (Black n' White LL1N PACK)", description="Pobierz Black n' White LL1N PACK", emoji="<a:Strzalka4:1540979104625594453>", value="txt5")
         ]
         super().__init__(placeholder="🩸 Wybierz Texture Pack do pobrania...", min_values=1, max_values=1, options=options, custom_id="txt_download_select")
@@ -745,7 +745,7 @@ class TexturePackDropdown(discord.ui.Select):
             else:
                 return await interaction.response.send_message("❌ **Nie posiadasz zakupionego dostępu do Texture Packa #3!**\nOtwórz ticket w zakładce zakupów, aby odblokować tę paczkę.", ephemeral=True)
 
-        # 4. OBSŁUGA TEXTURE PACK #4 (PUSTE MIEJSCE)
+        # 4. OBSŁUGA TEXTURE PACK #4 
         elif wybor == "txt4":
             if ID_ROLI_TXT_4 in user_roles or ID_ROLI_TXT_ALL in user_roles:
                 embed = discord.Embed(
@@ -753,7 +753,7 @@ class TexturePackDropdown(discord.ui.Select):
                         f"```ansi\n\u001b[1;37m🔗 | TWÓJ LINK DO TEXTURE PACKA #4\u001b[0m\n```\n"
                         f"> <a:tak:1545674684794802296> ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
                         f"<:informacje:1539540815582462014> ┃ **Nazwa:** `----- LL1N PACK 4 -----`\n"
-                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire]()"
+                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire](https://www.mediafire.com/file/ywa84w6fi66rn0e/%25C2%25A7l-_LL1N_PACK_4_-.zip/file)"
                     ),
                     color=discord.Color.from_rgb(231, 76, 60)
                 )
