@@ -817,7 +817,6 @@ async def panel_pobierz(interaction: discord.Interaction):
 # MODY                                                
 # =========================================================
 ID_ROLI_MODY = 1540077359049474148
-ID_ROLI_USTAWIENIA = 1573865657018097724
 ID_ROLI_MODY_USTAWIENIA = 1573865931145482421
 
 class SpecificMcDropdown(discord.ui.Select):
@@ -896,14 +895,14 @@ class ModsDropdown(discord.ui.Select):
                 return await interaction.response.send_message(embed=emb, ephemeral=True)
             return await interaction.response.send_message("❌ Nie posiadasz rangi dostępu do modów!", ephemeral=True)
         elif wybor == "ust_mc":
-            if ID_ROLI_USTAWIENIA in user_roles or ID_ROLI_MODY_USTAWIENIA in user_roles:
+            if ID_ROLI_MODY_USTAWIENIA in user_roles:
                 emb = discord.Embed(description="```ansi\n\u001b[1;37m🛠 | WYBIERZ KATEGORIĘ USTAWIEŃ MC\u001b[0m\n```<a:Strzalka2:1539571409599070218> ︲Rozwiń poniższą **listę** i wybierz zakładkę...", color=discord.Color.from_rgb(119, 178, 85))
                 emb.set_footer(text="© 2026 LL1N Community • Ustawienia Minecraft")
                 return await interaction.response.send_message(embed=emb, view=SpecificMcView(), ephemeral=True)
             return await interaction.response.send_message("❌ Nie posiadasz rangi dostępu do ustawień!", ephemeral=True)
 
         elif wybor == "ust_mody":
-            if ID_ROLI_USTAWIENIA in user_roles or ID_ROLI_MODY_USTAWIENIA in user_roles:
+            if ID_ROLI_MODY_USTAWIENIA in user_roles:
                 emb = discord.Embed(description="```ansi\n\u001b[1;37m📗 | WYBIERZ KONKRETNEGO MODA\u001b[0m\n```<a:Strzalka2:1539571409599070218> ︲Rozwiń poniższą **listę** i kliknij modyfikację...", color=discord.Color.from_rgb(119, 178, 85))
                 emb.set_footer(text="© 2026 LL1N Community • Ustawienia Modów")
                 return await interaction.response.send_message(embed=emb, view=SpecificModsView(), ephemeral=True)
