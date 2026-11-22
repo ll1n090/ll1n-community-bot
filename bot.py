@@ -718,7 +718,7 @@ class TexturePackDropdown(discord.ui.Select):
                         f"```ansi\n\u001b[1;37m🔗 | TWÓJ LINK DO TEXTURE PACKA #2\u001b[0m\n```\n"
                         f"> <a:tak:1545674684794802296> ┃ Twój profil posiada aktywny dostęp premium do tej paczki zasobów.\n\n"
                         f"<:informacje:1539540815582462014> ┃ **Nazwa:** `----- LL1N PACK 2 -----`\n"
-                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire](https://www.mediafire.com/file/lff5t8drrelvhf9/%C2%A7l-_LL1N_PACK_2_-.zip/file)"
+                        f"<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać z MediaFire](https://www.mediafire.com/file/ttalfvzjcnxb82b/%25C2%25A7l-_LL1N_PACK_2_-.zip/file)"
                     ),
                     color=discord.Color.from_rgb(231, 76, 60)
                 )
