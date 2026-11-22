@@ -341,6 +341,7 @@ async def setup_hook(self):
     self.add_view(TicketDropdownView())
     self.add_view(CloseTicketView())
     self.add_view(TexturePackDropdownView())
+    self.add_view(ModsDropdownView())
 
 bot = Bot()
 
@@ -812,7 +813,68 @@ async def panel_pobierz(interaction: discord.Interaction):
     # Wysyłamy czysty panel z menu rozwijanym bezpośrednio na kanał (brak napisu na górze)
     await interaction.channel.send(embed=embed, view=TexturePackDropdownView())
 
+# =========================================================
+# MODY                                                
+# =========================================================
+ID_ROLI_MODY = 1540077359049474148
+ID_ROLI_USTAWIENIA = 1573865657018097724
+ID_ROLI_MODY_USTAWIENIA = 1573865931145482421
 
+class ModsDropdown(discord.ui.Select):
+    def __init__(self):
+        options = [
+            discord.SelectOption(label="Paczka Modów", description="Pobierz paczkę modów", value="mody"),
+            discord.SelectOption(label="Ustawienia Minecraft", description="Screen ustawień MC", value="ust_mc"),
+            discord.SelectOption(label="Ustawienia Czatu", description="Screen ustawień czatu", value="ust_czat"),
+            discord.SelectOption(label="Ustawienia Modów", description="Screen ustawień modów", value="ust_mody")
+        ]
+        super().__init__(placeholder="Wybierz kategorię do pobrania...", min_values=1, max_values=1, options=options, custom_id="mods_download_select")
+
+    async def callback(self, interaction: discord.Interaction):
+        user_roles = [role.id for role in interaction.user.roles]
+        wybor = self.values[0]
+
+        if wybor == "mody":
+            if ID_ROLI_MODY in user_roles or ID_ROLI_MODY_USTAWIENIA in user_roles:
+                embed = discord.Embed(description="**Link do modów:** [Kliknij tutaj, aby pobrać](TUTAJ_WKLEJ_LINK_DO_MODOW)", color=discord.Color.from_rgb(231, 76, 60))
+                return await interaction.response.send_message(embed=embed, ephemeral=True)
+            return await interaction.response.send_message("❌ Nie posiadasz rangi dostępu do modów!", ephemeral=True)
+
+        elif wybor == "ust_mc":
+            if ID_ROLI_USTAWIENIA in user_roles or ID_ROLI_MODY_USTAWIENIA in user_roles:
+                embed = discord.Embed(description="**Ustawienia Minecraft:**", color=discord.Color.from_rgb(231, 76, 60))
+                embed.set_image(url="TUTAJ_WKLEJ_LINK_DO_SCREANA_MC")
+                return await interaction.response.send_message(embed=embed, ephemeral=True)
+            return await interaction.response.send_message("❌ Nie posiadasz rangi dostępu do ustawień!", ephemeral=True)
+        elif wybor == "ust_czat":
+            if ID_ROLI_USTAWIENIA in user_roles or ID_ROLI_MODY_USTAWIENIA in user_roles:
+                embed = discord.Embed(description="**Ustawienia Czatu:**", color=discord.Color.from_rgb(231, 76, 60))
+                embed.set_image(url="TUTAJ_WKLEJ_LINK_DO_SCREANA_CZATU")
+                return await interaction.response.send_message(embed=embed, ephemeral=True)
+            return await interaction.response.send_message("❌ Nie posiadasz rangi dostępu do ustawień!", ephemeral=True)
+
+        elif wybor == "ust_mody":
+            if ID_ROLI_USTAWIENIA in user_roles or ID_ROLI_MODY_USTAWIENIA in user_roles:
+                embed = discord.Embed(description="**Ustawienia Modów:**", color=discord.Color.from_rgb(231, 76, 60))
+                embed.set_image(url="TUTAJ_WKLEJ_LINK_DO_SCREANA_MODOW")
+                return await interaction.response.send_message(embed=embed, ephemeral=True)
+            return await interaction.response.send_message("❌ Nie posiadasz rangi dostępu do ustawień!", ephemeral=True)
+
+class ModsDropdownView(discord.ui.View):
+    def __init__(self):
+        super().__init__(timeout=None)
+        self.add_item(ModsDropdown())
+
+@bot.tree.command(name="mody-pobierz", description="Wysyła stały panel pobierania modów i ustawień")
+async def mody_pobierz(interaction: discord.Interaction):
+    target_role = interaction.guild.get_role(1545486206715044000)
+    if interaction.user != interaction.guild.owner and (not target_role or interaction.user.top_role < target_role):
+        return await interaction.response.send_message("❌ Nie masz uprawnień do używania tej komendy!", ephemeral=True)
+
+    await interaction.response.send_message("⚙ Wysyłam panel pobierania modów i ustawień...", ephemeral=True)
+    embed = discord.Embed(description="**JAK ODEBRAĆ SWOJE MODY I USTAWIENIA?**\n\nRozwiń menu poniżej i wybierz kategorię, którą zakupiłeś.", color=discord.Color.from_rgb(231, 76, 60))
+    embed.set_footer(text="© 2026 LL1N Community • Instrukcja Obsługi")
+    await interaction.channel.send(embed=embed, view=ModsDropdownView())
 
 # =========================================================
 # SERWER HTTP DLA RENDERA (ZAMIAST STAREGO KEEP_ALIVE)
