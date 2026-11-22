@@ -873,8 +873,20 @@ async def mody_pobierz(interaction: discord.Interaction):
         return await interaction.response.send_message("❌ Nie masz uprawnień do używania tej komendy!", ephemeral=True)
 
     await interaction.response.send_message("⚙ Wysyłam panel pobierania modów i ustawień...", ephemeral=True)
-    embed = discord.Embed(description="**JAK ODEBRAĆ SWOJE MODY I USTAWIENIA?**\n\nRozwiń menu poniżej i wybierz kategorię, którą zakupiłeś.", color=discord.Color.from_rgb(231, 76, 60))
+    embed = discord.Embed(
+        description=(
+            f"```ansi\n\u001b[1;37m❓ | JAK ODEBRAĆ SWOJE MODY I USTAWIENIA?\u001b[0m\n```\n"
+            f"<:admin:1545620892212658288> ┃ Witaj w bezpiecznym centrum dystrybucji plików! Nasz serwer korzysta ze specjalnego bota, aby chronić mody oraz ustawienia przed osobami nieupoważnionymi.\n\n"
+            f"**<a:syrena1:1540951017569652746> Instrukcja krok po kroku:**\n"
+            f"<a:Strzalka4:1540979104625594453> ︲1. Upewnij się, że administrator nadał Ci odpowiednią rangę po zakupie w ticketach.\n"
+            f"<a:Strzalka4:1540979104625594453> ︲2. Rozwiń menu znajdujące się bezpośrednio pod tą wiadomością.\n"
+            f"<a:Strzalka4:1540979104625594453> ︲3. Wybierz z listy paczkę modów lub ustawienia, które zakupiłeś.\n\n"
+            f"📍 ┃ *Bot natychmiast wyświetli ukrytą wiadomość (widoczną tylko dla Ciebie) z linkiem do pobrania lub screenem ustawień!*"
+        ),
+        color=discord.Color.from_rgb(231, 76, 60)
+    )
     embed.set_footer(text="© 2026 LL1N Community • Instrukcja Obsługi")
+
     await interaction.channel.send(embed=embed, view=ModsDropdownView())
 
 # =========================================================
