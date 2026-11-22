@@ -820,6 +820,34 @@ ID_ROLI_MODY = 1540077359049474148
 ID_ROLI_USTAWIENIA = 1573865657018097724
 ID_ROLI_MODY_USTAWIENIA = 1573865931145482421
 
+class SpecificModsDropdown(discord.ui.Select):
+    def __init__(self):
+        options = [
+            discord.SelectOption(label="Visual Ratio", description="Screen ustawień Visual Ratio", value="mod_vr"),
+            discord.SelectOption(label="Not Enough Animations", description="Screen ustawień NEA", value="mod_nea"),
+            discord.SelectOption(label="Natural Motion Blur", description="Screen ustawień Motion Blur", value="mod_nmb"),
+            discord.SelectOption(label="Creamy Keys", description="Screen ustawień Creamy Keys", value="mod_ck")
+        ]
+        super().__init__(placeholder="Wybierz konkretnego moda...", min_values=1, max_values=1, options=options)
+
+    async def callback(self, interaction: discord.Interaction):
+        linki = {
+            "mod_vr": ("Visual Ratio", "LINK_DO_SCREANA_VR"),
+            "mod_nea": ("Not Enough Animations", "LINK_DO_SCREANA_NEA"),
+            "mod_nmb": ("Natural Motion Blur", "LINK_DO_SCREANA_NMB"),
+            "mod_ck": ("Creamy Keys", "LINK_DO_SCREANA_CK")
+        }
+        nazwa, url = linki[self.values]
+        embed = discord.Embed(description=f"**Ustawienia moda {nazwa}:**", color=discord.Color.from_rgb(119, 178, 85))
+        embed.set_image(url=url)
+        await interaction.response.send_message(embed=embed, ephemeral=True)
+
+class SpecificModsView(discord.ui.View):
+    def __init__(self):
+        super().__init__(timeout=180)
+        self.add_item(SpecificModsDropdown())
+
+
 class ModsDropdown(discord.ui.Select):
     def __init__(self):
         options = [
@@ -856,9 +884,8 @@ class ModsDropdown(discord.ui.Select):
 
         elif wybor == "ust_mody":
             if ID_ROLI_USTAWIENIA in user_roles or ID_ROLI_MODY_USTAWIENIA in user_roles:
-                embed = discord.Embed(description="**Ustawienia Modów:**", color=discord.Color.from_rgb(231, 76, 60))
-                embed.set_image(url="TUTAJ_WKLEJ_LINK_DO_SCREANA_MODOW")
-                return await interaction.response.send_message(embed=embed, ephemeral=True)
+                embed = discord.Embed(description="**Wybierz z listy poniżej konkretnego moda, którego ustawienia chcesz zobaczyć:**", color=discord.Color.from_rgb(119, 178, 85))
+                return await interaction.response.send_message(embed=embed, view=SpecificModsView(), ephemeral=True)
             return await interaction.response.send_message("❌ Nie posiadasz rangi dostępu do ustawień!", ephemeral=True)
 
 class ModsDropdownView(discord.ui.View):
