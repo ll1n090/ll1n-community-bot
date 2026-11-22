@@ -904,7 +904,7 @@ class ModsDropdown(discord.ui.Select):
 
         elif wybor == "ust_mody":
             if ID_ROLI_USTAWIENIA in user_roles or ID_ROLI_MODY_USTAWIENIA in user_roles:
-                emb = discord.Embed(description="```ansi\n\u001b[1;37m📗 | WYBIERZ KONKRETNEGO MODA\u001b[0m\n```> <a:Strzalka2:1539571409599070218> ︲Rozwiń poniższą **listę** i kliknij modyfikację...", color=discord.Color.from_rgb(119, 178, 85))
+                emb = discord.Embed(description="```ansi\n\u001b[1;37m📗 | WYBIERZ KONKRETNEGO MODA\u001b[0m\n``` > <a:Strzalka2:1539571409599070218> ︲Rozwiń poniższą **listę** i kliknij modyfikację...", color=discord.Color.from_rgb(119, 178, 85))
                 emb.set_footer(text="© 2026 LL1N Community • Ustawienia Modów")
                 return await interaction.response.send_message(embed=emb, view=SpecificModsView(), ephemeral=True)
             return await interaction.response.send_message("❌ Nie posiadasz rangi dostępu do ustawień!", ephemeral=True)
@@ -924,7 +924,7 @@ async def mody_pobierz(interaction: discord.Interaction):
     opis_panelu = (
         "```ansi\n\u001b[1;37m🧶 | JAK ODEBRAĆ SWOJE MODY I USTAWIENIA?\u001b[0m\n```\n"
         "<:mod:1573872930088292473> ┃ Witaj w bezpiecznym centrum dystrybucji plików! Nasz serwer korzysta ze specjalnego bota, aby chronić mody oraz ustawienia przed osobami nieupoważnionymi.\n\n"
-        "**<a:syrena1:1540951017569652746> Instrukcja krok po kroku:**\n"
+        "**<a:syrena:1539540522086178826> Instrukcja krok po kroku:**\n"
         "<a:Strzalka2:1539571409599070218> ︲1. Upewnij się, że administrator nadał Ci odpowiednią rangę po zakupie w ticketach.\n"
         "<a:Strzalka2:1539571409599070218> ︲2. Rozwiń menu znajdujące się bezpośrednio pod tą wiadomością.\n"
         "<a:Strzalka2:1539571409599070218> ︲3. Wybierz z listy paczkę modów lub ustawienia, które zakupiłeś.\n\n"
