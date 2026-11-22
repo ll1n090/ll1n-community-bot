@@ -904,7 +904,7 @@ class ModsDropdown(discord.ui.Select):
 
         elif wybor == "ust_mody":
             if ID_ROLI_USTAWIENIA in user_roles or ID_ROLI_MODY_USTAWIENIA in user_roles:
-                emb = discord.Embed(description="```ansi\n\u001b[1;37m🛠 | WYBIERZ KONKRETNEGO MODA\u001b[0m\n```\n> <a:Strzalka2:1539571409599070218> ︲Rozwiń poniższą **listę** i kliknij modyfikację...", color=discord.Color.from_rgb(119, 178, 85))
+                emb = discord.Embed(description="```ansi\n\u001b[1;37m📗 | WYBIERZ KONKRETNEGO MODA\u001b[0m\n```> <a:Strzalka2:1539571409599070218> ︲Rozwiń poniższą **listę** i kliknij modyfikację...", color=discord.Color.from_rgb(119, 178, 85))
                 emb.set_footer(text="© 2026 LL1N Community • Ustawienia Modów")
                 return await interaction.response.send_message(embed=emb, view=SpecificModsView(), ephemeral=True)
             return await interaction.response.send_message("❌ Nie posiadasz rangi dostępu do ustawień!", ephemeral=True)
