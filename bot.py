@@ -823,12 +823,13 @@ ID_ROLI_MODY_USTAWIENIA = 1573865931145482421
 class ModsDropdown(discord.ui.Select):
     def __init__(self):
         options = [
-            discord.SelectOption(label="Paczka Modów", description="Pobierz paczkę modów", value="mody"),
-            discord.SelectOption(label="Ustawienia Minecraft", description="Screen ustawień MC", value="ust_mc"),
-            discord.SelectOption(label="Ustawienia Czatu", description="Screen ustawień czatu", value="ust_czat"),
-            discord.SelectOption(label="Ustawienia Modów", description="Screen ustawień modów", value="ust_mody")
+            discord.SelectOption(label="Paczka Modów (LL1N MODS)", description="Pobierz paczkę modyfikacji", emoji="<a:Strzalka4:1540979104625594453>", value="mody"),
+            discord.SelectOption(label="Ustawienia Minecraft", description="Screeny ogólnych ustawień gry", emoji="<a:Strzalka4:1540979104625594453>", value="ust_mc"),
+            discord.SelectOption(label="Ustawienia Czatu", description="Screen konfiguracji czatu", emoji="<a:Strzalka4:1540979104625594453>", value="ust_czat"),
+            discord.SelectOption(label="Ustawienia Modów", description="Screeny ustawień samych modów", emoji="<a:Strzalka4:1540979104625594453>", value="ust_mody")
         ]
-        super().__init__(placeholder="Wybierz kategorię do pobrania...", min_values=1, max_values=1, options=options, custom_id="mods_download_select")
+        super().__init__(placeholder="🩸 Wybierz kategorię do pobrania...", min_values=1, max_values=1, options=options, custom_id="mods_download_select")
+
 
     async def callback(self, interaction: discord.Interaction):
         user_roles = [role.id for role in interaction.user.roles]
