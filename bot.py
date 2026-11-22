@@ -823,23 +823,30 @@ ID_ROLI_MODY_USTAWIENIA = 1573865931145482421
 class SpecificModsDropdown(discord.ui.Select):
     def __init__(self):
         options = [
-            discord.SelectOption(label="Visual Ratio", description="Screen ustawień Visual Ratio", value="mod_vr"),
-            discord.SelectOption(label="Not Enough Animations", description="Screen ustawień NEA", value="mod_nea"),
-            discord.SelectOption(label="Natural Motion Blur", description="Screen ustawień Motion Blur", value="mod_nmb"),
-            discord.SelectOption(label="Creamy Keys", description="Screen ustawień Creamy Keys", value="mod_ck")
+            discord.SelectOption(label="Visual Ratio", description="Screen ustawień Visual Ratio", emoji="<a:Strzalka2:1539571409599070218>", value="mod_vr"),
+            discord.SelectOption(label="Not Enough Animations", description="Screen ustawień NEA", emoji="<a:Strzalka2:1539571409599070218>", value="mod_nea"),
+            discord.SelectOption(label="Natural Motion Blur", description="Screen ustawień Motion Blur", emoji="<a:Strzalka2:1539571409599070218>", value="mod_nmb"),
+            discord.SelectOption(label="Creamy Keys", description="Screen ustawień Creamy Keys", emoji="<a:Strzalka2:1539571409599070218>", value="mod_ck")
         ]
-        super().__init__(placeholder="Wybierz konkretnego moda...", min_values=1, max_values=1, options=options)
+        super().__init__(placeholder="🍀 Wybierz konkretnego moda...", min_values=1, max_values=1, options=options)
 
     async def callback(self, interaction: discord.Interaction):
         linki = {
-            "mod_vr": ("Visual Ratio", "LINK_DO_SCREANA_VR"),
-            "mod_nea": ("Not Enough Animations", "LINK_DO_SCREANA_NEA"),
-            "mod_nmb": ("Natural Motion Blur", "LINK_DO_SCREANA_NMB"),
-            "mod_ck": ("Creamy Keys", "LINK_DO_SCREANA_CK")
+            "mod_vr": ("Visual Ratio", "https://imgur.com"),
+            "mod_nea": ("Not Enough Animations", "https://imgur.com"),
+            "mod_nmb": ("Natural Motion Blur", "https://imgur.com"),
+            "mod_ck": ("Creamy Keys", "https://imgur.com")
         }
         nazwa, url = linki[self.values]
-        embed = discord.Embed(description=f"**Ustawienia moda {nazwa}:**", color=discord.Color.from_rgb(119, 178, 85))
+        embed = discord.Embed(
+            description=(
+                f"```ansi\n\u001b[1;37m⚙ | USTAWIENIA MODA: {nazwa.upper()}\u001b[0m\n```\n"
+                f"> <a:tak:1545674684794802296> ┃ Poniżej znajduje się aktualna konfiguracja modyfikacji **{nazwa}**."
+            ),
+            color=discord.Color.from_rgb(119, 178, 85)
+        )
         embed.set_image(url=url)
+        embed.set_footer(text="© 2026 LL1N Community • Konfiguracja Modów")
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
 class SpecificModsView(discord.ui.View):
@@ -884,9 +891,18 @@ class ModsDropdown(discord.ui.Select):
 
         elif wybor == "ust_mody":
             if ID_ROLI_USTAWIENIA in user_roles or ID_ROLI_MODY_USTAWIENIA in user_roles:
-                embed = discord.Embed(description="**Wybierz z listy poniżej konkretnego moda, którego ustawienia chcesz zobaczyć:**", color=discord.Color.from_rgb(119, 178, 85))
+                embed = discord.Embed(
+                    description=(
+                        f"```ansi\n\u001b[1;37m🛠 | WYBIERZ KONKRETNEGO MODA\u001b[0m\n```\n"
+                        f"> <a:Strzalka2:1539571409599070218> ︲Rozwiń poniższą **listę** i kliknij modyfikację,\n"
+                        f"> <a:Strzalka2:1539571409599070218> ︲której screen ustawień chcesz teraz wyświetlić."
+                    ),
+                    color=discord.Color.from_rgb(119, 178, 85)
+                )
+                embed.set_footer(text="© 2026 LL1N Community • Ustawienia Modów")
                 return await interaction.response.send_message(embed=embed, view=SpecificModsView(), ephemeral=True)
             return await interaction.response.send_message("❌ Nie posiadasz rangi dostępu do ustawień!", ephemeral=True)
+
 
 class ModsDropdownView(discord.ui.View):
     def __init__(self):
