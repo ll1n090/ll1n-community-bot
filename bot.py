@@ -826,13 +826,13 @@ class SpecificMcDropdown(discord.ui.Select):
             discord.SelectOption(label="Ustawienia Graficzne", description="Screeny ustawień grafiki / wideo", emoji="<a:Strzalka2:1539571409599070218>", value="mc_grafika"),
             discord.SelectOption(label="Ustawienia Czatu", description="Screen konfiguracji czatu", emoji="<a:Strzalka2:1539571409599070218>", value="mc_czat"),
             discord.SelectOption(label="Ułatwienia Dostępu", description="Screen ustawień dostępności", emoji="<a:Strzalka2:1539571409599070218>", value="mc_ulatwienia"),
-            discord.SelectOption(label="FOV", description="Zalecane pole widzenia (FOV)", emoji="<a:Strzalka2:1539571409599070218>", value="mc_fov")
+            discord.SelectOption(label="FOV", description="Pole widzenia (FOV)", emoji="<a:Strzalka2:1539571409599070218>", value="mc_fov")
         ]
         super().__init__(placeholder="🍀 Wybierz ustawienia Minecraft...", min_values=1, max_values=1, options=options)
     async def callback(self, interaction: discord.Interaction):
         wybrane = self.values.pop()
         if wybrane == "mc_fov":
-            emb = discord.Embed(description="```ansi\n\u001b[1;37m⚙ | MINECRAFT: FOV\u001b[0m\n```\n> <a:tak:1545674684794802296> ┃ Zalecane ustawienie pola widzenia (FOV): **Quake Pro**", color=discord.Color.from_rgb(119, 178, 85))
+            emb = discord.Embed(description="```ansi\n\u001b[1;37m⚙ | MINECRAFT: FOV\u001b[0m\n```\n> <a:tak:1545674684794802296> ┃ Ustawienie pola widzenia (FOV): **Quake Pro**", color=discord.Color.from_rgb(119, 178, 85))
             emb.set_footer(text="© 2026 LL1N Community • Ustawienia Minecraft")
             return await interaction.response.send_message(embed=emb, ephemeral=True)
 
@@ -892,7 +892,7 @@ class ModsDropdown(discord.ui.Select):
         wybor = self.values.pop()
         if wybor == "mody":
             if ID_ROLI_MODY in user_roles or ID_ROLI_MODY_USTAWIENIA in user_roles:
-                emb = discord.Embed(description="```ansi\n\u001b[1;37m📦 | PACZKA MODÓW LL1N\u001b[0m\n```\n> <a:tak:1545674684794802296> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać](https://mediafire.com)", color=discord.Color.from_rgb(119, 178, 85))
+                emb = discord.Embed(description="```ansi\n\u001b[1;37m📦 | PACZKA MODÓW \u001b[0m\n```\n> <a:tak:1545674684794802296> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać](https://www.mediafire.com/file/391qmxplj3vmwf8/Mody-ll1n.zip/file)", color=discord.Color.from_rgb(119, 178, 85))
                 return await interaction.response.send_message(embed=emb, ephemeral=True)
             return await interaction.response.send_message("❌ Nie posiadasz rangi dostępu do modów!", ephemeral=True)
         elif wybor == "ust_mc":
@@ -921,10 +921,17 @@ async def mody_pobierz(interaction: discord.Interaction):
         return await interaction.response.send_message("❌ Nie masz uprawnień do używania tej komendy!", ephemeral=True)
 
     await interaction.response.send_message("⚙ Wysyłam panel pobierania modów i ustawień...", ephemeral=True)
-    # Pełna treść osadzenia (embed) instrukcji oraz widoku znajduje się w kodzie źródłowym.
-    embed = discord.Embed(description="*Panel instrukcji pobierania modów i ustawień*", color=discord.Color.from_rgb(119, 178, 85))
-    embed.set_footer(text="© 2026 LL1N Community • Instrukcja Obsługi")
-    await interaction.channel.send(embed=embed, view=ModsDropdownView())
+    opis_panelu = (
+        "```ansi\n\u001b[1;37m🧶 | JAK ODEBRAĆ SWOJE MODY I USTAWIENIA?\u001b[0m\n```\n"
+        "<:mod:1573872930088292473> ┃ Witaj w bezpiecznym centrum dystrybucji plików! Nasz serwer korzysta ze specjalnego bota, aby chronić mody oraz ustawienia przed osobami nieupoważnionymi.\n\n"
+        "**<a:syrena1:1540951017569652746> Instrukcja krok po kroku:**\n"
+        "<a:Strzalka2:1539571409599070218> ︲1. Upewnij się, że administrator nadał Ci odpowiednią rangę po zakupie w ticketach.\n"
+        "<a:Strzalka2:1539571409599070218> ︲2. Rozwiń menu znajdujące się bezpośrednio pod tą wiadomością.\n"
+        "<a:Strzalka2:1539571409599070218> ︲3. Wybierz z listy paczkę modów lub ustawienia, które zakupiłeś.\n\n"
+        "🍀 ┃ *Bot natychmiast wyświetli ukrytą wiadomość (widoczną tylko dla Ciebie) z linkiem do pobrania lub screenem ustawień!*"
+    )
+    embed = discord.Embed(description=opis_panelu, color=discord.Color.from_rgb(119, 178, 85))
+
 
 # =========================================================
 # SERWER HTTP DLA RENDERA (ZAMIAST STAREGO KEEP_ALIVE)
