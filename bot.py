@@ -892,7 +892,7 @@ class ModsDropdown(discord.ui.Select):
         wybor = self.values.pop()
         if wybor == "mody":
             if ID_ROLI_MODY in user_roles or ID_ROLI_MODY_USTAWIENIA in user_roles:
-                emb = discord.Embed(description="```ansi\n\u001b[1;37m📦 | PACZKA MODÓW \u001b[0m\n```<:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać](https://www.mediafire.com/file/391qmxplj3vmwf8/Mody-ll1n.zip/file)", color=discord.Color.from_rgb(119, 178, 85))
+                emb = discord.Embed(description="```ansi\n\u001b[1;37m📦 | PACZKA MODÓW \u001b[0m\n```\n <:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać](https://www.mediafire.com/file/391qmxplj3vmwf8/Mody-ll1n.zip/file)", color=discord.Color.from_rgb(119, 178, 85))
                 return await interaction.response.send_message(embed=emb, ephemeral=True)
             return await interaction.response.send_message("❌ Nie posiadasz rangi dostępu do modów!", ephemeral=True)
         elif wybor == "ust_mc":
@@ -925,7 +925,7 @@ async def mody_pobierz(interaction: discord.Interaction):
         "```ansi\n\u001b[1;37m🧶 | JAK ODEBRAĆ SWOJE MODY I USTAWIENIA?\u001b[0m\n```\n"
         "<:mod:1573872930088292473> ┃ Witaj w bezpiecznym centrum dystrybucji plików! Nasz serwer korzysta ze specjalnego bota, aby chronić mody oraz ustawienia przed osobami nieupoważnionymi.\n\n"
         "**<a:syrena:1539540522086178826> Instrukcja krok po kroku:**\n"
-        "<a:Strzalka2:1539571409599070218> ︲1. Upewnij się, że administrator nadał Ci odpowiednią rangę po zakupie w ticketach.\n"
+        "<a:Strzalka2:1539571409599070218> ︲1. Upewnij się, że administrator nadał Ci odpowiednią rangę po zakupie na tickecie.\n"
         "<a:Strzalka2:1539571409599070218> ︲2. Rozwiń menu znajdujące się bezpośrednio pod tą wiadomością.\n"
         "<a:Strzalka2:1539571409599070218> ︲3. Wybierz z listy paczkę modów lub ustawienia, które zakupiłeś.\n\n"
         "🍀 ┃ *Bot natychmiast wyświetli ukrytą wiadomość (widoczną tylko dla Ciebie) z linkiem do pobrania lub screenem ustawień!*"
