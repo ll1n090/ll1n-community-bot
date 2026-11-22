@@ -931,7 +931,8 @@ async def mody_pobierz(interaction: discord.Interaction):
         "🍀 ┃ *Bot natychmiast wyświetli ukrytą wiadomość (widoczną tylko dla Ciebie) z linkiem do pobrania lub screenem ustawień!*"
     )
     embed = discord.Embed(description=opis_panelu, color=discord.Color.from_rgb(119, 178, 85))
-
+    embed.set_footer(text="© 2026 LL1N Community • Instrukcja Obsługi")
+    await interaction.channel.send(embed=embed, view=ModsDropdownView())
 
 # =========================================================
 # SERWER HTTP DLA RENDERA (ZAMIAST STAREGO KEEP_ALIVE)
