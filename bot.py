@@ -891,7 +891,7 @@ class ModsDropdown(discord.ui.Select):
         wybor = self.values.pop()
         if wybor == "mody":
             if ID_ROLI_MODY in user_roles or ID_ROLI_MODY_USTAWIENIA in user_roles:
-                emb = discord.Embed(description="```ansi\n\u001b[1;37m📦 | PACZKA MODÓW \u001b[0m\n```\n <:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać](https://www.mediafire.com/file/391qmxplj3vmwf8/Mody-ll1n.zip/file)", color=discord.Color.from_rgb(119, 178, 85))
+                emb = discord.Embed(description="```ansi\n\u001b[1;37m📦 | PACZKA MODÓW \u001b[0m\n```\n <:folder:1545673564827422720> ┃ **Link do pobrania:** [Kliknij tutaj, aby pobrać](https://www.mediafire.com/file/z6rw760g7bb9d98/Mody-ll1n.zip/file)", color=discord.Color.from_rgb(119, 178, 85))
                 return await interaction.response.send_message(embed=emb, ephemeral=True)
             return await interaction.response.send_message("❌ Nie posiadasz rangi dostępu do modów!", ephemeral=True)
         elif wybor == "ust_mc":
