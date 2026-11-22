@@ -823,12 +823,12 @@ ID_ROLI_MODY_USTAWIENIA = 1573865931145482421
 class ModsDropdown(discord.ui.Select):
     def __init__(self):
         options = [
-            discord.SelectOption(label="Paczka Modów (LL1N MODS)", description="Pobierz paczkę modyfikacji", emoji="<a:Strzalka2:1540979104625594453>", value="mody"),
-            discord.SelectOption(label="Ustawienia Minecraft", description="Screeny ogólnych ustawień gry", emoji="<a:Strzalka2:1540979104625594453>", value="ust_mc"),
-            discord.SelectOption(label="Ustawienia Czatu", description="Screen konfiguracji czatu", emoji="<a:Strzalka2:1540979104625594453>", value="ust_czat"),
-            discord.SelectOption(label="Ustawienia Modów", description="Screeny ustawień samych modów", emoji="<a:Strzalka2:1540979104625594453>", value="ust_mody")
+            discord.SelectOption(label="Paczka Modów (LL1N MODS)", description="Pobierz paczkę modyfikacji", emoji="<a:Strzalka2:1539571409599070218>", value="mody"),
+            discord.SelectOption(label="Ustawienia Minecraft", description="Screeny ogólnych ustawień gry", emoji="<a:Strzalka2:1539571409599070218>", value="ust_mc"),
+            discord.SelectOption(label="Ustawienia Czatu", description="Screen konfiguracji czatu", emoji="<a:Strzalka2:1539571409599070218>", value="ust_czat"),
+            discord.SelectOption(label="Ustawienia Modów", description="Screeny ustawień samych modów", emoji="<a:Strzalka2:1539571409599070218>", value="ust_mody")
         ]
-        super().__init__(placeholder="🩸 Wybierz kategorię do pobrania...", min_values=1, max_values=1, options=options, custom_id="mods_download_select")
+        super().__init__(placeholder="🔋 Wybierz kategorię do pobrania...", min_values=1, max_values=1, options=options, custom_id="mods_download_select")
 
 
     async def callback(self, interaction: discord.Interaction):
@@ -878,10 +878,10 @@ async def mody_pobierz(interaction: discord.Interaction):
             f"```ansi\n\u001b[1;37m🧶 | JAK ODEBRAĆ SWOJE MODY I USTAWIENIA?\u001b[0m\n```\n"
             f"<:mod:1573872930088292473> ┃ Witaj w bezpiecznym centrum dystrybucji plików! Nasz serwer korzysta ze specjalnego bota, aby chronić mody oraz ustawienia przed osobami nieupoważnionymi.\n\n"
             f"**<a:syrena:1540951017569652746> Instrukcja krok po kroku:**\n"
-            f"<a:Strzalka2:1540979104625594453> ︲1. Upewnij się, że administrator nadał Ci odpowiednią rangę po zakupie w ticketach.\n"
-            f"<a:Strzalka2:1540979104625594453> ︲2. Rozwiń menu znajdujące się bezpośrednio pod tą wiadomością.\n"
-            f"<a:Strzalka2:1540979104625594453> ︲3. Wybierz z listy paczkę modów lub ustawienia, które zakupiłeś.\n\n"
-            f"☘ ┃ *Bot natychmiast wyświetli ukrytą wiadomość (widoczną tylko dla Ciebie) z linkiem do pobrania lub screenem ustawień!*"
+            f"<a:Strzalka2:1539571409599070218> ︲1. Upewnij się, że administrator nadał Ci odpowiednią rangę po zakupie w ticketach.\n"
+            f"<a:Strzalka2:1539571409599070218> ︲2. Rozwiń menu znajdujące się bezpośrednio pod tą wiadomością.\n"
+            f"<a:Strzalka2:1539571409599070218> ︲3. Wybierz z listy paczkę modów lub ustawienia, które zakupiłeś.\n\n"
+            f"🍀 ┃ *Bot natychmiast wyświetli ukrytą wiadomość (widoczną tylko dla Ciebie) z linkiem do pobrania lub screenem ustawień!*"
         ),
         color=discord.Color.from_rgb(119, 178, 85)
     )
